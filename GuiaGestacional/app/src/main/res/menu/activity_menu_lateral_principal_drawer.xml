@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/duvidas"
+            android:title="Dúvidas" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/tipos_parto"
+            android:title="Tipos de Parto" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/mamadeira"
+            android:title="Aleitamento Materno" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/data_consultas"
+            android:title="Data das Consultas" />
+        <item
+            android:id="@+id/nav_manage2"
+            android:icon="@drawable/caderneta_prenatal"
+            android:title="Caderneta do Pré-natal" />
+    </group>
+
+    <item android:title="Contatos">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Fale Conosco" />
+        </menu>
+    </item>
+
+</menu>
