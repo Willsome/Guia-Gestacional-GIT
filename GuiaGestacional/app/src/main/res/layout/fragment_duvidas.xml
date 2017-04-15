@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
+    tools:context="com.scriptpoin.guiagestacional.DuvidasFragment">
+
+    <ListView
+        android:id="@+id/duvidasTrimestre"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:layout_marginTop="30dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="40dp" />
+
+</FrameLayout>
