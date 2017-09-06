@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scriptpoin.guiagestacional.SobreActivity"
+    android:background="@drawable/sobre_bg">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/sobre_texto1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guia Gestacional"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/sobre_texto2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Versão Beta"
+            android:textColor="#99487e"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sobre_texto1"/>
+
+        <ImageView
+            android:id="@+id/sobre_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="115dp"
+            android:src="@drawable/guia_gestacional_icone"
+            android:layout_below="@+id/sobre_texto2"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="23dp"
+            />
+
+        <TextView
+            android:id="@+id/sobre_texto3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2017 ScriptPoin"
+            android:textColor="#99487e"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sobre_logo"/>
+
+        <TextView
+            android:id="@+id/sobre_texto4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todos os direitos reservados."
+            android:textColor="#99487e"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sobre_texto3"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

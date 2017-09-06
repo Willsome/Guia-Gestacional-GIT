@@ -1,12 +1,10 @@
 package com.scriptpoin.guiagestacional;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,8 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Toast;
+
+import com.scriptpoin.guiagestacional.dao.DaoDuvidas;
 
 public class MenuLateralPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,17 +23,15 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_lateral_principal);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        DaoDuvidas daoDuvidas = new DaoDuvidas(this);
+        if (daoDuvidas.pegaDuvidas(1).size() == 0) {
+            daoDuvidas.insere();
+        }
+        daoDuvidas.close();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -92,13 +89,35 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.menuAleitamento) {
 
-        } else if (id == R.id.nav_manage) {
+            AleitamentoMaternoFragment aleitamentoMaternoFragment = new AleitamentoMaternoFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.mainLayout, aleitamentoMaternoFragment).commit();
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.menuCaderneta) {
 
-        } else if (id == R.id.nav_send) {
+            CadernetaFragment cadernetaFragment = new CadernetaFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.mainLayout, cadernetaFragment).commit();
+
+        } else if (id == R.id.menuSobre) {
+
+            Intent sobreIntent = new Intent(this, SobreActivity.class);
+            startActivity(sobreIntent);
+
+        } else if (id == R.id.menuFeedback) {
+
+            Intent emailIntent = new Intent(Intent.ACTION_VIEW);
+            Uri data = Uri.parse("mailto:?subject="+ "Feedback Guia Gestacional" + "&to=" + "williamucep@hotmail.com");
+            emailIntent.setData(data);
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, "Enviar feedback com..."));
+            }
+            catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(MenuLateralPrincipalActivity.this, "Sem programa de e-mail instalado", Toast.LENGTH_SHORT).show();
+            }
 
         }
 

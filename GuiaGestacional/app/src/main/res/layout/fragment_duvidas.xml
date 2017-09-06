@@ -9,9 +9,10 @@
         android:id="@+id/duvidasTrimestre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="40dp" />
+        android:paddingTop="15dp"
+        android:dividerHeight="20dp" />
 
 </FrameLayout>

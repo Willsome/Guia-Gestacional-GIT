@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivUsuario"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -21,11 +21,12 @@
         android:src="@drawable/foto_perfil"/>
 
     <TextView
+        android:id="@+id/tvNomeUsuario"
+        android:text="[nome do usuário]"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:layout_gravity="center"
-        android:text="[nome do usuário]"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

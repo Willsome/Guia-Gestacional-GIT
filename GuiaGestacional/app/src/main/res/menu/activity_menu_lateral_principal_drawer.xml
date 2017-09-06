@@ -9,9 +9,9 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/tipos_parto"
-            android:title="Tipos de Parto" />
+            android:title="Tipos de Partos" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/menuAleitamento"
             android:icon="@drawable/mamadeira"
             android:title="Aleitamento Materno" />
         <item
@@ -19,19 +19,19 @@
             android:icon="@drawable/data_consultas"
             android:title="Data das Consultas" />
         <item
-            android:id="@+id/nav_manage2"
+            android:id="@+id/menuCaderneta"
             android:icon="@drawable/caderneta_prenatal"
-            android:title="Caderneta do Pré-natal" />
+            android:title="Caderneta da Gestante" />
     </group>
 
     <item android:title="Contatos">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/menuSobre"
+                android:icon="@drawable/sobre"
+                android:title="Sobre" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/menuFeedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Fale Conosco" />
         </menu>

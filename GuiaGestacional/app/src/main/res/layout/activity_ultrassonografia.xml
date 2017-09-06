@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.scriptpoin.guiagestacional.caderneta.ultrassonografia.UltrassonografiaActivity"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Ultrassonografia"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/uTvDpData"
+        android:hint="Data..."
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="1dp"
+        android:paddingLeft="4sp"/>
+
+    <TextView
+        android:id="@+id/uTvDpIgDum"
+        android:hint="IG DUM..."
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="1dp"
+        android:paddingLeft="4sp"/>
+
+    <TextView
+        android:id="@+id/uTvDpIgUsg"
+        android:hint="IG USG..."
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="1dp"
+        android:paddingLeft="4sp"/>
+
+    <EditText
+        android:id="@+id/uEdPesoFetal"
+        android:hint="Peso fetal (gramas)..."
+        android:inputType="numberSigned"
+        android:maxLength="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/uSpPlacenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"/>
+
+    <EditText
+        android:id="@+id/uEdLiquidoAmniotico"
+        android:hint="Líquido amniótico..."
+        android:inputType="numberDecimal"
+        android:maxLength="6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/uBtSalvar"
+        android:text="salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

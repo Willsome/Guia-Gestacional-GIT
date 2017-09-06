@@ -34,4 +34,11 @@
         <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
     </style>
 
+    <!-- TEMA da Activity de RESPOSTA das Dúvidas (Trimestres/Geral) -->
+    <style name="AppTheme.NoTitleDialog" parent="@style/Theme.AppCompat.Light.Dialog" >
+        <item name="windowActionBar"> false </item>
+        <item name="windowNoTitle"> true </item>
+        <item name="android:windowBackground"> @android:color/transparent </item>
+    </style>
+
 </resources>

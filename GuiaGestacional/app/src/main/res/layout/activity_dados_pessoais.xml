@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    tools:context="com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisActivity">
+
+    <TextView
+        android:text="Dados Pessoais"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/dpEtNome"
+        android:hint="Nome..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <requestFocus/>
+
+    <TextView
+        android:id="@+id/dpTvDpDataNascimento"
+        android:hint="Data de nascimento..."
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="1dp"
+        android:paddingLeft="4sp"/>
+
+    <EditText
+        android:id="@+id/dpEtIdade"
+        android:hint="Idade..."
+        android:inputType="numberSigned"
+        android:maxLength="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/dpEtEndereco"
+        android:hint="Endereço..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/dpEtNomeCompanheiro"
+        android:hint="Nome do companheiro..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/dpBtSalvar"
+        android:text="salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>
