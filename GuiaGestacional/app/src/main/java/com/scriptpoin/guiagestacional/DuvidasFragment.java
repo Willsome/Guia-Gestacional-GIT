@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.scriptpoin.guiagestacional.adapter.TrimestreAdapter;
+import com.scriptpoin.guiagestacional.gestacao.trimestre.DuvidasGestacaoActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.PrimeiroTrimestreActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.SegundoTrimestreActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.TerceiroTrimestreActivity;
@@ -58,7 +59,8 @@ public class DuvidasFragment extends Fragment {
                         startActivity(vaiParaTerceiroTrimestre);
                         break;
                     case 3:
-                        Toast.makeText(getActivity(), "Em produção...", Toast.LENGTH_SHORT).show();
+                        Intent vaiParaDuvidasDaGestacao = new Intent(getActivity(), DuvidasGestacaoActivity.class);
+                        startActivity(vaiParaDuvidasDaGestacao);
                         break;
                 }
             }

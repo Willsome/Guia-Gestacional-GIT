@@ -24,7 +24,7 @@ public class DadosObstetricosHelper {
         if(i == 1) {
             doTvDpDum = (TextView) activity.findViewById(R.id.doTvDpDum);
             doTvDpDpp = (TextView) activity.findViewById(R.id.doTvDpDpp);
-        } else if(i == 2) {
+            } else if(i == 2) {
             doTvDum = (TextView) view.findViewById(R.id.doTvDum);
             doTvDpp = (TextView) view.findViewById(R.id.doTvDpp);
         }

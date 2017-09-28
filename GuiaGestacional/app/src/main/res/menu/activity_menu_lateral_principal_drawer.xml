@@ -7,9 +7,9 @@
             android:icon="@drawable/duvidas"
             android:title="Dúvidas" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/tipos_parto"
-            android:title="Tipos de Partos" />
+            android:id="@+id/menuViasDeParto"
+            android:icon="@drawable/vias_de_parto"
+            android:title="Vias de Parto" />
         <item
             android:id="@+id/menuAleitamento"
             android:icon="@drawable/mamadeira"
@@ -20,7 +20,7 @@
             android:title="Data das Consultas" />
         <item
             android:id="@+id/menuCaderneta"
-            android:icon="@drawable/caderneta_prenatal"
+            android:icon="@drawable/caderneta_gestante"
             android:title="Caderneta da Gestante" />
     </group>
 

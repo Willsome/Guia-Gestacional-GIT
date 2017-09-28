@@ -17,12 +17,12 @@
 
 
             <TextView
+                android:text="Dados Pessoais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="Dados Pessoais"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -639,19 +639,44 @@
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <CheckBox
+                    android:id="@+id/umCbSim"
+                    android:text="Sim"
+                    android:textSize="15sp"
+                    android:enabled="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Sim:  " />
+                    android:paddingLeft="12sp"
+                    android:layout_weight="5"/>
 
-                <TextView
+                <CheckBox
+                    android:id="@+id/umCbNao"
+                    android:text="Não"
+                    android:textSize="15sp"
+                    android:enabled="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="XXXXX" />
+                    android:paddingLeft="12sp"
+                    android:layout_weight="5"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/umLlMedicamento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/umBtAlterar"
+                android:text="alterar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp" />
+
+
+
 
 
             <TextView
@@ -668,19 +693,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/cmLlConsultasMensais"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <Button
+                    android:id="@+id/cmBtAdicionar"
+                    android:text="adicionar consulta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Sim:  " />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="XXXXX" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 

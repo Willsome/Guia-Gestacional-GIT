@@ -19,20 +19,32 @@
             </intent-filter>
         </activity>
         <activity android:name=".gestacao.trimestre.PrimeiroTrimestreActivity" />
+
         <activity
             android:name=".gestacao.trimestre.RespostasActivity"
             android:theme="@style/AppTheme.NoTitleDialog" />
+
         <activity android:name=".gestacao.trimestre.SegundoTrimestreActivity" />
         <activity android:name=".gestacao.trimestre.TerceiroTrimestreActivity" />
         <activity android:name=".caderneta.dados_pessoais.DadosPessoaisActivity" />
         <activity android:name=".caderneta.dados_obstetricos.DadosObstetricosActivity" />
         <activity android:name=".caderneta.exames_solicitados_resultados.ExamesSolicitadosResultadosActivity" />
+
         <activity
             android:name=".SobreActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".aleitamento.BeneficiosAleitamentoActivity" />
         <activity android:name=".aleitamento.MitosVerdadesAleitamentoActivity" />
-        <activity android:name=".caderneta.ultrassonografia.UltrassonografiaActivity"></activity>
+        <activity android:name=".caderneta.ultrassonografia.UltrassonografiaActivity" />
+        <activity android:name=".caderneta.uso_de_medicamento.UsoDeMedicamentoActivity" />
+        <activity android:name=".gestacao.trimestre.DuvidasGestacaoActivity" />
+        <activity android:name=".caderneta.consultas_mensais.ConsultasMensaisActivity" />
+
+        <activity
+            android:name=".caderneta.consultas_mensais.ListaConsultasMensaisActivity"
+            android:theme="@style/AppTheme.NoTitleDialog" />
+
     </application>
 
 </manifest>

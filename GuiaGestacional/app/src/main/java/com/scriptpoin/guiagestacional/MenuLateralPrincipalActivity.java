@@ -87,7 +87,11 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.mainLayout, duvidasFragment).commit();
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.menuViasDeParto) {
+
+            ViasDePartoFragment viasDePartoFragment = new ViasDePartoFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.mainLayout, viasDePartoFragment).commit();
 
         } else if (id == R.id.menuAleitamento) {
 

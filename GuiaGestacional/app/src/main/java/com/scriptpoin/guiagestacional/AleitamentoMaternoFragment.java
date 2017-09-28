@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.scriptpoin.guiagestacional.adapter.TrimestreAdapter;
+import com.scriptpoin.guiagestacional.aleitamento.BeneficiosAleitamentoActivity;
+import com.scriptpoin.guiagestacional.aleitamento.MitosVerdadesAleitamentoActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.PrimeiroTrimestreActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.SegundoTrimestreActivity;
 import com.scriptpoin.guiagestacional.gestacao.trimestre.TerceiroTrimestreActivity;
@@ -49,11 +51,11 @@ public class AleitamentoMaternoFragment extends Fragment {
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent vaiParaPrimeiroTrimestre = new Intent(getActivity(), PrimeiroTrimestreActivity.class);
+                        Intent vaiParaPrimeiroTrimestre = new Intent(getActivity(), BeneficiosAleitamentoActivity.class);
                         startActivity(vaiParaPrimeiroTrimestre);
                         break;
                     case 1:
-                        Intent vaiParaSegundoTrimestre = new Intent(getActivity(), SegundoTrimestreActivity.class);
+                        Intent vaiParaSegundoTrimestre = new Intent(getActivity(), MitosVerdadesAleitamentoActivity.class);
                         startActivity(vaiParaSegundoTrimestre);
                         break;
                 }

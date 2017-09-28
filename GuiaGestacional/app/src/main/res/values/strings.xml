@@ -14,4 +14,52 @@
         <item> Grau III </item>
     </string-array>
 
+    <string-array name="spinner_posicao_fetal">
+        <item> Cefálica </item>
+        <item> Pélvica </item>
+    </string-array>
+
+    <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->
+
+    <string name="viasDePartoMaeBebe">
+        &#8226; Rápida recuperação, facilitando o cuidado com o bebê após o parto;\n\n
+        &#8226; Menos riscos de complicações, favorecendo o contato pele a pele imediato com o bebê e o aleitamento;\n\n
+        &#8226; Processo fisiológico, natural;\n\n
+        &#8226; Menor risco de complicações na próxima gravidez, tornando o próximo parto mais rápido e fácil.\n\n
+        &#8226; Contato direto para o colo da mãe.
+    </string>
+
+    <string name="viasDePartoBoasPraticas">
+        &#8226; Elaboração do plano de parto pelo enfermeiro no pré-natal (como deseja que aconteça no pré-parto, parto e pós-aparto;\n\n
+        &#8226; Respeito à escolha da mulher sobre seus acompanhantes durante o trabalho de parto e parto, é direito;\n\n
+        &#8226; Fornecimento às mulheres sobre todas as informações e explicações que desejarem;\n\n
+        &#8226; Oferta de líquidos por via oral durante o trabalho de parto e parto;\n\n
+        &#8226; Monitoramento fetal por meio de ausculta intermitente;\n\n
+        &#8226; Métodos não invasivos e não farmacológicos de alívio da dor, como massagem e técnicas de relaxamento, durante o trabalho de parto;\n\n
+        &#8226; Liberdade de posição e movimento durante o trabalho de parto;\n\n
+        &#8226; Estímulo a posições verticalizadas durante o trabalho de parto;\n\n
+        &#8226; Clampeamento do cordão umbilical tardiamente; Contato pele a pele do bebê e mãe logo após o nascimento;\n\n
+        &#8226; Caminhadas, uso de balanço pélvico e bola suíça;
+        &#8226; Aleitamento materno precoce.
+    </string>
+
+
+    <!-- ALEITAMENTO MATERNO -->  <!-- ALEITAMENTO MATERNO -->  <!-- ALEITAMENTO MATERNO -->
+
+    <string name="aleitamentoMaternoMitosVerdades">
+        Leite fraco: não existe leite fraco, nos primeiros dias pós-parto o leite é pouco, mas irá aumentando com o passar dos dias. O leite humano contém todos os nutrientes de que a criança necessita até os seus seis meses de vida, é de fácil digestão, e seu aspecto aguado é uma característica normal, portanto o leite materno está sempre em boas condições para o consumo da criança.\n\n
+        Leite insuficiente: não existe pouco leite, todas as mães podem produzir leite em quantidade e de qualidade suficiente para o seu bebê, desde que elas queiram – sejam autoconfiantes em relação à sua capacidade de amamentar – e que posicionem a criança corretamente durante a lactação.\n\n
+        O bebê não quis pegar o peito: na maioria das vezes é a posição da mãe e do bebê que não está confortável, ou a criança está com a fralda molhada, a pega do mamilo não está correta. Logo, o Posicionamento da mãe e da criança no ato da amamentação, os cuidados com os mamilos são importantes, peça ajuda a um profissional de saúde.\n\n
+        O leite materno não mata a sede do bebê: isso não é verdade, o leite materno contém toda a água de que uma criança necessita, mesmo se ela residir em locais de clima quente.\n\n
+        Os seios caem com a lactação: não, o uso sutiãs adequados no período da amamentação e cuidado no momento da amamentação contribuem para não existir mudanças na anatomia da mama.\n\n
+        Aleitamento materno: expressão do amor da mãe para com seu filho: verdade.
+    </string>
+
+    <string name="aleitamentoMaternoBeneficios">
+        Benéfico fisiológico, a liberação hormonal de ocitocina que favorece a contração uterina, a qual previne a diminuição de hemorragias e ainda contribui para que a involução uterina ocorra com mais rapidez;\n\n
+        Benefícios biológicos, o leite humano contém água em quantidade suficiente; proteína e gordura mais adequadas para a criança, além de vitaminas em quantidades suficientes, dispensando o uso de suplementos vitamínicos, assim protegendo contra alergias e infecções, especialmente as diarreias, favorecendo o crescimento e desenvolvimento da criança.\n\n
+        Benefícios psicológicos e emocionais que o vínculo nutriz-concepto promove na vida da mulher e da criança, que se constitui em valor imbricado no ato de amamentar. Infere-se que essa valoração corresponde à experiência fundante de um ser vivente, pois o homem é um ser valorativo engajado no seu existir. E como o amamentar perpassa por este vínculo, deduz-se que tal afetividade está diretamente ligada ao valor afetivo, pois a relação mãe-nutriz e filho é uma vivência própria, única, do ser humano, originária da relação que o aleitamento proporciona.\n\n
+        Benefício financeiro, por se tratar de um leite que traz consigo um valor próprio capaz de suprir todas as necessidades do Bebê, torna desnecessária a aquisição de alimentos para ele, o que gera economia para a mãe, acrescida do fato de que ao amamentar, estará preservando a saúde da criança, o que equivale a outro importante benefício.
+    </string>
+
 </resources>

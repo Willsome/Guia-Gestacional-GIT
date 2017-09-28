@@ -2,15 +2,19 @@ package com.scriptpoin.guiagestacional.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
+import com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ConsultasMensais;
 import com.scriptpoin.guiagestacional.caderneta.dados_obstetricos.DadosObstetricos;
 import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoais;
 import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.ExamesSolicitadosResultados;
 import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.Ultrassonografia;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Willi on 20-Aug-17.
@@ -65,6 +69,30 @@ public class DaoCaderneta extends SQLiteOpenHelper {
                         "placenta TEXT NOT NULL," +
                         "liquidoAmniotico REAL NOT NULL);";
         db.execSQL(criaTabelaUltrassonografia);
+
+        String criaTabelaUsoDeMedicamento =
+                "CREATE TABLE IF NOT EXISTS UsoDeMedicamento(" +
+                        "id INT NOT NULL," +
+                        "medicamento TEXT NOT NULL);";
+        db.execSQL(criaTabelaUsoDeMedicamento);
+
+        String criaTabelaConsultasMensais =
+                "CREATE TABLE IF NOT EXISTS ConsultasMensais(" +
+                        "numeroConsulta INT NOT NULL," +
+                        "dataConsulta TEXT NOT NULL," +
+                        "queixa TEXT NOT NULL," +
+                        "ig REAL NOT NULL," +
+                        "peso REAL NOT NULL," +
+                        "imc REAL NOT NULL," +
+                        "edema TEXT NOT NULL," +
+                        "paI REAL NOT NULL," +
+                        "paII REAL NOT NULL," +
+                        "alturaUterina INT NOT NULL," +
+                        "posicaoFetal TEXT NOT NULL," +
+                        "bcf INT NOT NULL," +
+                        "movFetal TEXT NOT NULL," +
+                        "nomeDoProfissional TEXT NOT NULL);";
+        db.execSQL(criaTabelaConsultasMensais);
     }
 
 
@@ -98,7 +126,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         DadosPessoais dadosPessoais = new DadosPessoais();
 
         Cursor c = db.rawQuery(sql, null);
-        while(c.moveToNext()) {
+        while (c.moveToNext()) {
             dadosPessoais.setNome(c.getString(c.getColumnIndex("nome")));
             dadosPessoais.setDataNascimento(c.getString(c.getColumnIndex("dataNascimento")));
             dadosPessoais.setIdade(c.getInt(c.getColumnIndex("idade")));
@@ -132,7 +160,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         DadosObstetricos dadosObstetricos = new DadosObstetricos();
 
         Cursor c = db.rawQuery(sql, null);
-        while(c.moveToNext()) {
+        while (c.moveToNext()) {
             dadosObstetricos.setDum(c.getString(c.getColumnIndex("dum")));
             dadosObstetricos.setDpp(c.getString(c.getColumnIndex("dpp")));
         }
@@ -174,7 +202,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         ExamesSolicitadosResultados es = new ExamesSolicitadosResultados();
 
         Cursor c = db.rawQuery(sql, null);
-        while(c.moveToNext()) {
+        while (c.moveToNext()) {
             es.setAboRh(c.getInt(c.getColumnIndex("abo")));
             es.setGlicemiaJejum(c.getInt(c.getColumnIndex("glicemiaJejum")));
             es.setToleranciaGlicose(c.getInt(c.getColumnIndex("toleranciaGlicose")));
@@ -220,7 +248,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         Ultrassonografia u = new Ultrassonografia();
 
         Cursor c = db.rawQuery(sql, null);
-        while(c.moveToNext()) {
+        while (c.moveToNext()) {
             u.setData(c.getString(c.getColumnIndex("data")));
             u.setIgDum(c.getString(c.getColumnIndex("igDum")));
             u.setIgUsg(c.getString(c.getColumnIndex("igUsg")));
@@ -232,4 +260,140 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
         return u;
     }
+
+    // ***** USO DE MEDICAMENTO ***** //
+    public void salvaUsoDeMedicamento(ArrayList<String> medicamentos) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        String sql = "DELETE FROM UsoDeMedicamento";
+
+        db.execSQL(sql);
+
+        ContentValues contentValues = new ContentValues();
+
+        for (int i = 0; i < medicamentos.size(); i++) {
+            contentValues.put("id", i + 1);
+            contentValues.put("medicamento", medicamentos.get(i));
+
+            db.insert("UsoDeMedicamento", null, contentValues);
+        }
+
+        db.close();
+    }
+
+    public ArrayList<String> pegaUsoDeMedicamento() {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT medicamento FROM UsoDeMedicamento";
+
+        ArrayList<String> medicamentos = new ArrayList<>();
+
+        Cursor c = db.rawQuery(sql, null);
+        while (c.moveToNext()) {
+            medicamentos.add(c.getString(c.getColumnIndex("medicamento")));
+        }
+        c.close();
+
+        Collections.sort(medicamentos);
+
+        return medicamentos;
+    }
+
+    // ***** CONSULTAS MENSAIS ***** //
+    public void salvaConsultasMensais(ConsultasMensais consultasMensais) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("numeroConsulta", consultasMensais.getNumeroConsulta());
+        contentValues.put("dataConsulta", consultasMensais.getDataConsulta());
+        contentValues.put("queixa", consultasMensais.getQueixa());
+        contentValues.put("ig", consultasMensais.getIg());
+        contentValues.put("peso", consultasMensais.getPeso());
+        contentValues.put("imc", consultasMensais.getImc());
+        contentValues.put("edema", consultasMensais.getEdema());
+        contentValues.put("paI", consultasMensais.getPaI());
+        contentValues.put("paII", consultasMensais.getPaII());
+        contentValues.put("alturaUterina", consultasMensais.getAlturaUterina());
+        contentValues.put("posicaoFetal", consultasMensais.getPosicaoFetal());
+        contentValues.put("bcf", consultasMensais.getBcf());
+        contentValues.put("movFetal", consultasMensais.getMovFetal());
+        contentValues.put("nomeDoProfissional", consultasMensais.getNomeDoProfissional());
+
+        db.insert("ConsultasMensais", null, contentValues);
+    }
+
+    public ConsultasMensais pegaConsultasMensais(int numeroDaConsulta) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql;
+        if(numeroDaConsulta == -1) {
+            sql = "SELECT * FROM ConsultasMensais WHERE numeroConsulta=" +
+                    "(SELECT MAX(cm.numeroConsulta) FROM ConsultasMensais as cm)";
+        } else {
+            sql = "SELECT * FROM ConsultasMensais WHERE numeroConsulta=" + numeroDaConsulta;
+        }
+
+        ConsultasMensais consultasMensais = new ConsultasMensais();
+
+        Cursor c;
+        c = db.rawQuery(sql, null);
+        while (c.moveToNext()) {
+            consultasMensais.setNumeroConsulta(c.getInt(c.getColumnIndex("numeroConsulta")));
+            consultasMensais.setDataConsulta(c.getString(c.getColumnIndex("dataConsulta")));
+            consultasMensais.setQueixa(c.getString(c.getColumnIndex("queixa")));
+            consultasMensais.setIg(c.getDouble(c.getColumnIndex("ig")));
+            consultasMensais.setPeso(c.getDouble(c.getColumnIndex("peso")));
+            consultasMensais.setImc(c.getDouble(c.getColumnIndex("imc")));
+            consultasMensais.setEdema(c.getString(c.getColumnIndex("edema")));
+            consultasMensais.setPaI(c.getDouble(c.getColumnIndex("paI")));
+            consultasMensais.setPaII(c.getDouble(c.getColumnIndex("paII")));
+            consultasMensais.setAlturaUterina(c.getInt(c.getColumnIndex("alturaUterina")));
+            consultasMensais.setPosicaoFetal(c.getString(c.getColumnIndex("posicaoFetal")));
+            consultasMensais.setBcf(c.getInt(c.getColumnIndex("bcf")));
+            consultasMensais.setMovFetal(c.getString(c.getColumnIndex("movFetal")));
+            consultasMensais.setNomeDoProfissional(c.getString(c.getColumnIndex("nomeDoProfissional")));
+        }
+        c.close();
+
+        return consultasMensais;
+    }
+
+    public ArrayList<String> pegaQuantConsultasMensais() {
+
+        ArrayList<String> consultas = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT numeroConsulta FROM ConsultasMensais ORDER BY numeroConsulta ASC";
+
+        Cursor c = db.rawQuery(sql, null);
+        while(c.moveToNext()) {
+            consultas.add(c.getInt(c.getColumnIndex("numeroConsulta")) + "ª consulta");
+        }
+
+        c.close();
+
+        return consultas;
+    }
+
+    public boolean deletaConsultasMensais(int numeroDaConsulta) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        String sql = "DELETE FROM ConsultasMensais WHERE numeroConsulta=" + numeroDaConsulta;
+
+        try {
+            db.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 }
