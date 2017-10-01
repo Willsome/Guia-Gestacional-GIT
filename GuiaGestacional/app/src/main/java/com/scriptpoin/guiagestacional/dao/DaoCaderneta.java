@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ConsultasMensais;
 import com.scriptpoin.guiagestacional.caderneta.dados_obstetricos.DadosObstetricos;
@@ -30,21 +32,24 @@ public class DaoCaderneta extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String criaTabelaDadosPessoais =
                 "CREATE TABLE IF NOT EXISTS DadosPessoais(" +
+                        "id INTEGER PRIMARY KEY," +
                         "nome TEXT NOT NULL," +
                         "dataNascimento TEXT NOT NULL," +
                         "idade INT NOT NULL," +
                         "endereco TEXT NOT NULL," +
                         "nomeCompanheiro TEXT NOT NULL);";
-        db.execSQL(criaTabelaDadosPessoais);
+
 
         String criaTabelaDadosObstetricos =
                 "CREATE TABLE IF NOT EXISTS DadosObstetricos(" +
+                        "id INTEGER PRIMARY KEY," +
                         "dum TEXT NOT NULL," +
                         "dpp TEXT NOT NULL);";
-        db.execSQL(criaTabelaDadosObstetricos);
+
 
         String criaTabelaExamesSolicitadosResultados =
                 "CREATE TABLE IF NOT EXISTS ExamesSolicitadosResultados(" +
+                        "id INTEGER PRIMARY KEY," +
                         "abo INT NOT NULL," +
                         "glicemiaJejum INT NOT NULL, " +
                         "toleranciaGlicose INT NOT NULL, " +
@@ -58,27 +63,29 @@ public class DaoCaderneta extends SQLiteOpenHelper {
                         "urinaEas INT NOT NULL, " +
                         "urinaCultura INT NOT NULL, " +
                         "coombs INT NOT NULL);";
-        db.execSQL(criaTabelaExamesSolicitadosResultados);
+
 
         String criaTabelaUltrassonografia =
                 "CREATE TABLE IF NOT EXISTS Ultrassonografia(" +
+                        "id INTEGER PRIMARY KEY," +
                         "data TEXT NOT NULL," +
                         "igDum TEXT NOT NULL," +
                         "igUsg TEXT NOT NULL," +
                         "pesoFetal REAL NOT NULL," +
                         "placenta TEXT NOT NULL," +
                         "liquidoAmniotico REAL NOT NULL);";
-        db.execSQL(criaTabelaUltrassonografia);
+
 
         String criaTabelaUsoDeMedicamento =
                 "CREATE TABLE IF NOT EXISTS UsoDeMedicamento(" +
-                        "id INT NOT NULL," +
+                        "id INTEGER PRIMARY KEY," +
                         "medicamento TEXT NOT NULL);";
-        db.execSQL(criaTabelaUsoDeMedicamento);
+
 
         String criaTabelaConsultasMensais =
                 "CREATE TABLE IF NOT EXISTS ConsultasMensais(" +
-                        "numeroConsulta INT NOT NULL," +
+                        "id INTEGER PRIMARY KEY," +
+                        "numeroConsulta INTEGER NOT NULL," +
                         "dataConsulta TEXT NOT NULL," +
                         "queixa TEXT NOT NULL," +
                         "ig REAL NOT NULL," +
@@ -87,34 +94,64 @@ public class DaoCaderneta extends SQLiteOpenHelper {
                         "edema TEXT NOT NULL," +
                         "paI REAL NOT NULL," +
                         "paII REAL NOT NULL," +
-                        "alturaUterina INT NOT NULL," +
+                        "alturaUterina INTEGER NOT NULL," +
                         "posicaoFetal TEXT NOT NULL," +
-                        "bcf INT NOT NULL," +
+                        "bcf INTEGER NOT NULL," +
                         "movFetal TEXT NOT NULL," +
                         "nomeDoProfissional TEXT NOT NULL);";
+
+
+        db.execSQL(criaTabelaDadosPessoais);
+        db.execSQL(criaTabelaDadosObstetricos);
+        db.execSQL(criaTabelaExamesSolicitadosResultados);
+        db.execSQL(criaTabelaUltrassonografia);
+        db.execSQL(criaTabelaUsoDeMedicamento);
         db.execSQL(criaTabelaConsultasMensais);
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS DadosPessoais");
+        db.execSQL("DROP TABLE IF EXISTS DadosObstetricos");
+        db.execSQL("DROP TABLE IF EXISTS ExamesSolicitadosResultados");
+        db.execSQL("DROP TABLE IF EXISTS Ultrassonografia");
+        db.execSQL("DROP TABLE IF EXISTS UsoDeMedicamento");
+        db.execSQL("DROP TABLE IF EXISTS ConsultasMensais");
+        onCreate(db);
     }
 
 
     // ***** DADOS PESSOAIS ***** //
-    public void salvaDadosPessoais(DadosPessoais dados) {
+    public void salvaDadosPessoais(DadosPessoais dadosPessoais) {
 
         SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues contentValues = getContentValuesDadosPessoais(dadosPessoais);
+
+        db.insert("DadosPessoais", null, contentValues);
+    }
+
+    public void alteraDadosPessoais(DadosPessoais dadosPessoais) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = getContentValuesDadosPessoais(dadosPessoais);
+
+        String[] params = {String.valueOf(dadosPessoais.getId())};
+
+        db.update("DadosPessoais", contentValues, "id=?", params);
+    }
+
+    @NonNull
+    public ContentValues getContentValuesDadosPessoais(DadosPessoais dados) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nome", dados.getNome());
         contentValues.put("dataNascimento", dados.getDataNascimento());
         contentValues.put("idade", dados.getIdade());
         contentValues.put("endereco", dados.getEndereco());
         contentValues.put("nomeCompanheiro", dados.getNomeCompanheiro());
-
-        db.insert("DadosPessoais", null, contentValues);
+        return contentValues;
     }
 
     public DadosPessoais pegaDadosPessoais() {
@@ -123,10 +160,12 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
         String sql = "SELECT * FROM DadosPessoais";
 
-        DadosPessoais dadosPessoais = new DadosPessoais();
+        DadosPessoais dadosPessoais = null;
 
         Cursor c = db.rawQuery(sql, null);
         while (c.moveToNext()) {
+            dadosPessoais = new DadosPessoais();
+            dadosPessoais.setId(c.getLong(c.getColumnIndex("id")));
             dadosPessoais.setNome(c.getString(c.getColumnIndex("nome")));
             dadosPessoais.setDataNascimento(c.getString(c.getColumnIndex("dataNascimento")));
             dadosPessoais.setIdade(c.getInt(c.getColumnIndex("idade")));
@@ -140,15 +179,31 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
 
     // ***** DADOS OBSTETRICOS ***** //
-    public void salvaDadosObstetricos(DadosObstetricos dados) {
+    public void salvaDadosObstetricos(DadosObstetricos dadosObstetricos) {
 
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("dum", dados.getDum());
-        contentValues.put("dpp", dados.getDpp());
+        ContentValues contentValues = getContentValuesDadosObstetricos(dadosObstetricos);
 
         db.insert("DadosObstetricos", null, contentValues);
+    }
+
+    public void alteraDadosObstetricos(DadosObstetricos dadosObstetricos) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = getContentValuesDadosObstetricos(dadosObstetricos);
+
+        String[] params = {String.valueOf(dadosObstetricos.getId())};
+
+        db.update("DadosObstetricos", contentValues, "id=?", params);
+    }
+
+    @NonNull
+    public ContentValues getContentValuesDadosObstetricos(DadosObstetricos dadosObstetricos) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("dum", dadosObstetricos.getDum());
+        contentValues.put("dpp", dadosObstetricos.getDpp());
+        return contentValues;
     }
 
     public DadosObstetricos pegaDadosObstetricos() {
@@ -157,10 +212,12 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
         String sql = "SELECT * FROM DadosObstetricos";
 
-        DadosObstetricos dadosObstetricos = new DadosObstetricos();
+        DadosObstetricos dadosObstetricos = null;
 
         Cursor c = db.rawQuery(sql, null);
         while (c.moveToNext()) {
+            dadosObstetricos = new DadosObstetricos();
+            dadosObstetricos.setId(c.getLong(c.getColumnIndex("id")));
             dadosObstetricos.setDum(c.getString(c.getColumnIndex("dum")));
             dadosObstetricos.setDpp(c.getString(c.getColumnIndex("dpp")));
         }
@@ -171,10 +228,28 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
 
     // ***** EXAMES SOLICITADOS/RESULTADOS ***** //
-    public void salvaExamesSolicitadosResultados(ExamesSolicitadosResultados es) {
+    public void salvaExamesSolicitadosResultados(ExamesSolicitadosResultados examesSolicitadosResultados) {
 
         SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues contentValues = getContentValuesExamesSolicitadosResultados(examesSolicitadosResultados);
+
+        db.insert("ExamesSolicitadosResultados", null, contentValues);
+    }
+
+    public void alteraExamesSolicitadosResultados(ExamesSolicitadosResultados examesSolicitadosResultados) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = getContentValuesExamesSolicitadosResultados(examesSolicitadosResultados);
+
+        String[] params = {String.valueOf(examesSolicitadosResultados.getId())};
+
+        db.update("ExamesSolicitadosResultados", contentValues, "id=?", params);
+    }
+
+    @NonNull
+    public ContentValues getContentValuesExamesSolicitadosResultados(ExamesSolicitadosResultados es) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("abo", es.getAboRh());
         contentValues.put("glicemiaJejum", es.getGlicemiaJejum());
@@ -189,8 +264,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         contentValues.put("urinaEas", es.getUrinaEas());
         contentValues.put("urinaCultura", es.getUrinaCultura());
         contentValues.put("coombs", es.getCoombs());
-
-        db.insert("ExamesSolicitadosResultados", null, contentValues);
+        return contentValues;
     }
 
     public ExamesSolicitadosResultados pegaExamesSolicitadosResultados() {
@@ -199,44 +273,63 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
         String sql = "SELECT * FROM ExamesSolicitadosResultados";
 
-        ExamesSolicitadosResultados es = new ExamesSolicitadosResultados();
+        ExamesSolicitadosResultados examesSolicitadosResultados = null;
 
         Cursor c = db.rawQuery(sql, null);
         while (c.moveToNext()) {
-            es.setAboRh(c.getInt(c.getColumnIndex("abo")));
-            es.setGlicemiaJejum(c.getInt(c.getColumnIndex("glicemiaJejum")));
-            es.setToleranciaGlicose(c.getInt(c.getColumnIndex("toleranciaGlicose")));
-            es.setSifilis(c.getInt(c.getColumnIndex("sifilis")));
-            es.setVdrl(c.getInt(c.getColumnIndex("vdrl")));
-            es.setHiv(c.getInt(c.getColumnIndex("hiv")));
-            es.setHepatiteBC(c.getInt(c.getColumnIndex("hepatiteBC")));
-            es.setHbsag(c.getInt(c.getColumnIndex("hbsag")));
-            es.setToxoplasmose(c.getInt(c.getColumnIndex("toxoplasmose")));
-            es.setHemoglobina(c.getInt(c.getColumnIndex("hemoglobina")));
-            es.setUrinaEas(c.getInt(c.getColumnIndex("urinaEas")));
-            es.setUrinaCultura(c.getInt(c.getColumnIndex("urinaCultura")));
-            es.setCoombs(c.getInt(c.getColumnIndex("coombs")));
+            examesSolicitadosResultados = new ExamesSolicitadosResultados();
+            examesSolicitadosResultados.setId(c.getLong(c.getColumnIndex("id")));
+            examesSolicitadosResultados.setAboRh(c.getInt(c.getColumnIndex("abo")));
+            examesSolicitadosResultados.setGlicemiaJejum(c.getInt(c.getColumnIndex("glicemiaJejum")));
+            examesSolicitadosResultados.setToleranciaGlicose(c.getInt(c.getColumnIndex("toleranciaGlicose")));
+            examesSolicitadosResultados.setSifilis(c.getInt(c.getColumnIndex("sifilis")));
+            examesSolicitadosResultados.setVdrl(c.getInt(c.getColumnIndex("vdrl")));
+            examesSolicitadosResultados.setHiv(c.getInt(c.getColumnIndex("hiv")));
+            examesSolicitadosResultados.setHepatiteBC(c.getInt(c.getColumnIndex("hepatiteBC")));
+            examesSolicitadosResultados.setHbsag(c.getInt(c.getColumnIndex("hbsag")));
+            examesSolicitadosResultados.setToxoplasmose(c.getInt(c.getColumnIndex("toxoplasmose")));
+            examesSolicitadosResultados.setHemoglobina(c.getInt(c.getColumnIndex("hemoglobina")));
+            examesSolicitadosResultados.setUrinaEas(c.getInt(c.getColumnIndex("urinaEas")));
+            examesSolicitadosResultados.setUrinaCultura(c.getInt(c.getColumnIndex("urinaCultura")));
+            examesSolicitadosResultados.setCoombs(c.getInt(c.getColumnIndex("coombs")));
         }
         c.close();
 
-        return es;
+        return examesSolicitadosResultados;
     }
 
 
     // ***** ULTRASSONOGRAFIA ***** //
-    public void salvaUltrassonografia(Ultrassonografia u) {
+    public void salvaUltrassonografia(Ultrassonografia ultrassonografia) {
 
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("data", u.getData());
-        contentValues.put("igDum", u.getIgDum());
-        contentValues.put("igUsg", u.getIgUsg());
-        contentValues.put("pesoFetal", u.getPesoFetal());
-        contentValues.put("placenta", u.getPlacenta());
-        contentValues.put("liquidoAmniotico", u.getLiquidoAmniotico());
+        ContentValues contentValues = getContentValuesUltrassonografia(ultrassonografia);
 
         db.insert("Ultrassonografia", null, contentValues);
+    }
+
+    public void alteraUltrassonografia(Ultrassonografia ultrassonografia) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = getContentValuesUltrassonografia(ultrassonografia);
+
+        String[] params = {String.valueOf(ultrassonografia.getId())};
+
+        db.update("Ultrassonografia", contentValues, "id=?", params);
+    }
+
+    @NonNull
+    public ContentValues getContentValuesUltrassonografia(Ultrassonografia ultrassonografia) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("data", ultrassonografia.getData());
+        contentValues.put("igDum", ultrassonografia.getIgDum());
+        contentValues.put("igUsg", ultrassonografia.getIgUsg());
+        contentValues.put("pesoFetal", ultrassonografia.getPesoFetal());
+        contentValues.put("placenta", ultrassonografia.getPlacenta());
+        contentValues.put("liquidoAmniotico", ultrassonografia.getLiquidoAmniotico());
+        return contentValues;
     }
 
     public Ultrassonografia pegaUltrassonografia() {
@@ -245,21 +338,24 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
         String sql = "SELECT * FROM Ultrassonografia";
 
-        Ultrassonografia u = new Ultrassonografia();
+        Ultrassonografia ultrassonografia = null;
 
         Cursor c = db.rawQuery(sql, null);
         while (c.moveToNext()) {
-            u.setData(c.getString(c.getColumnIndex("data")));
-            u.setIgDum(c.getString(c.getColumnIndex("igDum")));
-            u.setIgUsg(c.getString(c.getColumnIndex("igUsg")));
-            u.setPesoFetal(c.getInt(c.getColumnIndex("pesoFetal")));
-            u.setPlacenta(c.getString(c.getColumnIndex("placenta")));
-            u.setLiquidoAmniotico(c.getFloat(c.getColumnIndex("liquidoAmniotico")));
+            ultrassonografia = new Ultrassonografia();
+            ultrassonografia.setId(c.getLong(c.getColumnIndex("id")));
+            ultrassonografia.setData(c.getString(c.getColumnIndex("data")));
+            ultrassonografia.setIgDum(c.getString(c.getColumnIndex("igDum")));
+            ultrassonografia.setIgUsg(c.getString(c.getColumnIndex("igUsg")));
+            ultrassonografia.setPesoFetal(c.getInt(c.getColumnIndex("pesoFetal")));
+            ultrassonografia.setPlacenta(c.getString(c.getColumnIndex("placenta")));
+            ultrassonografia.setLiquidoAmniotico(c.getDouble(c.getColumnIndex("liquidoAmniotico")));
         }
         c.close();
 
-        return u;
+        return ultrassonografia;
     }
+
 
     // ***** USO DE MEDICAMENTO ***** //
     public void salvaUsoDeMedicamento(ArrayList<String> medicamentos) {
@@ -278,8 +374,6 @@ public class DaoCaderneta extends SQLiteOpenHelper {
 
             db.insert("UsoDeMedicamento", null, contentValues);
         }
-
-        db.close();
     }
 
     public ArrayList<String> pegaUsoDeMedicamento() {
@@ -301,11 +395,30 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         return medicamentos;
     }
 
+
     // ***** CONSULTAS MENSAIS ***** //
     public void salvaConsultasMensais(ConsultasMensais consultasMensais) {
 
         SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues contentValues = getContentValuesConsultasMensais(consultasMensais);
+
+        db.insert("ConsultasMensais", null, contentValues);
+    }
+
+    public void alteraConsultasMensais(ConsultasMensais consultasMensais) {
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = getContentValuesConsultasMensais(consultasMensais);
+
+        String[] params = {String.valueOf(consultasMensais.getId())};
+
+        db.update("ConsultasMensais", contentValues, "id=?", params);
+    }
+
+    @NonNull
+    public ContentValues getContentValuesConsultasMensais(ConsultasMensais consultasMensais) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("numeroConsulta", consultasMensais.getNumeroConsulta());
         contentValues.put("dataConsulta", consultasMensais.getDataConsulta());
@@ -321,8 +434,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         contentValues.put("bcf", consultasMensais.getBcf());
         contentValues.put("movFetal", consultasMensais.getMovFetal());
         contentValues.put("nomeDoProfissional", consultasMensais.getNomeDoProfissional());
-
-        db.insert("ConsultasMensais", null, contentValues);
+        return contentValues;
     }
 
     public ConsultasMensais pegaConsultasMensais(int numeroDaConsulta) {
@@ -330,18 +442,20 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String sql;
-        if(numeroDaConsulta == -1) {
+        if (numeroDaConsulta == -1) {
             sql = "SELECT * FROM ConsultasMensais WHERE numeroConsulta=" +
                     "(SELECT MAX(cm.numeroConsulta) FROM ConsultasMensais as cm)";
         } else {
             sql = "SELECT * FROM ConsultasMensais WHERE numeroConsulta=" + numeroDaConsulta;
         }
 
-        ConsultasMensais consultasMensais = new ConsultasMensais();
+        ConsultasMensais consultasMensais = null;
 
         Cursor c;
         c = db.rawQuery(sql, null);
         while (c.moveToNext()) {
+            consultasMensais = new ConsultasMensais();
+            consultasMensais.setId(c.getLong(c.getColumnIndex("id")));
             consultasMensais.setNumeroConsulta(c.getInt(c.getColumnIndex("numeroConsulta")));
             consultasMensais.setDataConsulta(c.getString(c.getColumnIndex("dataConsulta")));
             consultasMensais.setQueixa(c.getString(c.getColumnIndex("queixa")));
@@ -371,7 +485,7 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         String sql = "SELECT numeroConsulta FROM ConsultasMensais ORDER BY numeroConsulta ASC";
 
         Cursor c = db.rawQuery(sql, null);
-        while(c.moveToNext()) {
+        while (c.moveToNext()) {
             consultas.add(c.getInt(c.getColumnIndex("numeroConsulta")) + "ª consulta");
         }
 
@@ -380,14 +494,16 @@ public class DaoCaderneta extends SQLiteOpenHelper {
         return consultas;
     }
 
-    public boolean deletaConsultasMensais(int numeroDaConsulta) {
+    public boolean deletaConsultasMensais(ConsultasMensais consultasMensais) {
 
         SQLiteDatabase db = getWritableDatabase();
 
-        String sql = "DELETE FROM ConsultasMensais WHERE numeroConsulta=" + numeroDaConsulta;
+        String[] params = {String.valueOf(consultasMensais.getId())};
 
         try {
-            db.execSQL(sql);
+
+            db.delete("ConsultasMensais", "id=?", params);
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;

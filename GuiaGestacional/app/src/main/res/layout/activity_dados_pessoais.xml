@@ -1,68 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:background="#F4F4F4"
     tools:context="com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisActivity">
 
-    <TextView
-        android:text="Dados Pessoais"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:gravity="center" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/dpEtNome"
-        android:hint="Nome..."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <requestFocus/>
 
-    <TextView
-        android:id="@+id/dpTvDpDataNascimento"
-        android:hint="Data de nascimento..."
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="1dp"
-        android:paddingLeft="4sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="Dados Pessoais"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/dpEtIdade"
-        android:hint="Idade..."
-        android:inputType="numberSigned"
-        android:maxLength="3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/dpEtEndereco"
-        android:hint="Endereço..."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome:"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/dpEtNomeCompanheiro"
-        android:hint="Nome do companheiro..."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/dpEtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="informe aqui o nome..."
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
 
-    <Button
-        android:id="@+id/dpBtSalvar"
-        android:text="salvar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"/>
+        <requestFocus />
 
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Data de nascimento:"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/dpTvDpDataNascimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="[ADICIONAR]"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="Idade: "
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/dpEtIdade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Endereço:"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/dpEtEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="informe aqui o endereço..."
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Nome do companheiro:"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/dpEtNomeCompanheiro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="informe aqui o nome..."
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/dpBtSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:text="salvar"
+            android:textColor="#4F4F4F" />
+
+    </LinearLayout>
+
+</ScrollView>

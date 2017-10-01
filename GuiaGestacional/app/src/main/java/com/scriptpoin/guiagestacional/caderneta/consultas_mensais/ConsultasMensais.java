@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class ConsultasMensais implements Serializable {
 
+    private Long id;
+
     private int numeroConsulta;
     private String dataConsulta;
     private String queixa;
@@ -18,6 +20,15 @@ public class ConsultasMensais implements Serializable {
     private int bcf;
     private String movFetal;
     private String nomeDoProfissional;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getNumeroConsulta() {
         return numeroConsulta;
@@ -130,4 +141,5 @@ public class ConsultasMensais implements Serializable {
     public void setNomeDoProfissional(String nomeDoProfissional) {
         this.nomeDoProfissional = nomeDoProfissional;
     }
+
 }

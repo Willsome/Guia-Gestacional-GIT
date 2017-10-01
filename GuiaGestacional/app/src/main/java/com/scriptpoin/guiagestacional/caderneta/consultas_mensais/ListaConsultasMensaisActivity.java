@@ -25,7 +25,7 @@ public class ListaConsultasMensaisActivity extends AppCompatActivity {
 
         DaoCaderneta dao = new DaoCaderneta(this);
 
-        ArrayList<String> consultas = dao.pegaQuantConsultasMensais();
+        final ArrayList<String> consultas = dao.pegaQuantConsultasMensais();
 
         dao.close();
 
@@ -40,11 +40,13 @@ public class ListaConsultasMensaisActivity extends AppCompatActivity {
         lvConsultasMensais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> lista, View item, int posicao, long id) {
+
                 String consulta = (String) lista.getItemAtPosition(posicao);
-                int numeroConsulta = Integer.parseInt(consulta.substring(0, consulta.indexOf("ª")));
+
                 Intent intent = new Intent();
-                intent.putExtra("numeroConsulta", numeroConsulta);
+                intent.putExtra("numeroConsulta", Integer.parseInt(consulta.substring(0, consulta.indexOf("ª"))));
                 setResult(RESULT_OK, intent);
+
                 finish();
             }
         });

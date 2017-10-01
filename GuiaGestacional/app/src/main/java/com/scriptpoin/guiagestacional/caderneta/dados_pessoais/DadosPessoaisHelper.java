@@ -1,11 +1,14 @@
 package com.scriptpoin.guiagestacional.caderneta.dados_pessoais;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.scriptpoin.guiagestacional.R;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Willi on 21-Aug-17.
@@ -13,29 +16,32 @@ import com.scriptpoin.guiagestacional.R;
 
 public class DadosPessoaisHelper {
 
+    // FORMULÁRIO
     private EditText dpEtNome;
     private TextView dpTvDpDataNascimento;
     private EditText dpEtIdade;
     private EditText dpEtEndereco;
     private EditText dpEtNomeCompanheiro;
 
+    // CADERNETA
     private TextView dpTvNome;
     private TextView dpTvDataNascimento;
     private TextView dpTvIdade;
     private TextView dpTvEndereco;
     private TextView dpTvNomeCompanheiro;
 
+    // OUTROS
     private DadosPessoais dadosPessoais;
 
     public DadosPessoaisHelper(Activity activity, int i, View view) {
 
-        if(i == 1) {
+        if (i == 1) {
             dpEtNome = (EditText) activity.findViewById(R.id.dpEtNome);
             dpTvDpDataNascimento = (TextView) activity.findViewById(R.id.dpTvDpDataNascimento);
             dpEtIdade = (EditText) activity.findViewById(R.id.dpEtIdade);
             dpEtEndereco = (EditText) activity.findViewById(R.id.dpEtEndereco);
             dpEtNomeCompanheiro = (EditText) activity.findViewById(R.id.dpEtNomeCompanheiro);
-        } else if(i == 2) {
+        } else if (i == 2) {
             dpTvNome = (TextView) view.findViewById(R.id.dpTvNome);
             dpTvDataNascimento = (TextView) view.findViewById(R.id.dpTvDataNascimento);
             dpTvIdade = (TextView) view.findViewById(R.id.dpTvIdade);
@@ -50,14 +56,29 @@ public class DadosPessoaisHelper {
         return dpTvDpDataNascimento;
     }
 
-    public DadosPessoais pegaDadosPessoais() {
+    public DadosPessoais pegaFormularioDadosPessoais() throws Exception {
 
-        DadosPessoais dadosPessoais = new DadosPessoais();
-        dadosPessoais.setNome(dpEtNome.getText().toString());
-        dadosPessoais.setDataNascimento(dpTvDpDataNascimento.getText().toString());
-        dadosPessoais.setIdade(Integer.parseInt(dpEtIdade.getText().toString()));
-        dadosPessoais.setEndereco(dpEtEndereco.getText().toString());
-        dadosPessoais.setNomeCompanheiro(dpEtNomeCompanheiro.getText().toString());
+        DadosPessoais dadosPessoais;
+
+        if (dpEtNome.getText().toString().equals("")
+                || dpTvDpDataNascimento.getText().toString().equals("[ADICIONAR]")
+                || dpEtIdade.getText().toString().equals("")
+                || dpEtEndereco.getText().toString().equals("")
+                || dpEtNomeCompanheiro.getText().toString().equals("")) {
+
+            throw new Exception("Campo vazio.");
+
+        } else {
+
+            dadosPessoais = new DadosPessoais();
+            dadosPessoais.setNome(dpEtNome.getText().toString());
+            dadosPessoais.setDataNascimento(dpTvDpDataNascimento.getText().toString());
+            dadosPessoais.setIdade(Integer.parseInt(dpEtIdade.getText().toString()));
+            dadosPessoais.setEndereco(dpEtEndereco.getText().toString());
+            dadosPessoais.setNomeCompanheiro(dpEtNomeCompanheiro.getText().toString());
+
+            dadosPessoais.setId(this.dadosPessoais.getId());
+        }
 
         return dadosPessoais;
     }
@@ -77,11 +98,9 @@ public class DadosPessoaisHelper {
 
         dpTvNome.setText(dadosPessoais.getNome());
         dpTvDataNascimento.setText(dadosPessoais.getDataNascimento());
-        dpTvIdade.setText(String.valueOf(dadosPessoais.getIdade()));
+        dpTvIdade.setText(dadosPessoais.getIdade() + " anos");
         dpTvEndereco.setText(dadosPessoais.getEndereco());
         dpTvNomeCompanheiro.setText(dadosPessoais.getNomeCompanheiro());
-
-        this.dadosPessoais = dadosPessoais;
     }
 
 }

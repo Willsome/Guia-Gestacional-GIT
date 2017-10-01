@@ -27,11 +27,17 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DaoDuvidas daoDuvidas = new DaoDuvidas(this);
-        if (daoDuvidas.pegaDuvidas(1).size() == 0) {
-            daoDuvidas.insere();
+        try {
+            DaoDuvidas daoDuvidas = new DaoDuvidas(this);
+            if (daoDuvidas.pegaDuvidas(1).size() == 0) {
+                daoDuvidas.insere();
+            }
+            daoDuvidas.close();
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro ao ler dados do Banco...", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
-        daoDuvidas.close();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -113,13 +119,12 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
         } else if (id == R.id.menuFeedback) {
 
             Intent emailIntent = new Intent(Intent.ACTION_VIEW);
-            Uri data = Uri.parse("mailto:?subject="+ "Feedback Guia Gestacional" + "&to=" + "williamucep@hotmail.com");
+            Uri data = Uri.parse("mailto:?subject=" + "Feedback Guia Gestacional" + "&to=" + "williamucep@hotmail.com");
             emailIntent.setData(data);
 
             try {
                 startActivity(Intent.createChooser(emailIntent, "Enviar feedback com..."));
-            }
-            catch (android.content.ActivityNotFoundException ex) {
+            } catch (android.content.ActivityNotFoundException ex) {
                 Toast.makeText(MenuLateralPrincipalActivity.this, "Sem programa de e-mail instalado", Toast.LENGTH_SHORT).show();
             }
 

@@ -11,6 +11,7 @@ import com.scriptpoin.guiagestacional.R;
 
 public class ConsultasMensaisHelper {
 
+    // FORMULÁRIO
     EditText cmEtNumeroConsulta;
     TextView cmTvFormDataConsulta;
     EditText cmEtQueixa;
@@ -25,6 +26,7 @@ public class ConsultasMensaisHelper {
     EditText cmEtMovFetal;
     EditText cmEtNomeDoProfissional;
 
+    // CADERNETA
     TextView cmTvNumeroConsulta;
     TextView cmTvDataConsulta;
     TextView cmTvQueixa;
@@ -38,6 +40,9 @@ public class ConsultasMensaisHelper {
     TextView cmTvBcf;
     TextView cmTvMovFetal;
     TextView cmTvNomeDoProfissional;
+
+    // OUTROS
+    private ConsultasMensais consultasMensais;
 
     public ConsultasMensaisHelper(Activity activity, int i, View view) {
 
@@ -57,7 +62,7 @@ public class ConsultasMensaisHelper {
             cmEtMovFetal = (EditText) activity.findViewById(R.id.cmEtMovFetal);
             cmEtNomeDoProfissional = (EditText) activity.findViewById(R.id.cmEtNomeDoProfissional);
 
-        } else if(i == 2) {
+        } else if (i == 2) {
             cmTvNumeroConsulta = (TextView) view.findViewById(R.id.cmTvNumeroConsulta);
             cmTvDataConsulta = (TextView) view.findViewById(R.id.cmTvDataConsulta);
             cmTvQueixa = (TextView) view.findViewById(R.id.cmTvQueixa);
@@ -73,27 +78,52 @@ public class ConsultasMensaisHelper {
             cmTvNomeDoProfissional = (TextView) view.findViewById(R.id.cmTvNomeDoProfissional);
         }
 
+        this.consultasMensais = new ConsultasMensais();
     }
 
 
-    public ConsultasMensais pegaConsultasMensais() {
+    public ConsultasMensais pegaConsultasMensais() throws Exception {
 
-        ConsultasMensais consultasMensais = new ConsultasMensais();
+        ConsultasMensais consultasMensais;
 
-        consultasMensais.setNumeroConsulta(Integer.parseInt(cmEtNumeroConsulta.getText().toString()));
-        consultasMensais.setDataConsulta(cmTvFormDataConsulta.getText().toString());
-        consultasMensais.setQueixa(cmEtQueixa.getText().toString());
-        consultasMensais.setIg(Double.parseDouble(cmEtIg.getText().toString()));
-        consultasMensais.setPeso(Double.parseDouble(cmEtPeso.getText().toString()));
-        consultasMensais.setImc(Double.parseDouble(cmEtImc.getText().toString()));
-        consultasMensais.setEdema(cmEtEdema.getText().toString());
-        consultasMensais.setPaI(Integer.parseInt(cmEtPaI.getText().toString()));
-        consultasMensais.setPaII(Integer.parseInt(cmEtPaII.getText().toString()));
-        consultasMensais.setAlturaUterina(Integer.parseInt(cmEtAlturaUterina.getText().toString()));
-        consultasMensais.setPosicaoFetal(cmSpPosicaoFetal.getSelectedItem().toString());
-        consultasMensais.setBcf(Integer.parseInt(cmEtBcf.getText().toString()));
-        consultasMensais.setMovFetal(cmEtMovFetal.getText().toString());
-        consultasMensais.setNomeDoProfissional(cmEtNomeDoProfissional.getText().toString());
+        if (cmEtNumeroConsulta.getText().toString().equals("")
+                || cmTvFormDataConsulta.getText().toString().equals("[ADICIONAR]")
+                || cmEtQueixa.getText().toString().equals("")
+                || cmEtIg.getText().toString().equals("")
+                || cmEtPeso.getText().toString().equals("")
+                || cmEtImc.getText().toString().equals("")
+                || cmEtEdema.getText().toString().equals("")
+                || cmEtPaI.getText().toString().equals("")
+                || cmEtPaII.getText().toString().equals("")
+                || cmEtAlturaUterina.getText().toString().equals("")
+                || cmSpPosicaoFetal.getSelectedItem().toString().equals("")
+                || cmEtBcf.getText().toString().equals("")
+                || cmEtMovFetal.getText().toString().equals("")
+                || cmEtNomeDoProfissional.getText().toString().equals("")) {
+
+            throw new Exception("Campo vazio.");
+
+        } else {
+
+            consultasMensais = new ConsultasMensais();
+            consultasMensais.setNumeroConsulta(Integer.parseInt(cmEtNumeroConsulta.getText().toString()));
+            consultasMensais.setDataConsulta(cmTvFormDataConsulta.getText().toString());
+            consultasMensais.setQueixa(cmEtQueixa.getText().toString());
+            consultasMensais.setIg(Double.parseDouble(cmEtIg.getText().toString()));
+            consultasMensais.setPeso(Double.parseDouble(cmEtPeso.getText().toString()));
+            consultasMensais.setImc(Double.parseDouble(cmEtImc.getText().toString()));
+            consultasMensais.setEdema(cmEtEdema.getText().toString());
+            consultasMensais.setPaI(Double.parseDouble(cmEtPaI.getText().toString()));
+            consultasMensais.setPaII(Double.parseDouble(cmEtPaII.getText().toString()));
+            consultasMensais.setAlturaUterina(Integer.parseInt(cmEtAlturaUterina.getText().toString()));
+            consultasMensais.setPosicaoFetal(cmSpPosicaoFetal.getSelectedItem().toString());
+            consultasMensais.setBcf(Integer.parseInt(cmEtBcf.getText().toString()));
+            consultasMensais.setMovFetal(cmEtMovFetal.getText().toString());
+            consultasMensais.setNomeDoProfissional(cmEtNomeDoProfissional.getText().toString());
+
+            consultasMensais.setId(this.consultasMensais.getId());
+        }
+
 
         return consultasMensais;
     }
@@ -114,6 +144,8 @@ public class ConsultasMensaisHelper {
         cmEtBcf.setText(String.valueOf(consultasMensais.getBcf()));
         cmEtMovFetal.setText(consultasMensais.getMovFetal());
         cmEtNomeDoProfissional.setText(consultasMensais.getNomeDoProfissional());
+
+        this.consultasMensais = consultasMensais;
     }
 
     public void preencheConsultasMensais(ConsultasMensais consultasMensais) {

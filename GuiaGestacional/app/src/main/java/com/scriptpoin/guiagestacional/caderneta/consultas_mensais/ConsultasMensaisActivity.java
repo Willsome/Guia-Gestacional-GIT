@@ -27,18 +27,27 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class ConsultasMensaisActivity extends AppCompatActivity {
 
+    // VARIÁVEIS DO MÉTODO "pegaDataNascimento()"
     private DatePickerDialog.OnDateSetListener datePickerListener;
     private TextView cmTvFormDataConsulta;
     private int dia;
     private int mes;
     private int ano;
 
-    ConsultasMensaisHelper helper;
+    // OUTROS
+    private ConsultasMensais consultaMensal;
+    private ConsultasMensaisHelper consultasMensaisHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultas_mensais);
+
+        setTitle("Editar Consultas Mensais");
+
+        Intent intent = getIntent();
+        consultaMensal = (ConsultasMensais) intent.getSerializableExtra("consultaMensal");
 
         // SPINNER
         Spinner cmSpPosicaoFetal = (Spinner) findViewById(R.id.cmSpPosicaoFetal);
@@ -51,29 +60,69 @@ public class ConsultasMensaisActivity extends AppCompatActivity {
         cmSpPosicaoFetal.setAdapter(adapter);
         // SPINNER
 
-        final Intent intent = getIntent();
-        final ConsultasMensais consultaMensal = (ConsultasMensais) intent.getSerializableExtra("consultaMensal");
+        consultasMensaisHelper = new ConsultasMensaisHelper(this, 1, null);
 
-        if(consultaMensal != null) {
-            ConsultasMensaisHelper cmh = new ConsultasMensaisHelper(this, 1, null);
-            cmh.preencheFormularioConsultasMensais(consultaMensal, adapter.getPosition(consultaMensal.getPosicaoFetal()));
+        if (consultaMensal != null) {
+            consultasMensaisHelper.preencheFormularioConsultasMensais(
+                    consultaMensal,
+                    adapter.getPosition(consultaMensal.getPosicaoFetal())
+            );
         }
 
+        pegaDataConsulta(consultaMensal);
+
+        Button cmBtSalvar = (Button) findViewById(R.id.cmBtSalvar);
+        cmBtSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+
+                    ConsultasMensais consultaMensal = consultasMensaisHelper.pegaConsultasMensais();
+
+                    DaoCaderneta dao = new DaoCaderneta(ConsultasMensaisActivity.this);
+
+                    Intent intent = new Intent();
+
+                    if (consultaMensal.getId() != null) {
+                        dao.alteraConsultasMensais(consultaMensal);
+                        intent.putExtra("numeroConsulta", consultaMensal.getNumeroConsulta());
+                        Toast.makeText(ConsultasMensaisActivity.this, "A consulta foi atualizada !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dao.salvaConsultasMensais(consultaMensal);
+                        Toast.makeText(ConsultasMensaisActivity.this, "A ccnsulta adicionada !", Toast.LENGTH_SHORT).show();
+                    }
+                    dao.close();
+
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+
+                } catch (Exception e) {
+                    Toast.makeText(ConsultasMensaisActivity.this, "Existem campos não preenchidos...", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    private void pegaDataConsulta(final ConsultasMensais consultaMensal) {
 
         cmTvFormDataConsulta = (TextView) findViewById(R.id.cmTvFormDataConsulta);
         cmTvFormDataConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(consultaMensal != null) {
+                if (consultaMensal != null) {
                     dia = Integer.valueOf(consultaMensal.getDataConsulta().substring(0, 2));
                     mes = Integer.valueOf(consultaMensal.getDataConsulta().substring(3, 5)) - 1;
                     ano = Integer.valueOf(consultaMensal.getDataConsulta().substring(6, 10));
                 } else {
-                Calendar cal = Calendar.getInstance();
-                dia = cal.get(Calendar.DAY_OF_MONTH);
-                mes = cal.get(Calendar.MONTH);
-                ano = cal.get(Calendar.YEAR);
+                    Calendar cal = Calendar.getInstance();
+                    dia = cal.get(Calendar.DAY_OF_MONTH);
+                    mes = cal.get(Calendar.MONTH);
+                    ano = cal.get(Calendar.YEAR);
                 }
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -108,31 +157,5 @@ public class ConsultasMensaisActivity extends AppCompatActivity {
                 cmTvFormDataConsulta.setText(data);
             }
         };
-
-
-
-
-
-        Button cmBtSalvar = (Button) findViewById(R.id.cmBtSalvar);
-        cmBtSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                helper = new ConsultasMensaisHelper(ConsultasMensaisActivity.this, 1, null);
-
-                ConsultasMensais consultasMensais = helper.pegaConsultasMensais();
-
-                DaoCaderneta dao = new DaoCaderneta(ConsultasMensaisActivity.this);
-                dao.salvaConsultasMensais(consultasMensais);
-                dao.close();
-
-                Intent intentResultado = new Intent();
-                setResult(RESULT_OK, intentResultado);
-
-                finish();
-
-            }
-        });
-
     }
 }

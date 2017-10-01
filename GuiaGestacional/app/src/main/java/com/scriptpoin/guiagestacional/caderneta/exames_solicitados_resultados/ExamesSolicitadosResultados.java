@@ -1,10 +1,14 @@
 package com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados;
 
+import java.io.Serializable;
+
 /**
  * Created by Willi on 02-Sep-17.
  */
 
-public class ExamesSolicitadosResultados {
+public class ExamesSolicitadosResultados implements Serializable {
+
+    private Long id;
 
     private int aboRh;
     private int glicemiaJejum;
@@ -20,9 +24,18 @@ public class ExamesSolicitadosResultados {
     private int urinaCultura;
     private int coombs;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getAboRh() {
         return aboRh;
     }
+
     public void setAboRh(int aboRh) {
         this.aboRh = aboRh;
     }
@@ -30,6 +43,7 @@ public class ExamesSolicitadosResultados {
     public int getGlicemiaJejum() {
         return glicemiaJejum;
     }
+
     public void setGlicemiaJejum(int glicemiaJejum) {
         this.glicemiaJejum = glicemiaJejum;
     }
@@ -37,6 +51,7 @@ public class ExamesSolicitadosResultados {
     public int getToleranciaGlicose() {
         return toleranciaGlicose;
     }
+
     public void setToleranciaGlicose(int toleranciaGlicose) {
         this.toleranciaGlicose = toleranciaGlicose;
     }
@@ -44,6 +59,7 @@ public class ExamesSolicitadosResultados {
     public int getSifilis() {
         return sifilis;
     }
+
     public void setSifilis(int sifilis) {
         this.sifilis = sifilis;
     }
@@ -51,6 +67,7 @@ public class ExamesSolicitadosResultados {
     public int getVdrl() {
         return Vdrl;
     }
+
     public void setVdrl(int vdrl) {
         Vdrl = vdrl;
     }
@@ -58,6 +75,7 @@ public class ExamesSolicitadosResultados {
     public int getHiv() {
         return Hiv;
     }
+
     public void setHiv(int hiv) {
         Hiv = hiv;
     }
@@ -65,6 +83,7 @@ public class ExamesSolicitadosResultados {
     public int getHepatiteBC() {
         return hepatiteBC;
     }
+
     public void setHepatiteBC(int hepatiteBC) {
         this.hepatiteBC = hepatiteBC;
     }
@@ -72,6 +91,7 @@ public class ExamesSolicitadosResultados {
     public int getHbsag() {
         return Hbsag;
     }
+
     public void setHbsag(int hbsag) {
         Hbsag = hbsag;
     }
@@ -79,6 +99,7 @@ public class ExamesSolicitadosResultados {
     public int getToxoplasmose() {
         return toxoplasmose;
     }
+
     public void setToxoplasmose(int toxoplasmose) {
         this.toxoplasmose = toxoplasmose;
     }
@@ -86,6 +107,7 @@ public class ExamesSolicitadosResultados {
     public int getHemoglobina() {
         return hemoglobina;
     }
+
     public void setHemoglobina(int hemoglobina) {
         this.hemoglobina = hemoglobina;
     }
@@ -93,6 +115,7 @@ public class ExamesSolicitadosResultados {
     public int getUrinaEas() {
         return urinaEas;
     }
+
     public void setUrinaEas(int urinaEas) {
         this.urinaEas = urinaEas;
     }
@@ -100,6 +123,7 @@ public class ExamesSolicitadosResultados {
     public int getUrinaCultura() {
         return urinaCultura;
     }
+
     public void setUrinaCultura(int urinaCultura) {
         this.urinaCultura = urinaCultura;
     }
@@ -107,6 +131,7 @@ public class ExamesSolicitadosResultados {
     public int getCoombs() {
         return coombs;
     }
+
     public void setCoombs(int coombs) {
         this.coombs = coombs;
     }

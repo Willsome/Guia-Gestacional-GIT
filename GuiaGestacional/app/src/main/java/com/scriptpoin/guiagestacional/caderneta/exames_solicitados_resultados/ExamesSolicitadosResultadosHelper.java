@@ -3,6 +3,7 @@ package com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados;
 import android.app.Activity;
 import android.view.View;
 import android.widget.CheckBox;
+
 import com.scriptpoin.guiagestacional.R;
 
 /**
@@ -25,9 +26,11 @@ public class ExamesSolicitadosResultadosHelper {
     private CheckBox esCbUrinaCultura;
     private CheckBox esCbCoombs;
 
+    private ExamesSolicitadosResultados examesSolicitadosResultados;
+
     public ExamesSolicitadosResultadosHelper(Activity activity, int i, View view) {
 
-        if(i == 1) {
+        if (i == 1) {
             esCbAbo = (CheckBox) activity.findViewById(R.id.esCbAboF);
             esCbGlicemiaJejum = (CheckBox) activity.findViewById(R.id.esCbGlicemiaJejumF);
             esCbToleranciaGlicose = (CheckBox) activity.findViewById(R.id.esCbToleranciaGlicoseF);
@@ -41,7 +44,7 @@ public class ExamesSolicitadosResultadosHelper {
             esCbUrinaEas = (CheckBox) activity.findViewById(R.id.esCbUrinaEasF);
             esCbUrinaCultura = (CheckBox) activity.findViewById(R.id.esCbUrinaCulturaF);
             esCbCoombs = (CheckBox) activity.findViewById(R.id.esCbCoombsF);
-        } else if(i == 2) {
+        } else if (i == 2) {
             esCbAbo = (CheckBox) view.findViewById(R.id.esCbAbo);
             esCbGlicemiaJejum = (CheckBox) view.findViewById(R.id.esCbGlicemiaJejum);
             esCbToleranciaGlicose = (CheckBox) view.findViewById(R.id.esCbToleranciaGlicose);
@@ -56,174 +59,179 @@ public class ExamesSolicitadosResultadosHelper {
             esCbUrinaCultura = (CheckBox) view.findViewById(R.id.esCbUrinaCultura);
             esCbCoombs = (CheckBox) view.findViewById(R.id.esCbCoombs);
         }
+
+        this.examesSolicitadosResultados = new ExamesSolicitadosResultados();
     }
 
-    public void preencheExamesSolicitadosResultados(ExamesSolicitadosResultados es) {
+    public void preencheExamesSolicitadosResultados(ExamesSolicitadosResultados examesSolicitadosResultados) {
 
-        if(es.getAboRh() == 1) {
+        if (examesSolicitadosResultados.getAboRh() == 1) {
             esCbAbo.setChecked(true);
         } else {
             esCbAbo.setChecked(false);
         }
 
-        if(es.getGlicemiaJejum() == 1) {
+        if (examesSolicitadosResultados.getGlicemiaJejum() == 1) {
             esCbGlicemiaJejum.setChecked(true);
         } else {
             esCbGlicemiaJejum.setChecked(false);
         }
 
-        if(es.getToleranciaGlicose() == 1) {
+        if (examesSolicitadosResultados.getToleranciaGlicose() == 1) {
             esCbToleranciaGlicose.setChecked(true);
         } else {
             esCbToleranciaGlicose.setChecked(false);
         }
 
-        if(es.getSifilis() == 1) {
+        if (examesSolicitadosResultados.getSifilis() == 1) {
             esCbSifilis.setChecked(true);
         } else {
             esCbSifilis.setChecked(false);
         }
 
-        if(es.getVdrl() == 1) {
+        if (examesSolicitadosResultados.getVdrl() == 1) {
             esCbVdrl.setChecked(true);
         } else {
             esCbVdrl.setChecked(false);
         }
 
-        if(es.getHiv() == 1) {
+        if (examesSolicitadosResultados.getHiv() == 1) {
             esCbHiv.setChecked(true);
         } else {
             esCbHiv.setChecked(false);
         }
 
-        if(es.getHepatiteBC() == 1) {
+        if (examesSolicitadosResultados.getHepatiteBC() == 1) {
             esCbHepatiteBC.setChecked(true);
         } else {
             esCbHepatiteBC.setChecked(false);
         }
 
-        if(es.getHbsag() == 1) {
+        if (examesSolicitadosResultados.getHbsag() == 1) {
             esCbHbsag.setChecked(true);
         } else {
             esCbHbsag.setChecked(false);
         }
 
-        if(es.getToxoplasmose() == 1) {
+        if (examesSolicitadosResultados.getToxoplasmose() == 1) {
             esCbToxoplasmose.setChecked(true);
         } else {
             esCbToxoplasmose.setChecked(false);
         }
 
-        if(es.getHemoglobina() == 1) {
+        if (examesSolicitadosResultados.getHemoglobina() == 1) {
             esCbHemoglobina.setChecked(true);
         } else {
             esCbHemoglobina.setChecked(false);
         }
 
-        if(es.getUrinaEas() == 1) {
+        if (examesSolicitadosResultados.getUrinaEas() == 1) {
             esCbUrinaEas.setChecked(true);
         } else {
             esCbUrinaEas.setChecked(false);
         }
 
-        if(es.getUrinaCultura() == 1) {
+        if (examesSolicitadosResultados.getUrinaCultura() == 1) {
             esCbUrinaCultura.setChecked(true);
         } else {
             esCbUrinaCultura.setChecked(false);
         }
 
-        if(es.getCoombs() == 1) {
+        if (examesSolicitadosResultados.getCoombs() == 1) {
             esCbCoombs.setChecked(true);
         } else {
             esCbCoombs.setChecked(false);
         }
+
+        this.examesSolicitadosResultados = examesSolicitadosResultados;
     }
 
     public ExamesSolicitadosResultados pegaExamesSolicitadosResultados() {
 
-        ExamesSolicitadosResultados es = new ExamesSolicitadosResultados();
+        ExamesSolicitadosResultados examesSolicitadosResultados = new ExamesSolicitadosResultados();
 
-        if(esCbAbo.isChecked()) {
-            es.setAboRh(1);
+        if (esCbAbo.isChecked()) {
+            examesSolicitadosResultados.setAboRh(1);
         } else {
-            es.setAboRh(0);
+            examesSolicitadosResultados.setAboRh(0);
         }
 
-        if(esCbGlicemiaJejum.isChecked()) {
-            es.setGlicemiaJejum(1);
+        if (esCbGlicemiaJejum.isChecked()) {
+            examesSolicitadosResultados.setGlicemiaJejum(1);
         } else {
-            es.setGlicemiaJejum(0);
+            examesSolicitadosResultados.setGlicemiaJejum(0);
         }
 
-        if(esCbToleranciaGlicose.isChecked()) {
-            es.setToleranciaGlicose(1);
+        if (esCbToleranciaGlicose.isChecked()) {
+            examesSolicitadosResultados.setToleranciaGlicose(1);
         } else {
-            es.setToleranciaGlicose(0);
+            examesSolicitadosResultados.setToleranciaGlicose(0);
         }
 
-        if(esCbSifilis.isChecked()) {
-            es.setSifilis(1);
+        if (esCbSifilis.isChecked()) {
+            examesSolicitadosResultados.setSifilis(1);
         } else {
-            es.setSifilis(0);
+            examesSolicitadosResultados.setSifilis(0);
         }
 
-        if(esCbVdrl.isChecked()) {
-            es.setVdrl(1);
+        if (esCbVdrl.isChecked()) {
+            examesSolicitadosResultados.setVdrl(1);
         } else {
-            es.setVdrl(0);
+            examesSolicitadosResultados.setVdrl(0);
         }
 
-        if(esCbHiv.isChecked()) {
-            es.setHiv(1);
+        if (esCbHiv.isChecked()) {
+            examesSolicitadosResultados.setHiv(1);
         } else {
-            es.setHiv(0);
+            examesSolicitadosResultados.setHiv(0);
         }
 
-        if(esCbHepatiteBC.isChecked()) {
-            es.setHepatiteBC(1);
+        if (esCbHepatiteBC.isChecked()) {
+            examesSolicitadosResultados.setHepatiteBC(1);
         } else {
-            es.setHepatiteBC(0);
+            examesSolicitadosResultados.setHepatiteBC(0);
         }
 
-        if(esCbHbsag.isChecked()) {
-            es.setHbsag(1);
+        if (esCbHbsag.isChecked()) {
+            examesSolicitadosResultados.setHbsag(1);
         } else {
-            es.setHbsag(0);
+            examesSolicitadosResultados.setHbsag(0);
         }
 
-        if(esCbToxoplasmose.isChecked()) {
-            es.setToxoplasmose(1);
+        if (esCbToxoplasmose.isChecked()) {
+            examesSolicitadosResultados.setToxoplasmose(1);
         } else {
-            es.setToxoplasmose(0);
+            examesSolicitadosResultados.setToxoplasmose(0);
         }
 
-        if(esCbHemoglobina.isChecked()) {
-            es.setHemoglobina(1);
+        if (esCbHemoglobina.isChecked()) {
+            examesSolicitadosResultados.setHemoglobina(1);
         } else {
-            es.setHemoglobina(0);
+            examesSolicitadosResultados.setHemoglobina(0);
         }
 
-        if(esCbUrinaEas.isChecked()) {
-            es.setUrinaEas(1);
+        if (esCbUrinaEas.isChecked()) {
+            examesSolicitadosResultados.setUrinaEas(1);
         } else {
-            es.setUrinaEas(0);
+            examesSolicitadosResultados.setUrinaEas(0);
         }
 
-        if(esCbUrinaCultura.isChecked()) {
-            es.setUrinaCultura(1);
+        if (esCbUrinaCultura.isChecked()) {
+            examesSolicitadosResultados.setUrinaCultura(1);
         } else {
-            es.setUrinaCultura(0);
+            examesSolicitadosResultados.setUrinaCultura(0);
         }
 
-        if(esCbCoombs.isChecked()) {
-            es.setCoombs(1);
+        if (esCbCoombs.isChecked()) {
+            examesSolicitadosResultados.setCoombs(1);
         } else {
-            es.setCoombs(0);
+            examesSolicitadosResultados.setCoombs(0);
         }
 
-        return es;
+        examesSolicitadosResultados.setId(this.examesSolicitadosResultados.getId());
+
+        return examesSolicitadosResultados;
     }
 
-    
 
 }

@@ -15,6 +15,7 @@ import com.scriptpoin.guiagestacional.R;
 
 public class UltrassonografiaHelper {
 
+    // FORMULÁRIO
     private TextView uTvDpData;
     private TextView uTvDpIgDum;
     private TextView uTvDpIgUsg;
@@ -22,6 +23,7 @@ public class UltrassonografiaHelper {
     private Spinner uSpPlacenta;
     private EditText uEdLiquidoAmniotico;
 
+    // CADERNETA
     private TextView uTvData;
     private TextView uTvIgDum;
     private TextView uTvIgUsg;
@@ -29,16 +31,20 @@ public class UltrassonografiaHelper {
     private TextView uTvPlacenta;
     private TextView uTvLiquidoAmniotico;
 
+    // OUTROS
+    private Ultrassonografia ultrassonografia;
+
+
     public UltrassonografiaHelper(Activity activity, int i, View view) {
 
-        if(i == 1) {
+        if (i == 1) {
             uTvDpData = (TextView) activity.findViewById(R.id.uTvDpData);
             uTvDpIgDum = (TextView) activity.findViewById(R.id.uTvDpIgDum);
             uTvDpIgUsg = (TextView) activity.findViewById(R.id.uTvDpIgUsg);
             uEdPesoFetal = (EditText) activity.findViewById(R.id.uEdPesoFetal);
             uSpPlacenta = (Spinner) activity.findViewById(R.id.uSpPlacenta);
             uEdLiquidoAmniotico = (EditText) activity.findViewById(R.id.uEdLiquidoAmniotico);
-        } else if(i == 2) {
+        } else if (i == 2) {
             uTvData = (TextView) view.findViewById(R.id.uTvData);
             uTvIgDum = (TextView) view.findViewById(R.id.uTvIgDum);
             uTvIgUsg = (TextView) view.findViewById(R.id.uTvIgUsg);
@@ -46,17 +52,35 @@ public class UltrassonografiaHelper {
             uTvPlacenta = (TextView) view.findViewById(R.id.uTvPlacenta);
             uTvLiquidoAmniotico = (TextView) view.findViewById(R.id.uTvLiquidoAmniotico);
         }
+
+        this.ultrassonografia = new Ultrassonografia();
     }
 
-    public Ultrassonografia pegaUltrassonografia() {
+    public Ultrassonografia pegaUltrassonografia() throws Exception {
 
-        Ultrassonografia ultrassonografia = new Ultrassonografia();
-        ultrassonografia.setData(uTvDpData.getText().toString());
-        ultrassonografia.setIgDum(uTvDpIgDum.getText().toString());
-        ultrassonografia.setIgUsg(uTvDpIgUsg.getText().toString());
-        ultrassonografia.setPesoFetal(Integer.parseInt(uEdPesoFetal.getText().toString()));
-        ultrassonografia.setPlacenta(uSpPlacenta.getSelectedItem().toString());
-        ultrassonografia.setLiquidoAmniotico(Float.parseFloat(uEdLiquidoAmniotico.getText().toString()));
+        Ultrassonografia ultrassonografia;
+
+        if (uTvDpData.getText().toString().equals("[ADICIONAR]")
+                || uTvDpIgDum.getText().toString().equals("[ADICIONAR]")
+                || uTvDpIgUsg.getText().toString().equals("[ADICIONAR]")
+                || uEdPesoFetal.getText().toString().equals("")
+                || uSpPlacenta.getSelectedItem().toString().equals("")
+                || uEdLiquidoAmniotico.getText().toString().equals("")) {
+
+            throw new Exception("Campo vazio.");
+
+        } else {
+
+            ultrassonografia = new Ultrassonografia();
+            ultrassonografia.setData(uTvDpData.getText().toString());
+            ultrassonografia.setIgDum(uTvDpIgDum.getText().toString());
+            ultrassonografia.setIgUsg(uTvDpIgUsg.getText().toString());
+            ultrassonografia.setPesoFetal(Integer.parseInt(uEdPesoFetal.getText().toString()));
+            ultrassonografia.setPlacenta(uSpPlacenta.getSelectedItem().toString());
+            ultrassonografia.setLiquidoAmniotico(Double.parseDouble(uEdLiquidoAmniotico.getText().toString()));
+
+            ultrassonografia.setId(this.ultrassonografia.getId());
+        }
 
         return ultrassonografia;
     }
@@ -71,6 +95,8 @@ public class UltrassonografiaHelper {
         uSpPlacenta.setSelection(posicao);
 
         uEdLiquidoAmniotico.setText(String.valueOf(ultrassonografia.getLiquidoAmniotico()));
+
+        this.ultrassonografia = ultrassonografia;
     }
 
     public void preencheUltrassonografia(Ultrassonografia ultrassonografia) {
@@ -78,8 +104,8 @@ public class UltrassonografiaHelper {
         uTvData.setText(ultrassonografia.getData());
         uTvIgDum.setText(ultrassonografia.getIgDum());
         uTvIgUsg.setText(ultrassonografia.getIgUsg());
-        uTvPesoFetal.setText(String.valueOf(ultrassonografia.getPesoFetal()));
+        uTvPesoFetal.setText(ultrassonografia.getPesoFetal() + " g");
         uTvPlacenta.setText(ultrassonografia.getPlacenta());
-        uTvLiquidoAmniotico.setText(String.valueOf(ultrassonografia.getLiquidoAmniotico()));
+        uTvLiquidoAmniotico.setText(ultrassonografia.getLiquidoAmniotico() + " ml");
     }
 }

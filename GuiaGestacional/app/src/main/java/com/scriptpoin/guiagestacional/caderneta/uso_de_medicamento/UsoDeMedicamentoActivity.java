@@ -1,6 +1,7 @@
 package com.scriptpoin.guiagestacional.caderneta.uso_de_medicamento;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,40 +34,43 @@ public class UsoDeMedicamentoActivity extends AppCompatActivity {
 
     ArrayList<String> medicamentos;
 
-    private EditText umEtMedicamentoAlfa;
-    private Button umBtAdicionar;
-    private Button umBtSalvar;
     private LinearLayout umLlMedicamento;
 
+    // DO MEDICAMENTO DO FORMULÁRIO
+    private EditText umEtMedicamentoAlfa;
+    private Button umBtAdicionar;
+
+    // DOS MEDICAMENTOS DA LISTA DO FORMULÁRIO
+    private EditText umEtMedicamentoBeta;
     private HashMap<View, String> medicamentosTmp = new HashMap<>();
 
-    private EditText umEtMedicamentoBeta;
+    private Button umBtSalvar;
 
-    private int j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uso_de_medicamento);
 
-        DaoCaderneta dao = new DaoCaderneta(this);
-        medicamentos = dao.pegaUsoDeMedicamento();
-        dao.close();
+        setTitle("Editar Uso de Medicamento");
 
-        umEtMedicamentoAlfa = (EditText) findViewById(R.id.umEtMedicamentoAlfa);
+        Intent intent = getIntent();
+        medicamentos = intent.getStringArrayListExtra("medicamentos");
+
 
         umLlMedicamento = (LinearLayout) findViewById(R.id.umLlFormMedicamento);
 
-        if(medicamentos.size() > 0) {
+        final LayoutInflater inflater =
+                (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        // CARREGA MEDICAMENTOS DO FORMULÁRIO
+        if (medicamentos.size() > 0) {
 
             final HashMap<Integer, String> medicamentoX = new HashMap<>();
 
             for (int i = 0; i < medicamentos.size(); i++) {
 
                 medicamentoX.put(i, medicamentos.get(i));
-
-                final LayoutInflater inflater =
-                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
                 final View view = inflater.inflate(R.layout.layout_formulario_uso_de_medicamento, null);
 
@@ -82,7 +86,7 @@ public class UsoDeMedicamentoActivity extends AppCompatActivity {
                         medicamentoX.remove(finalI);
                         ((LinearLayout) view.getParent()).removeView(view);
                         medicamentos = new ArrayList<>();
-                        for(int i = 0; i < medicamentoX.size(); i++) {
+                        for (int i = 0; i < medicamentoX.size(); i++) {
                             medicamentos.add(medicamentoX.get(i));
                         }
                     }
@@ -95,54 +99,66 @@ public class UsoDeMedicamentoActivity extends AppCompatActivity {
 
         }
 
-        umBtAdicionar = (Button)findViewById(R.id.umBtAdicionar);
-        umBtAdicionar.setOnClickListener(new View.OnClickListener(){
+
+        // ADICIONA O MEDICAMENTO À LISTA
+        umEtMedicamentoAlfa = (EditText) findViewById(R.id.umEtMedicamentoAlfa);
+
+        umBtAdicionar = (Button) findViewById(R.id.umBtAdicionar);
+        umBtAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final LayoutInflater inflater =
-                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                if (umEtMedicamentoAlfa.getText().toString().equals("")) {
 
-                final View view = inflater.inflate(R.layout.layout_formulario_uso_de_medicamento, null);
+                    Toast.makeText(UsoDeMedicamentoActivity.this, "Não foi informado o medicamento...", Toast.LENGTH_LONG).show();
 
-                umEtMedicamentoBeta = (EditText) view.findViewById(R.id.umEtMedicamentoBeta);
-                umEtMedicamentoBeta.setText(umEtMedicamentoAlfa.getText().toString());
+                } else {
 
-                Button umBtRemover = (Button) view.findViewById(R.id.umBtRemover);
+                    final View view = inflater.inflate(R.layout.layout_formulario_uso_de_medicamento, null);
 
-                medicamentosTmp.put(view, umEtMedicamentoAlfa.getText().toString());
+                    umEtMedicamentoBeta = (EditText) view.findViewById(R.id.umEtMedicamentoBeta);
+                    umEtMedicamentoBeta.setText(umEtMedicamentoAlfa.getText().toString());
 
-                final View.OnClickListener thisListener = new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        medicamentosTmp.remove(view);
-                        ((LinearLayout)view.getParent()).removeView(view);
-                    }
-                };
+                    Button umBtRemover = (Button) view.findViewById(R.id.umBtRemover);
 
-                umBtRemover.setOnClickListener(thisListener);
+                    medicamentosTmp.put(view, umEtMedicamentoAlfa.getText().toString());
 
-                umLlMedicamento.addView(view);
-                umEtMedicamentoAlfa.setText("");
+                    final View.OnClickListener thisListener = new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            medicamentosTmp.remove(view);
+                            ((LinearLayout) view.getParent()).removeView(view);
+                        }
+                    };
+
+                    umBtRemover.setOnClickListener(thisListener);
+
+                    umLlMedicamento.addView(view);
+                    umEtMedicamentoAlfa.setText("");
+                }
             }
         });
 
+
+        // SALVA OS MEDICAMENTOS DA LISTA
         umBtSalvar = (Button) findViewById(R.id.umBtSalvar);
         umBtSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ArrayList<String> med = new ArrayList<String>();
+                ArrayList<String> medicamentos = new ArrayList<>();
 
-                for(int i = 0; i < umLlMedicamento.getChildCount(); i++) {
-                    med.add(((EditText)((RelativeLayout) umLlMedicamento.getChildAt(i)).getChildAt(1)).getText().toString());
+                for (int i = 0; i < umLlMedicamento.getChildCount(); i++) {
+                    medicamentos.add(((EditText) ((RelativeLayout) umLlMedicamento.getChildAt(i)).getChildAt(1)).getText().toString());
                 }
 
-                Collections.sort(med);
+                Collections.sort(medicamentos);
 
                 DaoCaderneta dao = new DaoCaderneta(UsoDeMedicamentoActivity.this);
-                dao.salvaUsoDeMedicamento(med);
+                dao.salvaUsoDeMedicamento(medicamentos);
                 dao.close();
+
+                Toast.makeText(UsoDeMedicamentoActivity.this, "Medicamentos atualizados !", Toast.LENGTH_LONG).show();
 
                 finish();
             }

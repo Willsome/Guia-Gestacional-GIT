@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ConsultasMensais;
 import com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ConsultasMensaisActivity;
@@ -58,6 +59,14 @@ public class CadernetaFragment extends Fragment {
 
     private LayoutInflater inflater;
 
+    private DadosPessoais dadosPessoais;
+    private DadosObstetricos dadosObstetricos;
+    private ExamesSolicitadosResultados examesSolicitadosResultados;
+    private Ultrassonografia ultrassonografia;
+    private ArrayList<String> medicamentos;
+    private ConsultasMensais consultasMensais;
+
+
     public CadernetaFragment() {
         // Required empty public constructor
     }
@@ -72,11 +81,13 @@ public class CadernetaFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_caderneta, container, false);
 
+
         Button dpBtAlterar = (Button) view.findViewById(R.id.dpBtAlterar);
         dpBtAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), DadosPessoaisActivity.class);
+                intent.putExtra("dadosPessoais", dadosPessoais);
                 startActivity(intent);
             }
         });
@@ -86,6 +97,7 @@ public class CadernetaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), DadosObstetricosActivity.class);
+                intent.putExtra("dadosObstetricos", dadosObstetricos);
                 startActivity(intent);
             }
         });
@@ -95,6 +107,7 @@ public class CadernetaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ExamesSolicitadosResultadosActivity.class);
+                intent.putExtra("examesSolicitadosResultados", examesSolicitadosResultados);
                 startActivity(intent);
             }
         });
@@ -104,6 +117,7 @@ public class CadernetaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), UltrassonografiaActivity.class);
+                intent.putExtra("ultrassonografia", ultrassonografia);
                 startActivity(intent);
             }
         });
@@ -113,6 +127,7 @@ public class CadernetaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), UsoDeMedicamentoActivity.class);
+                intent.putExtra("medicamentos", medicamentos);
                 startActivity(intent);
             }
         });
@@ -135,59 +150,57 @@ public class CadernetaFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        carregaDadosPessoais(view);
-        carregaDadosObstetricos(view);
-        carregaExamesSolicitadosResultados(view);
-        carregaUltrassonografia(view);
-        carregaUsoDeMedicamento(view);
+        DaoCaderneta dao = new DaoCaderneta(getContext());
+
+        carregaDadosPessoais(view, dao);
+        carregaDadosObstetricos(view, dao);
+        carregaExamesSolicitadosResultados(view, dao);
+        carregaUltrassonografia(view, dao);
+        carregaUsoDeMedicamento(view, dao);
+
+        dao.close();
     }
 
-    public void carregaDadosPessoais(View view) {
-        DaoCaderneta daoCaderneta = new DaoCaderneta(getContext());
-        DadosPessoais dp = daoCaderneta.pegaDadosPessoais();
-        daoCaderneta.close();
+    public void carregaDadosPessoais(View view, DaoCaderneta dao) {
+        dadosPessoais = dao.pegaDadosPessoais();
 
-        if (dp.getNome() != null) {
-            DadosPessoaisHelper dph = new DadosPessoaisHelper(getActivity(), 2, view);
-            dph.preencheDadosPessoais(dp);
+        if (dadosPessoais != null) {
+            DadosPessoaisHelper dadosPessoaisHelper = new DadosPessoaisHelper(getActivity(), 2, view);
+            dadosPessoaisHelper.preencheDadosPessoais(dadosPessoais);
         }
     }
 
-    public void carregaDadosObstetricos(View view) {
-        DaoCaderneta daoCaderneta = new DaoCaderneta(getContext());
-        DadosObstetricos dadosObstetricos = daoCaderneta.pegaDadosObstetricos();
-        daoCaderneta.close();
+    public void carregaDadosObstetricos(View view, DaoCaderneta dao) {
+        dadosObstetricos = dao.pegaDadosObstetricos();
 
-        if (dadosObstetricos.getDum() != null) {
-            DadosObstetricosHelper doh = new DadosObstetricosHelper(getActivity(), 2, view);
-            doh.preencheDadosObstetricos(dadosObstetricos);
+        if (dadosObstetricos != null) {
+            DadosObstetricosHelper dadosObstetricosHelper = new DadosObstetricosHelper(getActivity(), 2, view);
+            dadosObstetricosHelper.preencheDadosObstetricos(dadosObstetricos);
         }
     }
 
-    public void carregaExamesSolicitadosResultados(View view) {
-        DaoCaderneta daoCaderneta = new DaoCaderneta(getContext());
-        ExamesSolicitadosResultados examesSolicitadosResultados = daoCaderneta.pegaExamesSolicitadosResultados();
-        daoCaderneta.close();
+    public void carregaExamesSolicitadosResultados(View view, DaoCaderneta dao) {
+        examesSolicitadosResultados = dao.pegaExamesSolicitadosResultados();
 
-        ExamesSolicitadosResultadosHelper esh = new ExamesSolicitadosResultadosHelper(getActivity(), 2, view);
-        esh.preencheExamesSolicitadosResultados(examesSolicitadosResultados);
-    }
+        ExamesSolicitadosResultadosHelper examesSolicitadosResultadosHelper =
+                new ExamesSolicitadosResultadosHelper(getActivity(), 2, view);
 
-    public void carregaUltrassonografia(View view) {
-        DaoCaderneta daoCaderneta = new DaoCaderneta(getContext());
-        Ultrassonografia ultrassonografia = daoCaderneta.pegaUltrassonografia();
-        daoCaderneta.close();
-
-        if (ultrassonografia.getData() != null) {
-            UltrassonografiaHelper uh = new UltrassonografiaHelper(getActivity(), 2, view);
-            uh.preencheUltrassonografia(ultrassonografia);
+        if (examesSolicitadosResultados != null) {
+            examesSolicitadosResultadosHelper.preencheExamesSolicitadosResultados(examesSolicitadosResultados);
         }
     }
 
-    public void carregaUsoDeMedicamento(View view) {
-        DaoCaderneta daoCaderneta = new DaoCaderneta(getContext());
-        ArrayList<String> medicamentos = daoCaderneta.pegaUsoDeMedicamento();
-        daoCaderneta.close();
+    public void carregaUltrassonografia(View view, DaoCaderneta dao) {
+        ultrassonografia = dao.pegaUltrassonografia();
+
+        if (ultrassonografia != null) {
+            UltrassonografiaHelper ultrassonografiaHelper = new UltrassonografiaHelper(getActivity(), 2, view);
+            ultrassonografiaHelper.preencheUltrassonografia(ultrassonografia);
+        }
+    }
+
+    public void carregaUsoDeMedicamento(View view, DaoCaderneta dao) {
+        medicamentos = dao.pegaUsoDeMedicamento();
 
         CheckBox umCbSim = (CheckBox) view.findViewById(R.id.umCbSim);
         CheckBox umCbNao = (CheckBox) view.findViewById(R.id.umCbNao);
@@ -205,8 +218,11 @@ public class CadernetaFragment extends Fragment {
 
                 View innerView = inflater.inflate(R.layout.layout_uso_de_medicamento, null);
 
+                TextView umTvNuMedicamento = (TextView) innerView.findViewById(R.id.umTvNuMedicamento);
                 TextView umTvMedicamento = (TextView) innerView.findViewById(R.id.umTvMedicamento);
-                umTvMedicamento.setText(i + 1 + ") " + medicamentos.get(i));
+
+                umTvNuMedicamento.setText(i + 1 + ") ");
+                umTvMedicamento.setText(medicamentos.get(i));
 
                 umLlMedicamento.addView(innerView);
             }
@@ -219,6 +235,8 @@ public class CadernetaFragment extends Fragment {
         }
     }
 
+
+    // CONSULTAS MENSAIS
     public void carregaConsultasMensais(View view, int filtro) {
 
         DaoCaderneta dao = new DaoCaderneta(getContext());
@@ -231,17 +249,17 @@ public class CadernetaFragment extends Fragment {
 
         cmLlConsultasMensais.removeAllViews();
 
-        if (consultasMensais.getNomeDoProfissional() != null) {
+        if (consultasMensais != null) {
 
             registerForContextMenu(cmLlConsultasMensais);
 
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
             View v = inflater.inflate(R.layout.layout_mostra_consulta_mensal, null);
 
             cmLlConsultasMensais.addView(v);
 
             ConsultasMensaisHelper helper = new ConsultasMensaisHelper(getActivity(), 2, v);
             helper.preencheConsultasMensais(consultasMensais);
+
         } else {
             TextView tv = new TextView(getContext());
             tv.setText("Nenhuma consulta adicionada");
@@ -251,8 +269,6 @@ public class CadernetaFragment extends Fragment {
 
     }
 
-    ConsultasMensais consultasMensais;
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuItem editar = menu.add("Editar");
@@ -261,7 +277,7 @@ public class CadernetaFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent = new Intent(getActivity(), ConsultasMensaisActivity.class);
                 intent.putExtra("consultaMensal", consultasMensais);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
                 return false;
             }
         });
@@ -271,8 +287,9 @@ public class CadernetaFragment extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 DaoCaderneta dao = new DaoCaderneta(getContext());
-                if (dao.deletaConsultasMensais(consultasMensais.getNumeroConsulta())) {
+                if (dao.deletaConsultasMensais(consultasMensais)) {
                     carregaConsultasMensais(view, -1);
+                    Toast.makeText(getContext(), "A consulta foi deletada !", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
@@ -292,9 +309,13 @@ public class CadernetaFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
+
             carregaConsultasMensais(view, -1);
+
         } else if (requestCode == 2 && resultCode == RESULT_OK) {
+
             int numeroConsulta = data.getIntExtra("numeroConsulta", -1);
             carregaConsultasMensais(view, numeroConsulta);
         }

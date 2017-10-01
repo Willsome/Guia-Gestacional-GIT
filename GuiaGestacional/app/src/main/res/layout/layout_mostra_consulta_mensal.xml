@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/fundo_consultas_mensais"
@@ -15,25 +14,23 @@
         android:orientation="vertical">
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:text="Consulta: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Consulta:  " />
 
             <TextView
-                android:text="0"
                 android:id="@+id/cmTvNumeroConsulta"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -43,38 +40,38 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Data da consulta: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Data da consulta:  " />
 
             <TextView
                 android:id="@+id/cmTvDataConsulta"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
-                android:text="Queixa:"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Queixa:" />
 
             <TextView
                 android:id="@+id/cmTvQueixa"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -83,17 +80,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Idade Gestacional (IG): "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Idade Gestacional (IG):  " />
 
             <TextView
                 android:id="@+id/cmTvIg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -103,17 +100,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Peso: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Peso:  " />
 
             <TextView
                 android:id="@+id/cmTvPeso"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -123,17 +120,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="IMC: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="IMC:  " />
 
             <TextView
                 android:id="@+id/cmTvImc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -143,17 +140,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Edema: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Edema:  " />
 
             <TextView
                 android:id="@+id/cmTvEdema"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -163,17 +160,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Pressão Arterial (PA): "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Pressão Arterial (PA):  " />
 
             <TextView
                 android:id="@+id/cmTvPa"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -183,17 +180,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Altura uterina: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Altura uterina:  " />
 
             <TextView
                 android:id="@+id/cmTvAlturaUterina"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -203,17 +200,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Posição fetal: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Posição fetal:  " />
 
             <TextView
                 android:id="@+id/cmTvPosicaoFetal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -223,17 +220,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Batimento Cardíaco Fetal (BCF): "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Batimento Cardíaco Fetal (BCF):  " />
 
             <TextView
                 android:id="@+id/cmTvBcf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -243,35 +240,36 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="Movimento fetal: "
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Movimento fetal:  " />
 
             <TextView
                 android:id="@+id/cmTvMovFetal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
-                android:text="Nome do profissional:"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Nome do profissional:" />
 
             <TextView
                 android:id="@+id/cmTvNomeDoProfissional"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#4F4F4F" />
 
         </LinearLayout>
 

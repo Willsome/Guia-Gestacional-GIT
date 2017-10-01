@@ -1,53 +1,52 @@
 package com.scriptpoin.guiagestacional.caderneta.dados_obstetricos;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.scriptpoin.guiagestacional.R;
+import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisActivity;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
+
 import java.util.Calendar;
 
 public class DadosObstetricosActivity extends AppCompatActivity {
 
-    private DadosObstetricosHelper doh;
-
+    // VARIÁVEIS DO MÉTODO "pegaDataDumDpp()"
     private TextView doTvDpDum;
     private TextView doTvDpDpp;
-
     private DatePickerDialog.OnDateSetListener datePickerListener;
-
-    private DadosObstetricos dadosObstetricos;
-
     private int i;
-
     private int dia;
     private int mes;
     private int ano;
+
+    // OUTROS
+    private DadosObstetricos dadosObstetricos;
+    private DadosObstetricosHelper dadosObstetricosHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_obstetricos);
 
-        DaoCaderneta dao = new DaoCaderneta(DadosObstetricosActivity.this);
+        setTitle("Editar Dados Obstétricos");
 
-        doh = new DadosObstetricosHelper(DadosObstetricosActivity.this, 1, null);
+        Intent intent = getIntent();
+        dadosObstetricos = (DadosObstetricos) intent.getSerializableExtra("dadosObstetricos");
 
-        dadosObstetricos = dao.pegaDadosObstetricos();
+        dadosObstetricosHelper = new DadosObstetricosHelper(this, 1, null);
 
-        dao.close();
-
-        if(dadosObstetricos.getDum() != null) {
-            doh.preencheFormularioDadosObstetricos(dadosObstetricos);
-        } else {
-            dadosObstetricos = new DadosObstetricos();
+        if (dadosObstetricos != null) {
+            dadosObstetricosHelper.preencheFormularioDadosObstetricos(dadosObstetricos);
         }
-
 
         pegaDataDumDpp();
 
@@ -56,25 +55,39 @@ public class DadosObstetricosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                doh.setDadosObstetricos(dadosObstetricos);
+                try {
 
-                DaoCaderneta dao = new DaoCaderneta(DadosObstetricosActivity.this);
-                dao.salvaDadosObstetricos(dadosObstetricos);
-                dao.close();
+                    DadosObstetricos dadosObstetricos = dadosObstetricosHelper.pegaDadosObstetricos();
 
-                finish();
+                    DaoCaderneta dao = new DaoCaderneta(DadosObstetricosActivity.this);
+
+                    if (dadosObstetricos.getId() != null) {
+                        dao.alteraDadosObstetricos(dadosObstetricos);
+                        Toast.makeText(DadosObstetricosActivity.this, "Dados Obstétricos atualizados !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dao.salvaDadosObstetricos(dadosObstetricos);
+                    }
+                    dao.close();
+
+                    finish();
+
+                } catch (Exception e) {
+                    Toast.makeText(DadosObstetricosActivity.this, "Existem campos não preenchidos...", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
             }
         });
 
     }
 
     private void pegaDataDumDpp() {
-        doTvDpDum = doh.getDoTvDpDum();
+
+        doTvDpDum = dadosObstetricosHelper.getDoTvDpDum();
         doTvDpDum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(dadosObstetricos.getDum() != null) {
+                if (dadosObstetricos != null) {
                     dia = Integer.valueOf(dadosObstetricos.getDum().substring(0, 2));
                     mes = Integer.valueOf(dadosObstetricos.getDum().substring(3, 5)) - 1;
                     ano = Integer.valueOf(dadosObstetricos.getDum().substring(6, 10));
@@ -99,12 +112,12 @@ public class DadosObstetricosActivity extends AppCompatActivity {
             }
         });
 
-        doTvDpDpp = doh.getDoTvDpDpp();
+        doTvDpDpp = dadosObstetricosHelper.getDoTvDpDpp();
         doTvDpDpp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(dadosObstetricos.getDpp() != null) {
+                if (dadosObstetricos != null) {
                     dia = Integer.valueOf(dadosObstetricos.getDpp().substring(0, 2));
                     mes = Integer.valueOf(dadosObstetricos.getDpp().substring(3, 5)) - 1;
                     ano = Integer.valueOf(dadosObstetricos.getDpp().substring(6, 10));
@@ -136,22 +149,20 @@ public class DadosObstetricosActivity extends AppCompatActivity {
 
                 String data;
 
-                if(dia < 10 && mes < 10) {
+                if (dia < 10 && mes < 10) {
                     data = "0" + dia + "/0" + mes + "/" + ano;
-                } else if(dia < 10) {
+                } else if (dia < 10) {
                     data = "0" + dia + "/" + mes + "/" + ano;
-                } else if(mes < 10) {
+                } else if (mes < 10) {
                     data = dia + "/0" + mes + "/" + ano;
                 } else {
                     data = dia + "/" + mes + "/" + ano;
                 }
 
-                if(i == 1) {
-                    dadosObstetricos.setDum(data);
-                    doTvDpDum.setText(dadosObstetricos.getDum());
-                } else if(i == 2) {
-                    dadosObstetricos.setDpp(data);
-                    doTvDpDpp.setText(dadosObstetricos.getDpp());
+                if (i == 1) {
+                    doTvDpDum.setText(data);
+                } else if (i == 2) {
+                    doTvDpDpp.setText(data);
                 }
             }
         };
