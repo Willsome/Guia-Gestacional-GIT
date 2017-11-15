@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.scriptpoin.guiagestacional.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by Willi on 27-Aug-17.
  */
@@ -46,7 +49,7 @@ public class DadosObstetricosHelper {
         return doTvDpDpp;
     }
 
-    public DadosObstetricos pegaDadosObstetricos() throws Exception {
+    public DadosObstetricos pegaDadosObstetricos(Calendar dataDum, Calendar dataDpp) throws Exception {
 
         DadosObstetricos dadosObstetricos;
 
@@ -58,9 +61,8 @@ public class DadosObstetricosHelper {
         } else {
 
             dadosObstetricos = new DadosObstetricos();
-            dadosObstetricos.setDum(doTvDpDum.getText().toString());
-            dadosObstetricos.setDpp(doTvDpDpp.getText().toString());
-
+            dadosObstetricos.setDum(dataDum);
+            dadosObstetricos.setDpp(dataDpp);
             dadosObstetricos.setId(this.dadosObstetricos.getId());
         }
 
@@ -69,15 +71,19 @@ public class DadosObstetricosHelper {
 
     public void preencheFormularioDadosObstetricos(DadosObstetricos dadosObstetricos) {
 
-        doTvDpDum.setText(dadosObstetricos.getDum());
-        doTvDpDpp.setText(dadosObstetricos.getDpp());
+        SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+
+        doTvDpDum.setText(formatadorData.format(dadosObstetricos.getDum().getTime()));
+        doTvDpDpp.setText(formatadorData.format(dadosObstetricos.getDpp().getTime()));
 
         this.dadosObstetricos = dadosObstetricos;
     }
 
     public void preencheDadosObstetricos(DadosObstetricos dadosObstetricos) {
 
-        doTvDum.setText(dadosObstetricos.getDum());
-        doTvDpp.setText(dadosObstetricos.getDpp());
+        SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+
+        doTvDum.setText(formatadorData.format(dadosObstetricos.getDum().getTime()));
+        doTvDpp.setText(formatadorData.format(dadosObstetricos.getDpp().getTime()));
     }
 }

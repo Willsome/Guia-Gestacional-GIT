@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.scriptpoin.guiagestacional.R;
-
-import java.util.ArrayList;
 
 /**
  * Created by Bianor on 4/15/2017.
@@ -45,7 +42,7 @@ public class TrimestreAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.listview_trimestre_background, parent, false);
+        view = inflater.inflate(R.layout.layout_listview_trimestre_background, parent, false);
 
         if (view != null) {
             TextView infoTrimestre = (TextView) view.findViewById(R.id.infoTrimestre);

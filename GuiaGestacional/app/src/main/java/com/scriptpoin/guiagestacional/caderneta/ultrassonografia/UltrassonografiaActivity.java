@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,11 +17,15 @@ import android.widget.Toast;
 import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class UltrassonografiaActivity extends AppCompatActivity {
 
     // // VARIÁVEIS DO MÉTODO "pegaDatasUltrassonografia()"
+    private Calendar data;
+    private Calendar dataIgDum;
+    private Calendar dataIgUsg;
     private TextView uTvDpData;
     private TextView uTvDpIgDum;
     private TextView uTvDpIgUsg;
@@ -32,6 +38,8 @@ public class UltrassonografiaActivity extends AppCompatActivity {
     // OUTROS
     private Ultrassonografia ultrassonografia;
     UltrassonografiaHelper ultrassonografiaHelper;
+    private CheckBox uCbSolicitacao;
+    private CheckBox uCbResultado;
 
 
     @Override
@@ -39,12 +47,40 @@ public class UltrassonografiaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ultrassonografia);
 
-        setTitle("Editar Ultrassonografia");
+        setTitle("Adicionar");
 
         Intent intent = getIntent();
         ultrassonografia = (Ultrassonografia) intent.getSerializableExtra("ultrassonografia");
 
         ultrassonografiaHelper = new UltrassonografiaHelper(this, 1, null);
+
+        // CHECK BOXES
+        uCbSolicitacao = (CheckBox) findViewById(R.id.uCbSolicitacao);
+        uCbResultado = (CheckBox) findViewById(R.id.uCbResultado);
+
+        ultrassonografiaHelper.marcaResultado(false);
+        uCbSolicitacao.setChecked(true);
+
+        uCbSolicitacao.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean ativado) {
+                if (ativado) {
+                    uCbResultado.setChecked(false);
+                }
+            }
+        });
+
+        uCbResultado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean ativado) {
+                if (ativado) {
+                    ultrassonografiaHelper.marcaResultado(true);
+                } else {
+                    ultrassonografiaHelper.marcaResultado(false);
+                }
+            }
+        });
+
 
         // SPINNER
         Spinner uSpPlacenta = (Spinner) findViewById(R.id.uSpPlacenta);
@@ -58,6 +94,16 @@ public class UltrassonografiaActivity extends AppCompatActivity {
         // SPINNER
 
         if (ultrassonografia != null) {
+            setTitle("Editar");
+
+            // SOLICITAÇÃO OU RESULTADO
+            if (ultrassonografia.getSolicitacao() == 0) {
+                ultrassonografiaHelper.marcaResultado(true);
+                uCbResultado.setEnabled(true);
+                uCbResultado.setChecked(true);
+                uCbSolicitacao.setChecked(false);
+            }
+
             int posicao = adapter.getPosition(ultrassonografia.getPlacenta());
             ultrassonografiaHelper.preencheFormularioUltrassonografia(ultrassonografia, posicao);
         }
@@ -71,22 +117,41 @@ public class UltrassonografiaActivity extends AppCompatActivity {
 
                 try {
 
-                    Ultrassonografia ultrassonografia = ultrassonografiaHelper.pegaUltrassonografia();
+                    Ultrassonografia ultrassonografia = ultrassonografiaHelper.pegaUltrassonografia(data, dataIgDum, dataIgUsg);
 
                     DaoCaderneta dao = new DaoCaderneta(UltrassonografiaActivity.this);
 
-                    if (ultrassonografia.getId() != null) {
-                        dao.alteraUltrassonografia(ultrassonografia);
-                        Toast.makeText(UltrassonografiaActivity.this, "Ultrassonografia atualizada !", Toast.LENGTH_SHORT).show();
-                    } else {
-                        dao.salvaUltrassonografia(ultrassonografia);
-                    }
-                    dao.close();
+                    Intent intent = new Intent();
 
-                    finish();
+                    if (!dao.existeConsulta(ultrassonografia.getNumeroConsultaSolicitacao())) {
+                        Toast.makeText(UltrassonografiaActivity.this, "A consulta de solicitação da ultra não existe...", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        if (ultrassonografia.getId() != null) {
+                            dao.alteraUltrassonografia(ultrassonografia);
+                            intent.putExtra("consultaSolicitacao", ultrassonografia.getNumeroConsultaSolicitacao());
+                            Toast.makeText(UltrassonografiaActivity.this, "Ultrassonografia atualizada !", Toast.LENGTH_SHORT).show();
+                            setResult(RESULT_OK, intent);
+                            dao.close();
+                            finish();
+
+                        } else {
+                            if (!dao.existeUltra(ultrassonografia.getNumeroConsultaSolicitacao())) {
+                                dao.salvaUltrassonografia(ultrassonografia);
+                                Toast.makeText(UltrassonografiaActivity.this, "Ultrassonografia adicionada !", Toast.LENGTH_SHORT).show();
+                                setResult(RESULT_OK, intent);
+                                dao.close();
+                                finish();
+
+                            } else {
+                                Toast.makeText(UltrassonografiaActivity.this, "Já existe uma ultrassonografia com a consulta informada...", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }
 
                 } catch (Exception e) {
-                    Toast.makeText(UltrassonografiaActivity.this, "Existem campos não preenchidos...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UltrassonografiaActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -97,21 +162,20 @@ public class UltrassonografiaActivity extends AppCompatActivity {
 
     private void pegaDatasUltrassonografia() {
 
+        data = Calendar.getInstance();
+
         uTvDpData = (TextView) findViewById(R.id.uTvDpData);
         uTvDpData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (ultrassonografia != null) {
-                    dia = Integer.valueOf(ultrassonografia.getData().substring(0, 2));
-                    mes = Integer.valueOf(ultrassonografia.getData().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(ultrassonografia.getData().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+                if (ultrassonografia != null && ultrassonografia.getSolicitacao() == 0) {
+                    data = ultrassonografia.getData();
                 }
+
+                dia = data.get(Calendar.DAY_OF_MONTH);
+                mes = data.get(Calendar.MONTH);
+                ano = data.get(Calendar.YEAR);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         UltrassonografiaActivity.this,
@@ -127,21 +191,21 @@ public class UltrassonografiaActivity extends AppCompatActivity {
             }
         });
 
+        dataIgDum = Calendar.getInstance();
+
         uTvDpIgDum = (TextView) findViewById(R.id.uTvDpIgDum);
         uTvDpIgDum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (ultrassonografia != null) {
-                    dia = Integer.valueOf(ultrassonografia.getIgDum().substring(0, 2));
-                    mes = Integer.valueOf(ultrassonografia.getIgDum().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(ultrassonografia.getIgDum().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+                if (ultrassonografia != null && ultrassonografia.getSolicitacao() == 0) {
+
+                    dataIgDum = ultrassonografia.getIgDum();
                 }
+
+                dia = dataIgDum.get(Calendar.DAY_OF_MONTH);
+                mes = dataIgDum.get(Calendar.MONTH);
+                ano = dataIgDum.get(Calendar.YEAR);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         UltrassonografiaActivity.this,
@@ -157,21 +221,21 @@ public class UltrassonografiaActivity extends AppCompatActivity {
             }
         });
 
+        dataIgUsg = Calendar.getInstance();
+
         uTvDpIgUsg = (TextView) findViewById(R.id.uTvDpIgUsg);
         uTvDpIgUsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (ultrassonografia != null) {
-                    dia = Integer.valueOf(ultrassonografia.getIgUsg().substring(0, 2));
-                    mes = Integer.valueOf(ultrassonografia.getIgUsg().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(ultrassonografia.getIgUsg().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+                if (ultrassonografia != null && ultrassonografia.getSolicitacao() == 0) {
+
+                    dataIgUsg = ultrassonografia.getIgUsg();
                 }
+
+                dia = dataIgUsg.get(Calendar.DAY_OF_MONTH);
+                mes = dataIgUsg.get(Calendar.MONTH);
+                ano = dataIgUsg.get(Calendar.YEAR);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         UltrassonografiaActivity.this,
@@ -190,26 +254,32 @@ public class UltrassonografiaActivity extends AppCompatActivity {
         datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                mes += 1;
 
-                String data;
-
-                if (dia < 10 && mes < 10) {
-                    data = "0" + dia + "/0" + mes + "/" + ano;
-                } else if (dia < 10) {
-                    data = "0" + dia + "/" + mes + "/" + ano;
-                } else if (mes < 10) {
-                    data = dia + "/0" + mes + "/" + ano;
-                } else {
-                    data = dia + "/" + mes + "/" + ano;
-                }
+                SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 
                 if (i == 1) {
-                    uTvDpData.setText(data);
+
+                    data.set(Calendar.DAY_OF_MONTH, dia);
+                    data.set(Calendar.MONTH, mes);
+                    data.set(Calendar.YEAR, ano);
+
+                    uTvDpData.setText(formataData.format(data.getTime()));
+
                 } else if (i == 2) {
-                    uTvDpIgDum.setText(data);
+
+                    dataIgDum.set(Calendar.DAY_OF_MONTH, dia);
+                    dataIgDum.set(Calendar.MONTH, mes);
+                    dataIgDum.set(Calendar.YEAR, ano);
+
+                    uTvDpIgDum.setText(formataData.format(dataIgDum.getTime()));
+
                 } else if (i == 3) {
-                    uTvDpIgUsg.setText(data);
+
+                    dataIgUsg.set(Calendar.DAY_OF_MONTH, dia);
+                    dataIgUsg.set(Calendar.MONTH, mes);
+                    dataIgUsg.set(Calendar.YEAR, ano);
+
+                    uTvDpIgUsg.setText(formataData.format(dataIgUsg.getTime()));
                 }
             }
         };

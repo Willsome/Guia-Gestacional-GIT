@@ -14,11 +14,14 @@ import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisActivity;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DadosObstetricosActivity extends AppCompatActivity {
 
     // VARIÁVEIS DO MÉTODO "pegaDataDumDpp()"
+    private Calendar dataDum;
+    private Calendar dataDpp;
     private TextView doTvDpDum;
     private TextView doTvDpDpp;
     private DatePickerDialog.OnDateSetListener datePickerListener;
@@ -37,7 +40,7 @@ public class DadosObstetricosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_obstetricos);
 
-        setTitle("Editar Dados Obstétricos");
+        setTitle("Adicionar");
 
         Intent intent = getIntent();
         dadosObstetricos = (DadosObstetricos) intent.getSerializableExtra("dadosObstetricos");
@@ -45,6 +48,7 @@ public class DadosObstetricosActivity extends AppCompatActivity {
         dadosObstetricosHelper = new DadosObstetricosHelper(this, 1, null);
 
         if (dadosObstetricos != null) {
+            setTitle("Editar");
             dadosObstetricosHelper.preencheFormularioDadosObstetricos(dadosObstetricos);
         }
 
@@ -57,7 +61,7 @@ public class DadosObstetricosActivity extends AppCompatActivity {
 
                 try {
 
-                    DadosObstetricos dadosObstetricos = dadosObstetricosHelper.pegaDadosObstetricos();
+                    DadosObstetricos dadosObstetricos = dadosObstetricosHelper.pegaDadosObstetricos(dataDum, dataDpp);
 
                     DaoCaderneta dao = new DaoCaderneta(DadosObstetricosActivity.this);
 
@@ -66,6 +70,7 @@ public class DadosObstetricosActivity extends AppCompatActivity {
                         Toast.makeText(DadosObstetricosActivity.this, "Dados Obstétricos atualizados !", Toast.LENGTH_SHORT).show();
                     } else {
                         dao.salvaDadosObstetricos(dadosObstetricos);
+                        Toast.makeText(DadosObstetricosActivity.this, "Dados Obstétricos adicionados !", Toast.LENGTH_SHORT).show();
                     }
                     dao.close();
 
@@ -82,21 +87,21 @@ public class DadosObstetricosActivity extends AppCompatActivity {
 
     private void pegaDataDumDpp() {
 
+        dataDum = Calendar.getInstance();
+
         doTvDpDum = dadosObstetricosHelper.getDoTvDpDum();
         doTvDpDum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (dadosObstetricos != null) {
-                    dia = Integer.valueOf(dadosObstetricos.getDum().substring(0, 2));
-                    mes = Integer.valueOf(dadosObstetricos.getDum().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(dadosObstetricos.getDum().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+
+                    dataDum = dadosObstetricos.getDum();
                 }
+
+                dia = dataDum.get(Calendar.DAY_OF_MONTH);
+                mes = dataDum.get(Calendar.MONTH);
+                ano = dataDum.get(Calendar.YEAR);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         DadosObstetricosActivity.this,
@@ -112,21 +117,23 @@ public class DadosObstetricosActivity extends AppCompatActivity {
             }
         });
 
+        dataDpp = Calendar.getInstance();
+
         doTvDpDpp = dadosObstetricosHelper.getDoTvDpDpp();
         doTvDpDpp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (dadosObstetricos != null) {
-                    dia = Integer.valueOf(dadosObstetricos.getDpp().substring(0, 2));
-                    mes = Integer.valueOf(dadosObstetricos.getDpp().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(dadosObstetricos.getDpp().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+
+                    dataDpp = dadosObstetricos.getDpp();
+
                 }
+
+                dia = dataDpp.get(Calendar.DAY_OF_MONTH);
+                mes = dataDpp.get(Calendar.MONTH);
+                ano = dataDpp.get(Calendar.YEAR);
+
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         DadosObstetricosActivity.this,
@@ -145,24 +152,24 @@ public class DadosObstetricosActivity extends AppCompatActivity {
         datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                mes += 1;
 
-                String data;
-
-                if (dia < 10 && mes < 10) {
-                    data = "0" + dia + "/0" + mes + "/" + ano;
-                } else if (dia < 10) {
-                    data = "0" + dia + "/" + mes + "/" + ano;
-                } else if (mes < 10) {
-                    data = dia + "/0" + mes + "/" + ano;
-                } else {
-                    data = dia + "/" + mes + "/" + ano;
-                }
+                SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 
                 if (i == 1) {
-                    doTvDpDum.setText(data);
+
+                    dataDum.set(Calendar.DAY_OF_MONTH, dia);
+                    dataDum.set(Calendar.MONTH, mes);
+                    dataDum.set(Calendar.YEAR, ano);
+
+                    doTvDpDum.setText(formataData.format(dataDum.getTime()));
+
                 } else if (i == 2) {
-                    doTvDpDpp.setText(data);
+
+                    dataDpp.set(Calendar.DAY_OF_MONTH, dia);
+                    dataDpp.set(Calendar.MONTH, mes);
+                    dataDpp.set(Calendar.YEAR, ano);
+
+                    doTvDpDpp.setText(formataData.format(dataDpp.getTime()));
                 }
             }
         };

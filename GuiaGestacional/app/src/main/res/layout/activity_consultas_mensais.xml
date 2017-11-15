@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F4F4"
     tools:context="com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ConsultasMensaisActivity">
 
     <LinearLayout
@@ -21,7 +22,7 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="Consultas Mensais"
-            android:textColor="@android:color/black"
+            android:textColor="#b7448b"
             android:textSize="18sp" />
 
 
@@ -199,9 +200,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:digits="+"
+                android:digits="-+"
                 android:gravity="center"
-                android:hint="+++"
+                android:hint="- / +++"
+                android:maxLength="3"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -271,8 +273,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:hint="(cm)"
-                android:inputType="numberDecimal"
+                android:hint="- / (cm)"
+                android:inputType="numberSigned"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -359,6 +361,31 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Profissional:"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/cmSpTipoProfissional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -383,8 +410,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
             android:text="salvar"
-            android:textColor="#4F4F4F" />
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

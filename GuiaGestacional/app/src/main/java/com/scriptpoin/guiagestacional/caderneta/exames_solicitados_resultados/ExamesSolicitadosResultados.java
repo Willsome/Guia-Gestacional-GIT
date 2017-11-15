@@ -1,28 +1,25 @@
 package com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
  * Created by Willi on 02-Sep-17.
  */
 
-public class ExamesSolicitadosResultados implements Serializable {
+public class ExamesSolicitadosResultados implements Serializable, Comparable<ExamesSolicitadosResultados> {
 
     private Long id;
 
-    private int aboRh;
-    private int glicemiaJejum;
-    private int toleranciaGlicose;
-    private int sifilis;
-    private int Vdrl;
-    private int Hiv;
-    private int hepatiteBC;
-    private int Hbsag;
-    private int toxoplasmose;
-    private int hemoglobina;
-    private int urinaEas;
-    private int urinaCultura;
-    private int coombs;
+    private Long solicitacao;
+
+    private Long numeroConsultaSolicitacao;
+    private Long numeroConsultaResultado;
+
+    private Exame exame;
+    private String resultado;
+
 
     public Long getId() {
         return id;
@@ -32,107 +29,50 @@ public class ExamesSolicitadosResultados implements Serializable {
         this.id = id;
     }
 
-    public int getAboRh() {
-        return aboRh;
+    public Long getSolicitacao() {
+        return solicitacao;
     }
 
-    public void setAboRh(int aboRh) {
-        this.aboRh = aboRh;
+    public void setSolicitacao(Long solicitacao) {
+        this.solicitacao = solicitacao;
     }
 
-    public int getGlicemiaJejum() {
-        return glicemiaJejum;
+    public Long getNumeroConsultaSolicitacao() {
+        return numeroConsultaSolicitacao;
     }
 
-    public void setGlicemiaJejum(int glicemiaJejum) {
-        this.glicemiaJejum = glicemiaJejum;
+    public void setNumeroConsultaSolicitacao(Long numeroConsultaSolicitacao) {
+        this.numeroConsultaSolicitacao = numeroConsultaSolicitacao;
     }
 
-    public int getToleranciaGlicose() {
-        return toleranciaGlicose;
+    public Long getNumeroConsultaResultado() {
+        return numeroConsultaResultado;
     }
 
-    public void setToleranciaGlicose(int toleranciaGlicose) {
-        this.toleranciaGlicose = toleranciaGlicose;
+    public void setNumeroConsultaResultado(Long numeroConsultaResultado) {
+        this.numeroConsultaResultado = numeroConsultaResultado;
     }
 
-    public int getSifilis() {
-        return sifilis;
+    public Exame getExame() {
+        return exame;
     }
 
-    public void setSifilis(int sifilis) {
-        this.sifilis = sifilis;
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
 
-    public int getVdrl() {
-        return Vdrl;
+    public String getResultado() {
+        return resultado;
     }
 
-    public void setVdrl(int vdrl) {
-        Vdrl = vdrl;
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 
-    public int getHiv() {
-        return Hiv;
-    }
-
-    public void setHiv(int hiv) {
-        Hiv = hiv;
-    }
-
-    public int getHepatiteBC() {
-        return hepatiteBC;
-    }
-
-    public void setHepatiteBC(int hepatiteBC) {
-        this.hepatiteBC = hepatiteBC;
-    }
-
-    public int getHbsag() {
-        return Hbsag;
-    }
-
-    public void setHbsag(int hbsag) {
-        Hbsag = hbsag;
-    }
-
-    public int getToxoplasmose() {
-        return toxoplasmose;
-    }
-
-    public void setToxoplasmose(int toxoplasmose) {
-        this.toxoplasmose = toxoplasmose;
-    }
-
-    public int getHemoglobina() {
-        return hemoglobina;
-    }
-
-    public void setHemoglobina(int hemoglobina) {
-        this.hemoglobina = hemoglobina;
-    }
-
-    public int getUrinaEas() {
-        return urinaEas;
-    }
-
-    public void setUrinaEas(int urinaEas) {
-        this.urinaEas = urinaEas;
-    }
-
-    public int getUrinaCultura() {
-        return urinaCultura;
-    }
-
-    public void setUrinaCultura(int urinaCultura) {
-        this.urinaCultura = urinaCultura;
-    }
-
-    public int getCoombs() {
-        return coombs;
-    }
-
-    public void setCoombs(int coombs) {
-        this.coombs = coombs;
+    @Override
+    public int compareTo(@NonNull ExamesSolicitadosResultados outroExamesSolicitadosResultados) {
+        if (this.exame.getId() > outroExamesSolicitadosResultados.getExame().getId()) return 1;
+        if (this.exame.getId() < outroExamesSolicitadosResultados.getExame().getId()) return -1;
+        return 0;
     }
 }

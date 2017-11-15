@@ -1,67 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scriptpoin.guiagestacional.SobreActivity"
-    android:background="@drawable/sobre_bg">
+    android:background="@drawable/sobre_bg"
+    tools:context="com.scriptpoin.guiagestacional.SobreActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
 
         <TextView
             android:id="@+id/sobre_texto1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guia Gestacional"
+            android:layout_centerHorizontal="true"
+            android:text="Gestação Saudável"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/sobre_texto2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Versão Beta"
-            android:textColor="#99487e"
-            android:textSize="15sp"
+            android:layout_below="@+id/sobre_texto1"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/sobre_texto1"/>
+            android:text="Versão Alfa"
+            android:textColor="#99487e"
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/sobre_logo"
             android:layout_width="wrap_content"
             android:layout_height="115dp"
-            android:src="@drawable/guia_gestacional_icone"
             android:layout_below="@+id/sobre_texto2"
-            android:layout_marginTop="23dp"
             android:layout_marginBottom="23dp"
-            />
+            android:layout_marginTop="23dp"
+            android:src="@drawable/guia_gestacional_icone" />
 
         <TextView
             android:id="@+id/sobre_texto3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/sobre_logo"
+            android:layout_centerHorizontal="true"
             android:text="© 2017 ScriptPoin"
             android:textColor="#99487e"
-            android:textSize="15sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/sobre_logo"/>
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/sobre_texto4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/sobre_texto3"
+            android:layout_centerHorizontal="true"
             android:text="Todos os direitos reservados."
             android:textColor="#99487e"
-            android:textSize="15sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/sobre_texto3"/>
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

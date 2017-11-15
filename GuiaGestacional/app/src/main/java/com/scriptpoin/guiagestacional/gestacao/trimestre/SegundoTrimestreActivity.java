@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.dao.DaoDuvidas;
+import com.scriptpoin.guiagestacional.gestacao.modelo_duvida_resposta.DuvidasTrimestre;
+import com.scriptpoin.guiagestacional.gestacao.modelo_duvida_resposta.RespostasActivity;
 
 import java.util.ArrayList;
 

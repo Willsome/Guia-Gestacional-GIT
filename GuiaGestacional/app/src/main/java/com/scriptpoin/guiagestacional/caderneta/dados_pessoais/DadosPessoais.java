@@ -1,6 +1,7 @@
 package com.scriptpoin.guiagestacional.caderneta.dados_pessoais;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by Willi on 20-Aug-17.
@@ -11,7 +12,7 @@ public class DadosPessoais implements Serializable {
     private Long id;
 
     private String nome;
-    private String dataNascimento;
+    private Calendar dataNascimento;
     private int idade;
     private String endereco;
     private String nomeCompanheiro;
@@ -33,11 +34,11 @@ public class DadosPessoais implements Serializable {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -2,47 +2,40 @@ package com.scriptpoin.guiagestacional.caderneta.consultas_mensais;
 
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class ConsultasMensais implements Serializable {
 
-    private Long id;
+    private Long numeroConsulta;
 
-    private int numeroConsulta;
-    private String dataConsulta;
+    private Calendar dataConsulta;
     private String queixa;
     private double ig;
     private double peso;
     private double imc;
     private String edema;
     private double paI, paII;
-    private int alturaUterina;
+    private String alturaUterina;
     private String posicaoFetal;
     private int bcf;
     private String movFetal;
+    private String tipoProfissional;
     private String nomeDoProfissional;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getNumeroConsulta() {
+    public Long getNumeroConsulta() {
         return numeroConsulta;
     }
 
-    public void setNumeroConsulta(int numeroConsulta) {
-        this.numeroConsulta = numeroConsulta;
+    public void setNumeroConsulta(Long id) {
+        this.numeroConsulta = id;
     }
 
-    public String getDataConsulta() {
+    public Calendar getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(String dataConsulta) {
+    public void setDataConsulta(Calendar dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
 
@@ -102,11 +95,11 @@ public class ConsultasMensais implements Serializable {
         this.paII = paII;
     }
 
-    public int getAlturaUterina() {
+    public String getAlturaUterina() {
         return alturaUterina;
     }
 
-    public void setAlturaUterina(int alturaUterina) {
+    public void setAlturaUterina(String alturaUterina) {
         this.alturaUterina = alturaUterina;
     }
 
@@ -132,6 +125,14 @@ public class ConsultasMensais implements Serializable {
 
     public void setMovFetal(String movFetal) {
         this.movFetal = movFetal;
+    }
+
+    public String getTipoProfissional() {
+        return tipoProfissional;
+    }
+
+    public void setTipoProfissional(String tipoProfissional) {
+        this.tipoProfissional = tipoProfissional;
     }
 
     public String getNomeDoProfissional() {

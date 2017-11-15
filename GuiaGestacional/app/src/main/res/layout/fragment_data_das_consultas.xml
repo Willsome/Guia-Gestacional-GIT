@@ -1,0 +1,67 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    tools:context="com.scriptpoin.guiagestacional.DataDasConsultasFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="Data da próxima consulta..."
+                android:textColor="#b7448b"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adicione uma consulta abaixo para ser notificada 1 dia antes. Toque na consulta para EDITAR ou pressione para EXCLUIR." />
+
+
+            <LinearLayout
+                android:id="@+id/dcLlConsultas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+        <!--<ListView-->
+        <!--android:id="@+id/dcLvConsultas"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:divider="@null" />-->
+
+        <Button
+            android:id="@+id/dcBtAdicionarConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="adicionar"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,11 +1,21 @@
 <resources>
 
-    <string name="app_name"> Guia Gestacional </string>
+    <string name="app_name"> Gestação Saudável </string>
 
-    <string name="navigation_drawer_open"> Open navigation drawer </string>
-    <string name="navigation_drawer_close"> Close navigation drawer </string>
 
-    <string name="action_settings"> Configurações </string>
+    <string name="navigation_drawer_open"> Abrir menu </string>
+    <string name="navigation_drawer_close"> Fechar menu </string>
+
+
+    <string name="action_settings"> Logout </string>
+
+
+    <string-array name="spinner_tipo_profissional">
+        <item> Dr. </item>
+        <item> Dra. </item>
+        <item> Enf. </item>
+        <item> Enfa. </item>
+    </string-array>
 
 
     <string-array name="spinner_placenta">
@@ -14,52 +24,213 @@
         <item> Grau III </item>
     </string-array>
 
+
     <string-array name="spinner_posicao_fetal">
+        <item> Desconhecida </item>
         <item> Cefálica </item>
         <item> Pélvica </item>
     </string-array>
 
-    <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->  <!-- VIAS DE PARTO -->
 
-    <string name="viasDePartoMaeBebe">
-        &#8226; Rápida recuperação, facilitando o cuidado com o bebê após o parto;\n\n
-        &#8226; Menos riscos de complicações, favorecendo o contato pele a pele imediato com o bebê e o aleitamento;\n\n
-        &#8226; Processo fisiológico, natural;\n\n
-        &#8226; Menor risco de complicações na próxima gravidez, tornando o próximo parto mais rápido e fácil.\n\n
-        &#8226; Contato direto para o colo da mãe.
+    <string-array name="spinner_resultado_ABORH">
+        <item> A+ </item>
+        <item> A- </item>
+        <item> B+ </item>
+        <item> B- </item>
+        <item> AB+ </item>
+        <item> AB- </item>
+        <item> O+ </item>
+        <item> O- </item>
+    </string-array>
+
+    <string-array name="spinner_resultado_reagente">
+        <item> Reagente </item>
+        <item> Não reagente </item>
+    </string-array>
+
+    <string-array name="spinner_resultado_positivo_negativo">
+        <item> Positivo </item>
+        <item> Negativo </item>
+    </string-array>
+
+
+    <!-- DÚVIDAS DO PRÉ-NATAL -->  <!-- DÚVIDAS DO PRÉ-NATAL -->  <!-- DÚVIDAS DO PRÉ-NATAL -->
+
+    <string name="suplementos">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> O uso do ácido fólico e sulfato ferroso são importantes ? </strong></font></h4>
+            <p> O ácido fólico é importante principalmente antes da gravidez e até o 3º mês de gravidez, pois irá ajudar na formação do tubo neural (estrutura que dá origem ao cérebro e a medula espinhal) da criança. </p>
+            <p> O Sulfato ferroso deve ser tomado durante toda a gestação e até 3 meses depois do parto, pois ajuda a prevenir anemias. </p>
+
+        ]]>
+
     </string>
 
-    <string name="viasDePartoBoasPraticas">
-        &#8226; Elaboração do plano de parto pelo enfermeiro no pré-natal (como deseja que aconteça no pré-parto, parto e pós-aparto;\n\n
-        &#8226; Respeito à escolha da mulher sobre seus acompanhantes durante o trabalho de parto e parto, é direito;\n\n
-        &#8226; Fornecimento às mulheres sobre todas as informações e explicações que desejarem;\n\n
-        &#8226; Oferta de líquidos por via oral durante o trabalho de parto e parto;\n\n
-        &#8226; Monitoramento fetal por meio de ausculta intermitente;\n\n
-        &#8226; Métodos não invasivos e não farmacológicos de alívio da dor, como massagem e técnicas de relaxamento, durante o trabalho de parto;\n\n
-        &#8226; Liberdade de posição e movimento durante o trabalho de parto;\n\n
-        &#8226; Estímulo a posições verticalizadas durante o trabalho de parto;\n\n
-        &#8226; Clampeamento do cordão umbilical tardiamente; Contato pele a pele do bebê e mãe logo após o nascimento;\n\n
-        &#8226; Caminhadas, uso de balanço pélvico e bola suíça;
-        &#8226; Aleitamento materno precoce.
+    <string name="vacinas">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Quais são as vacinas indicadas durante a gestação ? </strong></font></h4>
+            <p> <strong> • </strong> Hepatite B; </p>
+            <p> <strong> • </strong> Tétano: dT; </p>
+            <p> <strong> • </strong> dTpa; </p>
+            <p> <strong> • </strong> Influenza. </p>
+
+        ]]>
+
+    </string>
+
+    <string name="atividadeFisica">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Qual o tipo de atividade física posso fazer ? </strong></font></h4>
+            <p> Durante as consultas, o enfermeiro e médico irão orientar qual a melhor atividade para o período gestacional, mas geralmente a caminhada é livre para todas as gestantes que não apresente problemas de saúde. </p>
+            <p> Os exercícios físicos são benéficos à saúde porque melhoram a circulação e a digestão, o apetite, a função intestinal, além de proporcionar relaxamento e um sono repousante. </p>
+
+        ]]>
+
+    </string>
+
+    <string name="ganhoDePeso">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Quantos quilos posso aumentar durante a gestação ? </strong></font></h4>
+            <p> O enfermeiro fará um cálculo durante a consulta de pré-natal. Mas a regra é: </p>
+            <p> <strong> • </strong> Gestantes que têm o peso adequado podem aumentar entre 11 quilos e meio à 16 quilos; </p>
+            <p> <strong> • </strong> Gestante que são obesas deverão ganhar em torno de 5 à 9 quilos; </p>
+            <p> <strong> • </strong> As gestantes de baixo peso devem ganhar 12,5 à 18 quilos. </p>
+
+        ]]>
+
+    </string>
+
+
+    <!-- ORIENTAÇÕES SOBRE O PARTO -->  <!-- ORIENTAÇÕES SOBRE O PARTO -->  <!-- ORIENTAÇÕES SOBRE O PARTO -->
+
+    <string name="parto">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Quais os benefícios do parto normal humanizado para a mulher e o bebê ? </strong></font></h4>
+            <p> <strong> 1. </strong> Rápida recuperação da mulher facilitando o cuidado com o bebê após o parto; </p>
+            <p> <strong> 2. </strong> Menor risco de complicações, o que favorece o contato pele a pele imediato com o bebê e o aleitamento materno imediato; </p>
+            <p> <strong> 3. </strong> Menor risco de complicações na próxima gravidez. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Quail a melhor posição para parir ? </strong></font></h4>
+            <p> A melhor posição para parir é a vertical. Assim a mulher pode ficar em pé, de cócoras, de quatro. A mulher é a protagonista do parto, logo escolhe a posição que mais lhe traga conforto. </p>
+
+        ]]>
+
+    </string>
+
+    <string name="boasPraticasParto">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> O que são as boas práticas do parto e nascimento ? </strong></font></h4>
+            <p> <strong> 1. </strong> Elaboração do plano de parto pelo enfermeiro no pré-natal (como deseja que aconteça no pré-parto, parto e pós-parto); </p>
+            <p> <strong> 2. </strong> Respeito à escolha da mulher sobre seu acompanhante durante o trabalho de parto e parto; </p>
+            <p> <strong> 3. </strong> Retirar todas as dúvidas da mulher; </p>
+            <p> <strong> 4. </strong> Oferta de líquidos por via oral durante o trabalho de parto e parto; </p>
+            <p> <strong> 5. </strong> Monitoramento fetal por meio de ausculta intermitente; </p>
+            <p> <strong> 6. </strong> Métodos não invasivos e não farmacológicos de alívio da dor, como massagem e técnicas de relaxamento durante o trabalho de parto; </p>
+            <p> <strong> 7. </strong> Liberdade de posição e movimento durante o trabalho de parto; </p>
+            <p> <strong> 8. </strong> Estímulo a posições verticalizadas durante o trabalho de parto; </p>
+            <p> <strong> 9. </strong> Caminhadas, uso de balanço pélvico e da bola suíça; </p>
+            <p> <strong> 10. </strong> Clampeamento tardio do cordão umbilical; </p>
+            <p> <strong> 11. </strong> Contato pele a pele do bebê e mãe logo após o nascimento; </p>
+            <p> <strong> 12. </strong> Aleitamento materno precoce. </p>
+
+        ]]>
+
     </string>
 
 
     <!-- ALEITAMENTO MATERNO -->  <!-- ALEITAMENTO MATERNO -->  <!-- ALEITAMENTO MATERNO -->
 
-    <string name="aleitamentoMaternoMitosVerdades">
-        Leite fraco: não existe leite fraco, nos primeiros dias pós-parto o leite é pouco, mas irá aumentando com o passar dos dias. O leite humano contém todos os nutrientes de que a criança necessita até os seus seis meses de vida, é de fácil digestão, e seu aspecto aguado é uma característica normal, portanto o leite materno está sempre em boas condições para o consumo da criança.\n\n
-        Leite insuficiente: não existe pouco leite, todas as mães podem produzir leite em quantidade e de qualidade suficiente para o seu bebê, desde que elas queiram – sejam autoconfiantes em relação à sua capacidade de amamentar – e que posicionem a criança corretamente durante a lactação.\n\n
-        O bebê não quis pegar o peito: na maioria das vezes é a posição da mãe e do bebê que não está confortável, ou a criança está com a fralda molhada, a pega do mamilo não está correta. Logo, o Posicionamento da mãe e da criança no ato da amamentação, os cuidados com os mamilos são importantes, peça ajuda a um profissional de saúde.\n\n
-        O leite materno não mata a sede do bebê: isso não é verdade, o leite materno contém toda a água de que uma criança necessita, mesmo se ela residir em locais de clima quente.\n\n
-        Os seios caem com a lactação: não, o uso sutiãs adequados no período da amamentação e cuidado no momento da amamentação contribuem para não existir mudanças na anatomia da mama.\n\n
-        Aleitamento materno: expressão do amor da mãe para com seu filho: verdade.
+    <string name="beneficioAleitamentoMae">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Benéficio fisiológico: </strong></font></h4>
+            <p> A liberação hormonal de ocitocina no momento da amamentação  favorece a contração do útero e previne hemorragias. O útero volta ao seu tamanho normal mais rápido. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Benefícios psicológicos e emocionais: </strong></font></h4>
+            <p> A relação mãe e filho é uma vivência própria, única, do ser humano, originária da relação que o aleitamento proporciona. Os dois terão fator emocional mais equilibrado. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Benefício financeiro: </strong><font color="#8e376d"></h4>
+            <p> Por se tratar de um leite que traz consigo um valor próprio capaz de suprir todas as necessidades do bebê, torna desnecessária a compra de alimentos para ele, o que gera economia para a mãe, acrescida do fato de que o leite materno  preserva a saúde da criança. </p>
+
+        ]]>
+
     </string>
 
-    <string name="aleitamentoMaternoBeneficios">
-        Benéfico fisiológico, a liberação hormonal de ocitocina que favorece a contração uterina, a qual previne a diminuição de hemorragias e ainda contribui para que a involução uterina ocorra com mais rapidez;\n\n
-        Benefícios biológicos, o leite humano contém água em quantidade suficiente; proteína e gordura mais adequadas para a criança, além de vitaminas em quantidades suficientes, dispensando o uso de suplementos vitamínicos, assim protegendo contra alergias e infecções, especialmente as diarreias, favorecendo o crescimento e desenvolvimento da criança.\n\n
-        Benefícios psicológicos e emocionais que o vínculo nutriz-concepto promove na vida da mulher e da criança, que se constitui em valor imbricado no ato de amamentar. Infere-se que essa valoração corresponde à experiência fundante de um ser vivente, pois o homem é um ser valorativo engajado no seu existir. E como o amamentar perpassa por este vínculo, deduz-se que tal afetividade está diretamente ligada ao valor afetivo, pois a relação mãe-nutriz e filho é uma vivência própria, única, do ser humano, originária da relação que o aleitamento proporciona.\n\n
-        Benefício financeiro, por se tratar de um leite que traz consigo um valor próprio capaz de suprir todas as necessidades do Bebê, torna desnecessária a aquisição de alimentos para ele, o que gera economia para a mãe, acrescida do fato de que ao amamentar, estará preservando a saúde da criança, o que equivale a outro importante benefício.
+    <string name="beneficioAleitamentoBebe">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Benefícios biológicos: </strong></font></h4>
+            <p> <strong> 1. </strong> O leite humano contém água em quantidade suficiente; proteína e gordura mais adequadas para a criança; </p>
+            <p> <strong> 2. </strong> O leite materno contém as vitaminas em quantidades suficientes, dispensando o uso de suplementos vitamínicos; </p>
+            <p> <strong> 3. </strong> O leite materno  protege a criança contra alergias e infecções, especialmente as diarréias; </p>
+            <p> <strong> 4. </strong> O leite materno favorece o crescimento e desenvolvimento da criança. </p>
+
+        ]]>
+
     </string>
+
+    <string name="duvidasAleitamento">
+
+        <![CDATA[
+
+            <h4><font color="#8e376d"><strong> Existe Leite fraco ? </strong></font></h4>
+            <p> Não existe leite fraco, nos primeiros dias pós-parto o leite é pouco, mas irá aumentando com o passar dos dias. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> O leite do peite sustenta a criança ? </strong></font></h4>
+            <p> O leite humano contém todos os nutrientes de que a criança necessita até os seus seis meses de vida. É de fácil digestão, e seu aspecto aguado é uma característica normal, portanto o leite materno está sempre em boas condições para o consumo da criança. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Dizer que o leite do peito é pouco é verdade ? </strong><font color="#8e376d"></h4>
+            <p> Não existe pouco leite, todas as mães podem produzir leite em quantidade e de qualidade suficiente para o seu bebê, desde que elas queiram – sejam autoconfiantes em relação à sua capacidade de amamentar – e que posicionem a criança corretamente durante a amamentação. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> O que acontece quando o bebê não quer pegar o peito ? </strong><font color="#8e376d"></h4>
+            <p> Na maioria das vezes é a posição da mãe e do bebê que não está confortável, ou a criança está com a fralda molhada, a pega do mamilo não está correta. Logo, o posicionamento da mãe e da criança no ato da amamentação, os cuidados com os mamilos são importantes, caso não esteja conseguindo amamentar peça ajuda a um profissional de saúde. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> O leite materno  mata a sede do bebê ? </strong><font color="#8e376d"></h4>
+            <p> Sim, o leite materno contém  toda a água de que uma criança necessita, mesmo se ela morar em locais de clima quente. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Meus seios vão cair com a amamentação ? </strong><font color="#8e376d"></h4>
+            <p> Não. Orienta-se usar sutiãs adequados no período da amamentação e cuidado no momento da amamentação contribuem para não existir mudanças na anatomia da mama. </p>
+
+            <br/>
+
+            <h4><font color="#8e376d"><strong> Aleitamento materno: expressão do amor da mãe para com seu filho ? </strong><font color="#8e376d"></h4>
+            <p> Verdade ! </p>
+
+        ]]>
+
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

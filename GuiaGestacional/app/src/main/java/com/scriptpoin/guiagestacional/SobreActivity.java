@@ -17,6 +17,8 @@ public class SobreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SobreActivity.this.deleteDatabase("cadernetaDB");
+                SobreActivity.this.deleteDatabase("consultasDB");
+                SobreActivity.this.deleteDatabase("duvidasDB");
             }
         });
     }

@@ -22,8 +22,64 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="Ultrassonografia"
-            android:textColor="@android:color/black"
+            android:textColor="#b7448b"
             android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="Consulta da solicitação: "
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/uEtConsultaSolicitacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/uCbSolicitacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:paddingLeft="12sp"
+                android:text="Solicitação"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/uCbResultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:paddingLeft="12sp"
+                android:text="Resultado"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -33,6 +89,37 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uEtTvConsultaResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="Consulta dos resultados: "
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/uEtConsultaResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/uTvTvDpData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -59,6 +146,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uTvTvDpIgDum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -85,6 +173,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uTvTvDpIgUsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -110,6 +199,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uEdTvPesoFetal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -140,6 +230,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uSpTvPlacenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -164,6 +255,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/uEdTvLiquidoAmniotico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -193,8 +285,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
             android:text="salvar"
-            android:textColor="#4F4F4F" />
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

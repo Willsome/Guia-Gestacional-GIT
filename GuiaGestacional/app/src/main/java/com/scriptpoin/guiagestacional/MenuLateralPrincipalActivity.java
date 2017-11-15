@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -47,6 +48,12 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Fragment frag = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
+//                .addToBackStack(null)
+                .replace(R.id.mainLayout, frag)
+                .commit();
     }
 
     @Override
@@ -74,7 +81,8 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.logout) {
+            Toast.makeText(this, "Em produção...", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -85,31 +93,55 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         int id = item.getItemId();
 
-        if (id == R.id.menuDuvidas) {
+        if (id == R.id.menuDuvidasDoPreNatal) {
 
-            DuvidasFragment duvidasFragment = new DuvidasFragment();
+            DuvidasDoPreNatalFragment duvidasDoPreNatalFragment = new DuvidasDoPreNatalFragment();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, duvidasFragment).commit();
+            manager.beginTransaction()
+                    .add(new HomeFragment(), "HomeFragment")
+                    .addToBackStack("HomeFragment")
+                    .replace(R.id.mainLayout, duvidasDoPreNatalFragment).commit();
 
-        } else if (id == R.id.menuViasDeParto) {
+        } else if (id == R.id.menuOrientacoesSobreOParto) {
 
-            ViasDePartoFragment viasDePartoFragment = new ViasDePartoFragment();
+            OrientacoesSobreOPartoFragment orientacoesSobreOPartoFragment = new OrientacoesSobreOPartoFragment();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, viasDePartoFragment).commit();
+            manager.beginTransaction()
+                    .add(new HomeFragment(), "HomeFragment")
+                    .addToBackStack("HomeFragment")
+                    .replace(R.id.mainLayout, orientacoesSobreOPartoFragment).commit();
 
         } else if (id == R.id.menuAleitamento) {
 
             AleitamentoMaternoFragment aleitamentoMaternoFragment = new AleitamentoMaternoFragment();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, aleitamentoMaternoFragment).commit();
+            manager.beginTransaction()
+                    .add(new HomeFragment(), "HomeFragment")
+                    .addToBackStack("HomeFragment")
+                    .replace(R.id.mainLayout, aleitamentoMaternoFragment).commit();
+
+        } else if (id == R.id.menuDataConsultas) {
+
+            DataDasConsultasFragment dataDasConsultasFragment = new DataDasConsultasFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .add(new HomeFragment(), "HomeFragment")
+                    .addToBackStack("HomeFragment")
+                    .replace(R.id.mainLayout, dataDasConsultasFragment).commit();
 
         } else if (id == R.id.menuCaderneta) {
 
             CadernetaFragment cadernetaFragment = new CadernetaFragment();
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, cadernetaFragment).commit();
+            manager.beginTransaction()
+                    .add(new HomeFragment(), "HomeFragment")
+                    .addToBackStack("HomeFragment")
+                    .replace(R.id.mainLayout, cadernetaFragment).commit();
 
         } else if (id == R.id.menuSobre) {
 
@@ -119,7 +151,7 @@ public class MenuLateralPrincipalActivity extends AppCompatActivity
         } else if (id == R.id.menuFeedback) {
 
             Intent emailIntent = new Intent(Intent.ACTION_VIEW);
-            Uri data = Uri.parse("mailto:?subject=" + "Feedback Guia Gestacional" + "&to=" + "williamucep@hotmail.com");
+            Uri data = Uri.parse("mailto:?subject=" + "Feedback Gestação Saudável" + "&to=" + "williamucep@hotmail.com");
             emailIntent.setData(data);
 
             try {

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
@@ -29,35 +30,42 @@ public class ListaConsultasMensaisActivity extends AppCompatActivity {
 
         dao.close();
 
-        ListView lvConsultasMensais = (ListView) findViewById(R.id.lvConsultasMensais);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                consultas
-        );
-        lvConsultasMensais.setAdapter(adapter);
+        if (consultas.size() > 1) {
 
-        lvConsultasMensais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> lista, View item, int posicao, long id) {
+            ListView lvConsultasMensais = (ListView) findViewById(R.id.lvConsultasMensais);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    consultas
+            );
+            lvConsultasMensais.setAdapter(adapter);
 
-                String consulta = (String) lista.getItemAtPosition(posicao);
+            lvConsultasMensais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> lista, View item, int posicao, long id) {
 
-                Intent intent = new Intent();
-                intent.putExtra("numeroConsulta", Integer.parseInt(consulta.substring(0, consulta.indexOf("ª"))));
-                setResult(RESULT_OK, intent);
+                    String consulta = (String) lista.getItemAtPosition(posicao);
 
-                finish();
-            }
-        });
+                    Intent intent = new Intent();
+                    intent.putExtra("numeroConsulta", Integer.parseInt(consulta.substring(0, consulta.indexOf("ª"))));
+                    setResult(RESULT_OK, intent);
 
-        Button btVoltarListaConsultasMensais = (Button) findViewById(R.id.btVoltarListaConsultasMensais);
-        btVoltarListaConsultasMensais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+                    finish();
+                }
+            });
+
+            Button btVoltarListaConsultasMensais = (Button) findViewById(R.id.btVoltarListaConsultasMensais);
+            btVoltarListaConsultasMensais.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+
+        } else {
+            finish();
+            Toast.makeText(this, "Só existe a consulta atual...", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

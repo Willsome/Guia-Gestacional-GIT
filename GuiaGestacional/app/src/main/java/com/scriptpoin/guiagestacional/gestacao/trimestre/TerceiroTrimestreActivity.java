@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.dao.DaoDuvidas;
+import com.scriptpoin.guiagestacional.gestacao.modelo_duvida_resposta.DuvidasTrimestre;
+import com.scriptpoin.guiagestacional.gestacao.modelo_duvida_resposta.RespostasActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class TerceiroTrimestreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terceiro_trimestre);
 
-        setTitle("Segundo Trimestre");
+        setTitle("Terceiro Trimestre");
 
         llPerguntasTrimestre1 = (LinearLayout) findViewById(R.id.llPerguntasTrimestre1);
 

@@ -24,7 +24,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Dados Pessoais"
-                android:textColor="@android:color/black"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
 
@@ -103,13 +103,17 @@
 
             <Button
                 android:id="@+id/dpBtAlterar"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/bt_consulta"
+                android:elevation="6dp"
+                android:stateListAnimator="@null"
                 android:text="adicionar / alterar"
-                android:textColor="#4F4F4F" />
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -119,7 +123,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Dados Obstétricos"
-                android:textColor="@android:color/black"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -161,13 +165,17 @@
 
             <Button
                 android:id="@+id/doBtAlterar"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/bt_consulta"
+                android:elevation="6dp"
+                android:stateListAnimator="@null"
                 android:text="adicionar / alterar"
-                android:textColor="#4F4F4F" />
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -177,290 +185,36 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Exames Solicitados/Resultados"
-                android:textColor="@android:color/black"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/esLlExamesSolicitadosResultados"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ABO-RH:" />
+                    android:orientation="vertical" />
 
-                <CheckBox
-                    android:id="@+id/esCbAbo"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/esBtAdicionar"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:enabled="false" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bt_consulta"
+                    android:elevation="6dp"
+                    android:stateListAnimator="@null"
+                    android:text="adicionar exames solicitados"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Glicemia de Jejum:" />
-
-                <CheckBox
-                    android:id="@+id/esCbGlicemiaJejum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Tolerancia à Glicose (teste oral):" />
-
-                <CheckBox
-                    android:id="@+id/esCbToleranciaGlicose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Sífilis (teste rápido):" />
-
-                <CheckBox
-                    android:id="@+id/esCbSifilis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="VDRL:" />
-
-                <CheckBox
-                    android:id="@+id/esCbVdrl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="HIV/Anti-HIV (teste rápido):" />
-
-                <CheckBox
-                    android:id="@+id/esCbHiv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Hepatite B e C (teste rápido):" />
-
-                <CheckBox
-                    android:id="@+id/esCbHepatiteBC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="HBsAg (1º e 3º trimestre): " />
-
-                <CheckBox
-                    android:id="@+id/esCbHbsag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Toxoplasmose:" />
-
-                <CheckBox
-                    android:id="@+id/esCbToxoplasmose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Hemoglobina Hematócrito: " />
-
-                <CheckBox
-                    android:id="@+id/esCbHemoglobina"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Urina-EAS: " />
-
-                <CheckBox
-                    android:id="@+id/esCbUrinaEas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Urina-cultura:" />
-
-                <CheckBox
-                    android:id="@+id/esCbUrinaCultura"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="Coombs indireto:" />
-
-                <CheckBox
-                    android:id="@+id/esCbCoombs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:enabled="false" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/esBtAlterar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:text="adicionar / alterar"
-                android:textColor="#4F4F4F" />
 
 
             <TextView
@@ -469,139 +223,37 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="25dp"
                 android:gravity="center"
-                android:text="Ultrasonografia"
-                android:textColor="@android:color/black"
+                android:text="Ultrassonografia"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/uLlUltrassonografia"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Data:  " />
+                    android:orientation="vertical" />
 
-                <TextView
-                    android:id="@+id/uTvData"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/uBtAdicionar"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bt_consulta"
+                    android:elevation="6dp"
+                    android:stateListAnimator="@null"
+                    android:text="adicionar ultra"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="IG DUM:  " />
-
-                <TextView
-                    android:id="@+id/uTvIgDum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="IG USG:  " />
-
-                <TextView
-                    android:id="@+id/uTvIgUsg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Peso Fetal:  " />
-
-                <TextView
-                    android:id="@+id/uTvPesoFetal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Placenta:  " />
-
-                <TextView
-                    android:id="@+id/uTvPlacenta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Líquido Amniótico:  " />
-
-                <TextView
-                    android:id="@+id/uTvLiquidoAmniotico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/uBtAlterar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:text="adicionar / alterar"
-                android:textColor="#4F4F4F" />
 
 
             <TextView
@@ -611,7 +263,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Uso de Medicamento"
-                android:textColor="@android:color/black"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -650,13 +302,17 @@
 
             <Button
                 android:id="@+id/umBtAlterar"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/bt_consulta"
+                android:elevation="6dp"
+                android:stateListAnimator="@null"
                 android:text="adicionar / alterar"
-                android:textColor="#4F4F4F" />
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -666,7 +322,7 @@
                 android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="Consultas Mensais"
-                android:textColor="@android:color/black"
+                android:textColor="#b7448b"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -683,13 +339,17 @@
 
                 <Button
                     android:id="@+id/cmBtAdicionar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/bt_consulta"
+                    android:elevation="6dp"
+                    android:stateListAnimator="@null"
                     android:text="adicionar consulta"
-                    android:textColor="#4F4F4F" />
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

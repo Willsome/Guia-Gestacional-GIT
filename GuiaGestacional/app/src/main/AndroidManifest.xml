@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.scriptpoin.guiagestacional">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,32 +21,94 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".gestacao.trimestre.PrimeiroTrimestreActivity" />
 
-        <activity
-            android:name=".gestacao.trimestre.RespostasActivity"
-            android:theme="@style/AppTheme.NoTitleDialog" />
+        <!-- ALEITAMENTO -->
+        <activity android:name=".aleitamento.BeneficiosAleitamentoBebeActivity" />
+        <activity android:name=".aleitamento.BeneficiosAleitamentoMaeActivity" />
+        <activity android:name=".aleitamento.DuvidasSobreAleitamentoActivity" />
 
-        <activity android:name=".gestacao.trimestre.SegundoTrimestreActivity" />
-        <activity android:name=".gestacao.trimestre.TerceiroTrimestreActivity" />
-        <activity android:name=".caderneta.dados_pessoais.DadosPessoaisActivity" />
-        <activity android:name=".caderneta.dados_obstetricos.DadosObstetricosActivity" />
-        <activity android:name=".caderneta.exames_solicitados_resultados.ExamesSolicitadosResultadosActivity" />
+        <!-- CADERNETA -->
+        <!-- CADERNETA -->
+        <!-- CADERNETA -->
 
-        <activity
-            android:name=".SobreActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".aleitamento.BeneficiosAleitamentoActivity" />
-        <activity android:name=".aleitamento.MitosVerdadesAleitamentoActivity" />
-        <activity android:name=".caderneta.ultrassonografia.UltrassonografiaActivity" />
-        <activity android:name=".caderneta.uso_de_medicamento.UsoDeMedicamentoActivity" />
-        <activity android:name=".gestacao.trimestre.DuvidasGestacaoActivity" />
+        <!-- CONSULTAS MENSAIS -->
         <activity android:name=".caderneta.consultas_mensais.ConsultasMensaisActivity" />
-
         <activity
             android:name=".caderneta.consultas_mensais.ListaConsultasMensaisActivity"
             android:theme="@style/AppTheme.NoTitleDialog" />
+
+        <!-- DADOS OBSTÉTRICOS -->
+        <activity android:name=".caderneta.dados_obstetricos.DadosObstetricosActivity" />
+
+        <!-- DADOS PESSOAIS -->
+        <activity android:name=".caderneta.dados_pessoais.DadosPessoaisActivity" />
+
+        <!-- EXAMES SOLICITADOS/RESULTADOS -->
+        <activity android:name=".caderneta.exames_solicitados_resultados.ExamesSolicitadosResultadosActivity" />
+        <activity
+            android:name=".caderneta.exames_solicitados_resultados.ListaExamesSolicitadosResultadosActivity"
+            android:theme="@style/AppTheme.NoTitleDialog" />
+
+        <!-- ULTRASSONOGRAFIA -->
+        <activity android:name=".caderneta.ultrassonografia.UltrassonografiaActivity" />
+        <activity
+            android:name=".caderneta.ultrassonografia.ListaUltrassonografiasActivity"
+            android:theme="@style/AppTheme.NoTitleDialog" />
+
+        <!-- USO DE MEDICAMENTO -->
+        <activity android:name=".caderneta.uso_de_medicamento.UsoDeMedicamentoActivity" />
+
+        <!-- DATA DAS CONSULTAS -->
+        <!-- DATA DAS CONSULTAS -->
+        <!-- DATA DAS CONSULTAS -->
+        <activity android:name=".data_das_consultas.CadastroDeConsultasActivity" />
+
+        <!-- BROADCAST RECEIVERS -->
+        <receiver android:name=".data_das_consultas.BootCompletedConsultaBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".data_das_consultas.ConsultaBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="DISPARAR_ALARME" />
+                <action android:name="ALARME_CONSULTA" />
+                <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- GESTAÇÃO -->
+        <!-- GESTAÇÃO -->
+        <!-- GESTAÇÃO -->
+
+
+        <!-- MODELO DÚVIDA/RESPOSTA -->
+        <activity
+            android:name=".gestacao.modelo_duvida_resposta.RespostasActivity"
+            android:theme="@style/AppTheme.NoTitleDialog" />
+
+        <!-- OUTRAS DÚVIDAS -->
+        <activity android:name=".gestacao.outras_duvidas.AtividadeFisicaActivity" />
+        <activity android:name=".gestacao.outras_duvidas.DireitosDaMulherActivity" />
+        <activity android:name=".gestacao.outras_duvidas.GanhoDePesoActivity" />
+        <activity android:name=".gestacao.outras_duvidas.PrincipaisQueixasNaGestacaoActivity" />
+        <activity android:name=".gestacao.outras_duvidas.UsoDeSuplementosActivity" />
+        <activity android:name=".gestacao.outras_duvidas.VacinasActivity" />
+
+        <!-- TRIMESTRE -->
+        <activity android:name=".gestacao.trimestre.PrimeiroTrimestreActivity" />
+        <activity android:name=".gestacao.trimestre.SegundoTrimestreActivity" />
+        <activity android:name=".gestacao.trimestre.TerceiroTrimestreActivity" />
+
+        <!-- SOBRE -->
+        <activity
+            android:name=".SobreActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

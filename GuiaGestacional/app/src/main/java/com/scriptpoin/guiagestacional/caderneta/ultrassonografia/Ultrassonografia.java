@@ -1,6 +1,7 @@
 package com.scriptpoin.guiagestacional.caderneta.ultrassonografia;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by Willi on 05-Sep-17.
@@ -10,9 +11,14 @@ public class Ultrassonografia implements Serializable {
 
     private Long id;
 
-    private String data;
-    private String igDum;
-    private String igUsg;
+    private Long solicitacao;
+
+    private Long numeroConsultaSolicitacao;
+    private Long numeroConsultaResultado;
+
+    private Calendar data;
+    private Calendar igDum;
+    private Calendar igUsg;
     private int pesoFetal;
     private String placenta;
     private Double liquidoAmniotico;
@@ -26,27 +32,51 @@ public class Ultrassonografia implements Serializable {
         this.id = id;
     }
 
-    public String getData() {
+    public Long getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(Long solicitacao) {
+        this.solicitacao = solicitacao;
+    }
+
+    public Long getNumeroConsultaSolicitacao() {
+        return numeroConsultaSolicitacao;
+    }
+
+    public void setNumeroConsultaSolicitacao(Long numeroConsultaSolicitacao) {
+        this.numeroConsultaSolicitacao = numeroConsultaSolicitacao;
+    }
+
+    public Long getNumeroConsultaResultado() {
+        return numeroConsultaResultado;
+    }
+
+    public void setNumeroConsultaResultado(Long numeroConsultaResultado) {
+        this.numeroConsultaResultado = numeroConsultaResultado;
+    }
+
+    public Calendar getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Calendar data) {
         this.data = data;
     }
 
-    public String getIgDum() {
+    public Calendar getIgDum() {
         return igDum;
     }
 
-    public void setIgDum(String igDum) {
+    public void setIgDum(Calendar igDum) {
         this.igDum = igDum;
     }
 
-    public String getIgUsg() {
+    public Calendar getIgUsg() {
         return igUsg;
     }
 
-    public void setIgUsg(String igUsg) {
+    public void setIgUsg(Calendar igUsg) {
         this.igUsg = igUsg;
     }
 

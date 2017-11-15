@@ -3,8 +3,16 @@ package com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados;
 import android.app.Activity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.scriptpoin.guiagestacional.R;
+import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.Ultrassonografia;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by Willi on 02-Sep-17.
@@ -12,226 +20,172 @@ import com.scriptpoin.guiagestacional.R;
 
 public class ExamesSolicitadosResultadosHelper {
 
-    private CheckBox esCbAbo;
-    private CheckBox esCbGlicemiaJejum;
-    private CheckBox esCbToleranciaGlicose;
-    private CheckBox esCbSifilis;
-    private CheckBox esCbVdrl;
-    private CheckBox esCbHiv;
-    private CheckBox esCbHepatiteBC;
-    private CheckBox esCbHbsag;
-    private CheckBox esCbToxoplasmose;
-    private CheckBox esCbHemoglobina;
-    private CheckBox esCbUrinaEas;
-    private CheckBox esCbUrinaCultura;
-    private CheckBox esCbCoombs;
+    // FORMULÁRIO
+    private CheckBox esCbSolicitacao;
+    private CheckBox esCbResultado;
+    private EditText esEtConsultaSolicitacao;
+    private EditText esEtConsultaResultado;
+    private Spinner esSpAboRh;
+    private EditText esEtGlicemiaJejum;
+    private EditText esEthematocrito;
+    private EditText esEthemoglobina;
+    private Spinner esSpHepatiteB;
+    private Spinner esSpHiv;
+    private EditText esEtToleranciaGlicose;
+    private Spinner esSpToxoplasmoseIgg;
+    private Spinner esSpToxoplasmoseIgm;
+    private EditText esEtUrinaTipo1;
+    private Spinner esSpUrocultura;
+    private Spinner esSpVdrl;
 
-    private ExamesSolicitadosResultados examesSolicitadosResultados;
+    // CADERNETA
 
-    public ExamesSolicitadosResultadosHelper(Activity activity, int i, View view) {
+//    private ExamesSolicitadosResultados examesSolicitadosResultados;
+
+    private ArrayList<View> camposComOResultado = new ArrayList<>();
+
+
+    public ExamesSolicitadosResultadosHelper(Activity activity, int i, ArrayList<Exame> examesSolicitados, ArrayList<View> viewsDosExames) {
 
         if (i == 1) {
-            esCbAbo = (CheckBox) activity.findViewById(R.id.esCbAboF);
-            esCbGlicemiaJejum = (CheckBox) activity.findViewById(R.id.esCbGlicemiaJejumF);
-            esCbToleranciaGlicose = (CheckBox) activity.findViewById(R.id.esCbToleranciaGlicoseF);
-            esCbSifilis = (CheckBox) activity.findViewById(R.id.esCbSifilisF);
-            esCbVdrl = (CheckBox) activity.findViewById(R.id.esCbVdrlF);
-            esCbHiv = (CheckBox) activity.findViewById(R.id.esCbHivF);
-            esCbHepatiteBC = (CheckBox) activity.findViewById(R.id.esCbHepatiteBCF);
-            esCbHbsag = (CheckBox) activity.findViewById(R.id.esCbHbsagF);
-            esCbToxoplasmose = (CheckBox) activity.findViewById(R.id.esCbToxoplasmoseF);
-            esCbHemoglobina = (CheckBox) activity.findViewById(R.id.esCbHemoglobinaF);
-            esCbUrinaEas = (CheckBox) activity.findViewById(R.id.esCbUrinaEasF);
-            esCbUrinaCultura = (CheckBox) activity.findViewById(R.id.esCbUrinaCulturaF);
-            esCbCoombs = (CheckBox) activity.findViewById(R.id.esCbCoombsF);
-        } else if (i == 2) {
-            esCbAbo = (CheckBox) view.findViewById(R.id.esCbAbo);
-            esCbGlicemiaJejum = (CheckBox) view.findViewById(R.id.esCbGlicemiaJejum);
-            esCbToleranciaGlicose = (CheckBox) view.findViewById(R.id.esCbToleranciaGlicose);
-            esCbSifilis = (CheckBox) view.findViewById(R.id.esCbSifilis);
-            esCbVdrl = (CheckBox) view.findViewById(R.id.esCbVdrl);
-            esCbHiv = (CheckBox) view.findViewById(R.id.esCbHiv);
-            esCbHepatiteBC = (CheckBox) view.findViewById(R.id.esCbHepatiteBC);
-            esCbHbsag = (CheckBox) view.findViewById(R.id.esCbHbsag);
-            esCbToxoplasmose = (CheckBox) view.findViewById(R.id.esCbToxoplasmose);
-            esCbHemoglobina = (CheckBox) view.findViewById(R.id.esCbHemoglobina);
-            esCbUrinaEas = (CheckBox) view.findViewById(R.id.esCbUrinaEas);
-            esCbUrinaCultura = (CheckBox) view.findViewById(R.id.esCbUrinaCultura);
-            esCbCoombs = (CheckBox) view.findViewById(R.id.esCbCoombs);
+            esCbSolicitacao = activity.findViewById(R.id.esCbSolicitacao);
+            esCbResultado = activity.findViewById(R.id.esCbResultado);
+            esEtConsultaSolicitacao = activity.findViewById(R.id.esEtConsultaSolicitacao);
+            esEtConsultaResultado = activity.findViewById(R.id.esEtConsultaResultado);
+
+            for (int j = 0; j < viewsDosExames.size(); j++) {
+                if (examesSolicitados.get(j).getId() == 1) {
+                    esSpAboRh = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 1);
+                    camposComOResultado.add(esSpAboRh);
+                } else if (examesSolicitados.get(j).getId() == 2) {
+                    esEtGlicemiaJejum = (EditText) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 2);
+                    camposComOResultado.add(esEtGlicemiaJejum);
+                } else if (examesSolicitados.get(j).getId() == 3) {
+                    esEthematocrito = (EditText) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 3);
+                    camposComOResultado.add(esEthematocrito);
+                } else if (examesSolicitados.get(j).getId() == 4) {
+                    esEthemoglobina = (EditText) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 4);
+                    camposComOResultado.add(esEthemoglobina);
+                } else if (examesSolicitados.get(j).getId() == 5) {
+                    esSpHepatiteB = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 5);
+                    camposComOResultado.add(esSpHepatiteB);
+                } else if (examesSolicitados.get(j).getId() == 6) {
+                    esSpHiv = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 6);
+                    camposComOResultado.add(esSpHiv);
+                } else if (examesSolicitados.get(j).getId() == 7) {
+                    esEtToleranciaGlicose = (EditText) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 7);
+                    camposComOResultado.add(esEtToleranciaGlicose);
+                } else if (examesSolicitados.get(j).getId() == 8) {
+                    esSpToxoplasmoseIgg = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 8);
+                    camposComOResultado.add(esSpToxoplasmoseIgg);
+                } else if (examesSolicitados.get(j).getId() == 9) {
+                    esSpToxoplasmoseIgm = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 9);
+                    camposComOResultado.add(esSpToxoplasmoseIgm);
+                } else if (examesSolicitados.get(j).getId() == 10) {
+                    esEtUrinaTipo1 = (EditText) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 10);
+                    camposComOResultado.add(esEtUrinaTipo1);
+                } else if (examesSolicitados.get(j).getId() == 11) {
+                    esSpUrocultura = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 11);
+                    camposComOResultado.add(esSpUrocultura);
+                } else if (examesSolicitados.get(j).getId() == 12) {
+                    esSpVdrl = (Spinner) ((activity.findViewById((int) viewsDosExames.get(j).getId())).findViewById(R.id.esLlResultado)).findViewById((int) 12);
+                    camposComOResultado.add(esSpVdrl);
+                }
+            }
+
         }
 
-        this.examesSolicitadosResultados = new ExamesSolicitadosResultados();
+//        this.examesSolicitadosResultados = new ExamesSolicitadosResultados();
     }
 
-    public void preencheExamesSolicitadosResultados(ExamesSolicitadosResultados examesSolicitadosResultados) {
 
-        if (examesSolicitadosResultados.getAboRh() == 1) {
-            esCbAbo.setChecked(true);
+    public ArrayList<ExamesSolicitadosResultados> pegaExamesSolicitadosResultados(ArrayList<Exame> examesSolicitados) throws Exception {
+
+        ArrayList<ExamesSolicitadosResultados> ListaDeExamesSolicitadosResultados =
+                new ArrayList<>();
+
+        if (esCbSolicitacao.isChecked() && !esEtConsultaSolicitacao.getText().toString().equals("")) {
+            if (examesSolicitados.size() == 0) {
+                throw new Exception("Escolha ao menos um exame solicitado...");
+
+            } else {
+                Collections.sort(examesSolicitados);
+                for (int i = 0; i < examesSolicitados.size(); i++) {
+                    ExamesSolicitadosResultados es = new ExamesSolicitadosResultados();
+                    es.setSolicitacao(1L);
+                    es.setNumeroConsultaSolicitacao(Long.parseLong(esEtConsultaSolicitacao.getText().toString()));
+                    es.setExame(examesSolicitados.get(i));
+
+//            es.setId(this.examesSolicitadosResultados.getId());
+
+                    ListaDeExamesSolicitadosResultados.add(es);
+                }
+            }
+
+        } else if (!esCbSolicitacao.isChecked() && !esCbResultado.isChecked()) {
+            throw new Exception("Escolha uma das opções acima...");
+
+        } else if (esCbSolicitacao.isChecked() && esEtConsultaSolicitacao.getText().toString().equals("")
+                || esCbResultado.isChecked() && esEtConsultaSolicitacao.getText().toString().equals("") || esEtConsultaResultado.getText().toString().equals("")) {
+            throw new Exception("Existem campos não preenchidos...");
+
         } else {
-            esCbAbo.setChecked(false);
+
+            if (examesSolicitados.size() == 0) {
+                throw new Exception("Escolha ao menos um exame solicitado...");
+
+            } else {
+
+                for (int i = 0; i < examesSolicitados.size(); i++) {
+
+                    if (examesSolicitados.get(i).getId() == 2
+                            || examesSolicitados.get(i).getId() == 3
+                            || examesSolicitados.get(i).getId() == 4
+                            || examesSolicitados.get(i).getId() == 7
+                            || examesSolicitados.get(i).getId() == 10) {
+                        if (esCbResultado.isChecked() && esEtConsultaSolicitacao.getText().toString().equals("")
+                                || esEtConsultaResultado.getText().toString().equals("")
+                                || ((EditText) camposComOResultado.get(i)).getText().toString().equals("")) {
+                            throw new Exception("Existem campos não preenchidos...");
+
+                        } else {
+                            adicionaParaListaDeExamesSolicitados(examesSolicitados, ListaDeExamesSolicitadosResultados, i);
+                        }
+
+                    } else if (esCbResultado.isChecked() && esEtConsultaSolicitacao.getText().toString().equals("")
+                            || esEtConsultaResultado.getText().toString().equals("")
+                            || ((Spinner) camposComOResultado.get(i)).getSelectedItem().toString().equals("")) {
+                        throw new Exception("Existem campos não preenchidos...");
+
+                    } else {
+                        adicionaParaListaDeExamesSolicitados(examesSolicitados, ListaDeExamesSolicitadosResultados, i);
+                    }
+                }
+            }
         }
 
-        if (examesSolicitadosResultados.getGlicemiaJejum() == 1) {
-            esCbGlicemiaJejum.setChecked(true);
-        } else {
-            esCbGlicemiaJejum.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getToleranciaGlicose() == 1) {
-            esCbToleranciaGlicose.setChecked(true);
-        } else {
-            esCbToleranciaGlicose.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getSifilis() == 1) {
-            esCbSifilis.setChecked(true);
-        } else {
-            esCbSifilis.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getVdrl() == 1) {
-            esCbVdrl.setChecked(true);
-        } else {
-            esCbVdrl.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getHiv() == 1) {
-            esCbHiv.setChecked(true);
-        } else {
-            esCbHiv.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getHepatiteBC() == 1) {
-            esCbHepatiteBC.setChecked(true);
-        } else {
-            esCbHepatiteBC.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getHbsag() == 1) {
-            esCbHbsag.setChecked(true);
-        } else {
-            esCbHbsag.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getToxoplasmose() == 1) {
-            esCbToxoplasmose.setChecked(true);
-        } else {
-            esCbToxoplasmose.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getHemoglobina() == 1) {
-            esCbHemoglobina.setChecked(true);
-        } else {
-            esCbHemoglobina.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getUrinaEas() == 1) {
-            esCbUrinaEas.setChecked(true);
-        } else {
-            esCbUrinaEas.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getUrinaCultura() == 1) {
-            esCbUrinaCultura.setChecked(true);
-        } else {
-            esCbUrinaCultura.setChecked(false);
-        }
-
-        if (examesSolicitadosResultados.getCoombs() == 1) {
-            esCbCoombs.setChecked(true);
-        } else {
-            esCbCoombs.setChecked(false);
-        }
-
-        this.examesSolicitadosResultados = examesSolicitadosResultados;
+        return ListaDeExamesSolicitadosResultados;
     }
 
-    public ExamesSolicitadosResultados pegaExamesSolicitadosResultados() {
+    public void adicionaParaListaDeExamesSolicitados(ArrayList<Exame> examesSolicitados, ArrayList<ExamesSolicitadosResultados> listaDeExamesSolicitadosResultados, int i) {
+        ExamesSolicitadosResultados es = new ExamesSolicitadosResultados();
+//            es.setId(this.examesSolicitadosResultados.getId());
+        es.setNumeroConsultaSolicitacao(Long.parseLong(esEtConsultaSolicitacao.getText().toString()));
+        es.setSolicitacao(0L);
+        es.setNumeroConsultaResultado(Long.parseLong(esEtConsultaResultado.getText().toString()));
+        es.setExame(examesSolicitados.get(i));
 
-        ExamesSolicitadosResultados examesSolicitadosResultados = new ExamesSolicitadosResultados();
-
-        if (esCbAbo.isChecked()) {
-            examesSolicitadosResultados.setAboRh(1);
+        if (examesSolicitados.get(i).getId() == 2
+                || examesSolicitados.get(i).getId() == 3
+                || examesSolicitados.get(i).getId() == 4
+                || examesSolicitados.get(i).getId() == 7
+                || examesSolicitados.get(i).getId() == 10) {
+            es.setResultado(((EditText) camposComOResultado.get(i)).getText().toString());
         } else {
-            examesSolicitadosResultados.setAboRh(0);
+            es.setResultado(((Spinner) camposComOResultado.get(i)).getSelectedItem().toString());
         }
 
-        if (esCbGlicemiaJejum.isChecked()) {
-            examesSolicitadosResultados.setGlicemiaJejum(1);
-        } else {
-            examesSolicitadosResultados.setGlicemiaJejum(0);
-        }
-
-        if (esCbToleranciaGlicose.isChecked()) {
-            examesSolicitadosResultados.setToleranciaGlicose(1);
-        } else {
-            examesSolicitadosResultados.setToleranciaGlicose(0);
-        }
-
-        if (esCbSifilis.isChecked()) {
-            examesSolicitadosResultados.setSifilis(1);
-        } else {
-            examesSolicitadosResultados.setSifilis(0);
-        }
-
-        if (esCbVdrl.isChecked()) {
-            examesSolicitadosResultados.setVdrl(1);
-        } else {
-            examesSolicitadosResultados.setVdrl(0);
-        }
-
-        if (esCbHiv.isChecked()) {
-            examesSolicitadosResultados.setHiv(1);
-        } else {
-            examesSolicitadosResultados.setHiv(0);
-        }
-
-        if (esCbHepatiteBC.isChecked()) {
-            examesSolicitadosResultados.setHepatiteBC(1);
-        } else {
-            examesSolicitadosResultados.setHepatiteBC(0);
-        }
-
-        if (esCbHbsag.isChecked()) {
-            examesSolicitadosResultados.setHbsag(1);
-        } else {
-            examesSolicitadosResultados.setHbsag(0);
-        }
-
-        if (esCbToxoplasmose.isChecked()) {
-            examesSolicitadosResultados.setToxoplasmose(1);
-        } else {
-            examesSolicitadosResultados.setToxoplasmose(0);
-        }
-
-        if (esCbHemoglobina.isChecked()) {
-            examesSolicitadosResultados.setHemoglobina(1);
-        } else {
-            examesSolicitadosResultados.setHemoglobina(0);
-        }
-
-        if (esCbUrinaEas.isChecked()) {
-            examesSolicitadosResultados.setUrinaEas(1);
-        } else {
-            examesSolicitadosResultados.setUrinaEas(0);
-        }
-
-        if (esCbUrinaCultura.isChecked()) {
-            examesSolicitadosResultados.setUrinaCultura(1);
-        } else {
-            examesSolicitadosResultados.setUrinaCultura(0);
-        }
-
-        if (esCbCoombs.isChecked()) {
-            examesSolicitadosResultados.setCoombs(1);
-        } else {
-            examesSolicitadosResultados.setCoombs(0);
-        }
-
-        examesSolicitadosResultados.setId(this.examesSolicitadosResultados.getId());
-
-        return examesSolicitadosResultados;
+        listaDeExamesSolicitadosResultados.add(es);
     }
-
 
 }

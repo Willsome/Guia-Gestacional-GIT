@@ -22,26 +22,34 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="Exames Solicitados/Resultados"
-            android:textColor="@android:color/black"
+            android:textColor="#b7448b"
             android:textSize="18sp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ABO-RH:" />
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="Consulta da solicitação: "
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
 
-            <CheckBox
-                android:id="@+id/esCbAboF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/esEtConsultaSolicitacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -49,241 +57,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <CheckBox
+                android:id="@+id/esCbSolicitacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Glicemia de Jejum:" />
+                android:layout_weight="5"
+                android:paddingLeft="12sp"
+                android:text="Solicitação"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
 
             <CheckBox
-                android:id="@+id/esCbGlicemiaJejumF"
+                android:id="@+id/esCbResultado"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:paddingLeft="12sp"
+                android:text="Resultado"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/esEtTvConsultaResultado"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Tolerancia à Glicose (teste oral):" />
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="Consulta dos resultados: "
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
 
-            <CheckBox
-                android:id="@+id/esCbToleranciaGlicoseF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/esEtConsultaResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/esLlExamesSolicitados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Sífilis (teste rápido):" />
-
-            <CheckBox
-                android:id="@+id/esCbSifilisF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="VDRL:" />
-
-            <CheckBox
-                android:id="@+id/esCbVdrlF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="HIV/Anti-HIV (teste rápido):" />
-
-            <CheckBox
-                android:id="@+id/esCbHivF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Hepatite B e C (teste rápido):" />
-
-            <CheckBox
-                android:id="@+id/esCbHepatiteBCF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="HBsAg (1º e 3º trimestre): " />
-
-            <CheckBox
-                android:id="@+id/esCbHbsagF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Toxoplasmose:" />
-
-            <CheckBox
-                android:id="@+id/esCbToxoplasmoseF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Hemoglobina Hematócrito: " />
-
-            <CheckBox
-                android:id="@+id/esCbHemoglobinaF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Urina-EAS: " />
-
-            <CheckBox
-                android:id="@+id/esCbUrinaEasF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Urina-cultura:" />
-
-            <CheckBox
-                android:id="@+id/esCbUrinaCulturaF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Coombs indireto:" />
-
-            <CheckBox
-                android:id="@+id/esCbCoombsF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" />
 
         <Button
             android:id="@+id/esBtSalvar"
@@ -291,8 +124,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
             android:text="salvar"
-            android:textColor="#4F4F4F" />
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

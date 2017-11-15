@@ -22,7 +22,7 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="Uso de Medicamento"
-            android:textColor="@android:color/black"
+            android:textColor="#b7448b"
             android:textSize="18sp" />
 
 
@@ -35,8 +35,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:background="@drawable/bt_consulta"
+                android:elevation="6dp"
+                android:stateListAnimator="@null"
                 android:text="+"
-                android:textColor="#4F4F4F"
+                android:textColor="#ffffff"
                 android:textSize="15sp" />
 
             <EditText
@@ -56,6 +59,7 @@
             android:id="@+id/umLlFormMedicamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="vertical" />
 
 
@@ -65,8 +69,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
             android:text="salvar"
-            android:textColor="#4F4F4F" />
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.scriptpoin.guiagestacional.R;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Willi on 21-Aug-17.
@@ -56,7 +58,7 @@ public class DadosPessoaisHelper {
         return dpTvDpDataNascimento;
     }
 
-    public DadosPessoais pegaFormularioDadosPessoais() throws Exception {
+    public DadosPessoais pegaFormularioDadosPessoais(Calendar dataNascimento) throws Exception {
 
         DadosPessoais dadosPessoais;
 
@@ -72,7 +74,7 @@ public class DadosPessoaisHelper {
 
             dadosPessoais = new DadosPessoais();
             dadosPessoais.setNome(dpEtNome.getText().toString());
-            dadosPessoais.setDataNascimento(dpTvDpDataNascimento.getText().toString());
+            dadosPessoais.setDataNascimento(dataNascimento);
             dadosPessoais.setIdade(Integer.parseInt(dpEtIdade.getText().toString()));
             dadosPessoais.setEndereco(dpEtEndereco.getText().toString());
             dadosPessoais.setNomeCompanheiro(dpEtNomeCompanheiro.getText().toString());
@@ -86,7 +88,10 @@ public class DadosPessoaisHelper {
     public void preencheFormularioDadosPessoais(DadosPessoais dadosPessoais) {
 
         dpEtNome.setText(dadosPessoais.getNome());
-        dpTvDpDataNascimento.setText(dadosPessoais.getDataNascimento());
+
+        SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+        dpTvDpDataNascimento.setText(formatadorData.format(dadosPessoais.getDataNascimento().getTime()));
+
         dpEtIdade.setText(String.valueOf(dadosPessoais.getIdade()));
         dpEtEndereco.setText(dadosPessoais.getEndereco());
         dpEtNomeCompanheiro.setText(dadosPessoais.getNomeCompanheiro());
@@ -97,7 +102,10 @@ public class DadosPessoaisHelper {
     public void preencheDadosPessoais(DadosPessoais dadosPessoais) {
 
         dpTvNome.setText(dadosPessoais.getNome());
-        dpTvDataNascimento.setText(dadosPessoais.getDataNascimento());
+
+        SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+        dpTvDataNascimento.setText(formatadorData.format(dadosPessoais.getDataNascimento().getTime()));
+
         dpTvIdade.setText(dadosPessoais.getIdade() + " anos");
         dpTvEndereco.setText(dadosPessoais.getEndereco());
         dpTvNomeCompanheiro.setText(dadosPessoais.getNomeCompanheiro());

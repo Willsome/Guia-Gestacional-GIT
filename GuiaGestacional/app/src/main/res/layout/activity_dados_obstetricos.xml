@@ -22,7 +22,7 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="Dados Obstétricos"
-            android:textColor="@android:color/black"
+            android:textColor="#b7448b"
             android:textSize="18sp" />
 
 
@@ -64,8 +64,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bt_consulta"
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
             android:text="salvar"
-            android:textColor="#4F4F4F" />
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

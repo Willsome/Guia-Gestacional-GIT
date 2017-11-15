@@ -1,57 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F4F4"
     tools:context="com.scriptpoin.guiagestacional.gestacao.trimestre.PrimeiroTrimestreActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <ImageView
             android:id="@+id/ivPerguntas"
-            android:src="@drawable/trimestre2_"
             android:layout_width="325dp"
             android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/tvTempoApGrValor"
-            />
-
-        <TextView
-            android:text="(imagem ilustrativa)"
-            android:textSize="8sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ivPerguntas"
-            android:layout_marginTop="-8dp"
-            android:gravity="center"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/trimestre2" />
 
         <TextView
             android:id="@+id/tvTempoApGrTitulo"
-            android:text="Tempo Aproximado da Gravidez"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
-            />
+            android:text="Tempo Aproximado da Gravidez"
+            android:textColor="#b7448b"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvTempoApGrValor"
-            android:text="- de 14 à 27 semanas -"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTempoApGrTitulo"
             android:layout_marginTop="8dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="(de 14 à 27 semanas)"
+            android:textColor="#C586AE"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/llTempoApGr"
@@ -59,28 +51,26 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivPerguntas"
             android:layout_marginTop="18dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="SEMANAS"
-                android:textColor="#f44336"
-                android:textSize="16sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
                 android:textAlignment="center"
-                />
+                android:textColor="#b7448b"
+                android:textSize="16sp" />
 
             <TextView
-                android:text="MÊS"
-                android:textColor="#f44336"
-                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
+                android:text="MÊS"
                 android:textAlignment="center"
-                />
+                android:textColor="#b7448b"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -90,24 +80,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/llTempoApGr"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="18 semanas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:textAlignment="center" />
 
             <TextView
-                android:text="4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:text="4"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -117,24 +105,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/llTempoApGrMes1"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="22 semanas e meia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:textAlignment="center" />
 
             <TextView
-                android:text="5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:text="5"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -147,41 +133,40 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="27 semanas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:text="27 semanas"
+                android:textAlignment="center" />
 
             <TextView
-                android:text="6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:textAlignment="center"
-                />
+                android:text="6"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvPerguntasTitulo"
-            android:text="Dúvidas Frequentes:"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_below="@+id/llTempoApGrMes3"
-            android:gravity="center"/>
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Dúvidas Frequentes:"
+            android:textColor="#b7448b"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/llPerguntasTrimestre1"
-            android:layout_below="@+id/tvPerguntasTitulo"
-            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:layout_below="@+id/tvPerguntasTitulo"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical" />
 
 
     </RelativeLayout>

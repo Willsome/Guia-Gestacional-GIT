@@ -9,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.scriptpoin.guiagestacional.adapter.TrimestreAdapter;
-import com.scriptpoin.guiagestacional.aleitamento.BeneficiosAleitamentoActivity;
-import com.scriptpoin.guiagestacional.aleitamento.MitosVerdadesAleitamentoActivity;
-import com.scriptpoin.guiagestacional.gestacao.trimestre.PrimeiroTrimestreActivity;
-import com.scriptpoin.guiagestacional.gestacao.trimestre.SegundoTrimestreActivity;
-import com.scriptpoin.guiagestacional.gestacao.trimestre.TerceiroTrimestreActivity;
+import com.scriptpoin.guiagestacional.aleitamento.BeneficiosAleitamentoBebeActivity;
+import com.scriptpoin.guiagestacional.aleitamento.BeneficiosAleitamentoMaeActivity;
+import com.scriptpoin.guiagestacional.aleitamento.DuvidasSobreAleitamentoActivity;
 
 
 /**
@@ -39,8 +36,9 @@ public class AleitamentoMaternoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_aleitamento_materno, container, false);
 
         String[] opcoesAleitamento = {
-                "Benefícios do Aleitamento para a Mãe e o Bebê",
-                "Mitos e Verdades do Aleitamento Materno"};
+                "Benefícios do Aleitamento materno para a Mãe",
+                "Benefícios do Aleitamento Materno para o Bebê",
+                "Dúvidas Sobre o Aleitamento Materno"};
 
         ListView lvOpcoesAleitamento = (ListView) view.findViewById(R.id.opcoesAleitamento);
         TrimestreAdapter trimestreAdapter = new TrimestreAdapter(getActivity(), opcoesAleitamento);
@@ -51,12 +49,16 @@ public class AleitamentoMaternoFragment extends Fragment {
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent vaiParaPrimeiroTrimestre = new Intent(getActivity(), BeneficiosAleitamentoActivity.class);
-                        startActivity(vaiParaPrimeiroTrimestre);
+                        Intent vaiParaAleitamentoMae = new Intent(getActivity(), BeneficiosAleitamentoMaeActivity.class);
+                        startActivity(vaiParaAleitamentoMae);
                         break;
                     case 1:
-                        Intent vaiParaSegundoTrimestre = new Intent(getActivity(), MitosVerdadesAleitamentoActivity.class);
-                        startActivity(vaiParaSegundoTrimestre);
+                        Intent vaiParaAleitamentoBebe = new Intent(getActivity(), BeneficiosAleitamentoBebeActivity.class);
+                        startActivity(vaiParaAleitamentoBebe);
+                        break;
+                    case 2:
+                        Intent vaiParaDuvidasAleitamento = new Intent(getActivity(), DuvidasSobreAleitamentoActivity.class);
+                        startActivity(vaiParaDuvidasAleitamento);
                         break;
                 }
             }

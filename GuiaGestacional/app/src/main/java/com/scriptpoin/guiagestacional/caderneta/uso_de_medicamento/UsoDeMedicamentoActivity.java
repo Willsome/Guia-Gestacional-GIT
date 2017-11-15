@@ -52,7 +52,7 @@ public class UsoDeMedicamentoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uso_de_medicamento);
 
-        setTitle("Editar Uso de Medicamento");
+        setTitle("Editar");
 
         Intent intent = getIntent();
         medicamentos = intent.getStringArrayListExtra("medicamentos");

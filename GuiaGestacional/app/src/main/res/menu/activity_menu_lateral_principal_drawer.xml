@@ -3,32 +3,32 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menuDuvidas"
-            android:icon="@drawable/duvidas"
-            android:title="Dúvidas" />
+            android:id="@+id/menuDuvidasDoPreNatal"
+            android:icon="@drawable/menu_icon_duvidas_do_prenatal"
+            android:title="Dúvidas do Pré-natal" />
         <item
-            android:id="@+id/menuViasDeParto"
-            android:icon="@drawable/vias_de_parto"
-            android:title="Vias de Parto" />
+            android:id="@+id/menuOrientacoesSobreOParto"
+            android:icon="@drawable/menu_icon_orientacoes_sobre_o_parto"
+            android:title="Orientações Sobre o Parto" />
         <item
             android:id="@+id/menuAleitamento"
-            android:icon="@drawable/mamadeira"
+            android:icon="@drawable/menu_icon_aleitamento_materno"
             android:title="Aleitamento Materno" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/data_consultas"
+            android:id="@+id/menuDataConsultas"
+            android:icon="@drawable/menu_icon_data_das_consultas"
             android:title="Data das Consultas" />
         <item
             android:id="@+id/menuCaderneta"
-            android:icon="@drawable/caderneta_gestante"
+            android:icon="@drawable/menu_icon_caderneta_da_gestante"
             android:title="Caderneta da Gestante" />
     </group>
 
-    <item android:title="Contatos">
+    <item android:title="">
         <menu>
             <item
                 android:id="@+id/menuSobre"
-                android:icon="@drawable/sobre"
+                android:icon="@drawable/menu_icon_sobre"
                 android:title="Sobre" />
             <item
                 android:id="@+id/menuFeedback"

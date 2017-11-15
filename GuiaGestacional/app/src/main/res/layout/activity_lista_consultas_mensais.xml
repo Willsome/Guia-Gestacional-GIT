@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="230dp"
     tools:context="com.scriptpoin.guiagestacional.caderneta.consultas_mensais.ListaConsultasMensaisActivity">
 
-        <RelativeLayout
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
 
-            <LinearLayout
-                android:id="@+id/layoutDecime"
-                android:background="@android:color/white"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F4F4F4"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ListView
+                android:id="@+id/lvConsultasMensais"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:orientation="vertical">
+                android:layout_weight="0.5"
+                android:padding="14dp" />
 
-                <ListView
-                    android:layout_weight="0.5"
-                    android:id="@+id/lvConsultasMensais"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="14dp" />
+            <Button
+                android:id="@+id/btVoltarListaConsultasMensais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@drawable/bt_consulta"
+                android:elevation="6dp"
+                android:stateListAnimator="@null"
+                android:text="voltar"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
 
-                <Button
-                    android:layout_weight="0"
-                    android:id="@+id/btVoltarListaConsultasMensais"
-                    android:text="voltar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
 

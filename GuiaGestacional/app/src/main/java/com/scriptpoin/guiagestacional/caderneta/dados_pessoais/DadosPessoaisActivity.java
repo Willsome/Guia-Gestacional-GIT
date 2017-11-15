@@ -13,11 +13,13 @@ import android.widget.Toast;
 import com.scriptpoin.guiagestacional.R;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DadosPessoaisActivity extends AppCompatActivity {
 
     // VARIÁVEIS DO MÉTODO "pegaDataNascimento()"
+    private Calendar dataNascimento;
     private TextView dpTvDpDataNascimento;
     private DatePickerDialog.OnDateSetListener datePickerListener;
     int dia;
@@ -34,7 +36,7 @@ public class DadosPessoaisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_pessoais);
 
-        setTitle("Editar Dados Pessoais");
+        setTitle("Adicionar");
 
         Intent intent = getIntent();
         dadosPessoais = (DadosPessoais) intent.getSerializableExtra("dadosPessoais");
@@ -42,6 +44,7 @@ public class DadosPessoaisActivity extends AppCompatActivity {
         dadosPessoaisHelper = new DadosPessoaisHelper(this, 1, null);
 
         if (dadosPessoais != null) {
+            setTitle("Editar");
             dadosPessoaisHelper.preencheFormularioDadosPessoais(dadosPessoais);
         }
 
@@ -54,7 +57,7 @@ public class DadosPessoaisActivity extends AppCompatActivity {
 
                 try {
 
-                    DadosPessoais dadosPessoais = dadosPessoaisHelper.pegaFormularioDadosPessoais();
+                    DadosPessoais dadosPessoais = dadosPessoaisHelper.pegaFormularioDadosPessoais(dataNascimento);
 
                     DaoCaderneta dao = new DaoCaderneta(DadosPessoaisActivity.this);
 
@@ -63,6 +66,7 @@ public class DadosPessoaisActivity extends AppCompatActivity {
                         Toast.makeText(DadosPessoaisActivity.this, "Dados Pessoais atualizados !", Toast.LENGTH_SHORT).show();
                     } else {
                         dao.salvaDadosPessoais(dadosPessoais);
+                        Toast.makeText(DadosPessoaisActivity.this, "Dados Pessoais adicionados !", Toast.LENGTH_SHORT).show();
                     }
                     dao.close();
 
@@ -80,21 +84,21 @@ public class DadosPessoaisActivity extends AppCompatActivity {
 
     public void pegaDataNascimento() {
 
+        dataNascimento = Calendar.getInstance();
+
         dpTvDpDataNascimento = dadosPessoaisHelper.getDpTvDpDataNascimento();
         dpTvDpDataNascimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (dadosPessoais != null) {
-                    dia = Integer.valueOf(dadosPessoais.getDataNascimento().substring(0, 2));
-                    mes = Integer.valueOf(dadosPessoais.getDataNascimento().substring(3, 5)) - 1;
-                    ano = Integer.valueOf(dadosPessoais.getDataNascimento().substring(6, 10));
-                } else {
-                    Calendar cal = Calendar.getInstance();
-                    dia = cal.get(Calendar.DAY_OF_MONTH);
-                    mes = cal.get(Calendar.MONTH);
-                    ano = cal.get(Calendar.YEAR);
+
+                    dataNascimento = dadosPessoais.getDataNascimento();
                 }
+
+                dia = dataNascimento.get(Calendar.DAY_OF_MONTH);
+                mes = dataNascimento.get(Calendar.MONTH);
+                ano = dataNascimento.get(Calendar.YEAR);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         DadosPessoaisActivity.this,
@@ -111,19 +115,12 @@ public class DadosPessoaisActivity extends AppCompatActivity {
         datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                mes += 1;
 
-                String data;
+                dataNascimento.set(Calendar.DAY_OF_MONTH, dia);
+                dataNascimento.set(Calendar.MONTH, mes);
+                dataNascimento.set(Calendar.YEAR, ano);
 
-                if (dia < 10 && mes < 10) {
-                    data = "0" + dia + "/0" + mes + "/" + ano;
-                } else if (dia < 10) {
-                    data = "0" + dia + "/" + mes + "/" + ano;
-                } else if (mes < 10) {
-                    data = dia + "/0" + mes + "/" + ano;
-                } else {
-                    data = dia + "/" + mes + "/" + ano;
-                }
+                String data = new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento.getTime());
 
                 dpTvDpDataNascimento.setText(data);
             }

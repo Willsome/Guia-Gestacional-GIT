@@ -1,25 +1,18 @@
 package com.scriptpoin.guiagestacional;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,19 +26,19 @@ import com.scriptpoin.guiagestacional.caderneta.dados_obstetricos.DadosObstetric
 import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoais;
 import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisActivity;
 import com.scriptpoin.guiagestacional.caderneta.dados_pessoais.DadosPessoaisHelper;
+import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.Exame;
 import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.ExamesSolicitadosResultados;
 import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.ExamesSolicitadosResultadosActivity;
-import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.ExamesSolicitadosResultadosHelper;
+import com.scriptpoin.guiagestacional.caderneta.exames_solicitados_resultados.ListaExamesSolicitadosResultadosActivity;
+import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.ListaUltrassonografiasActivity;
 import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.Ultrassonografia;
 import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.UltrassonografiaActivity;
 import com.scriptpoin.guiagestacional.caderneta.ultrassonografia.UltrassonografiaHelper;
 import com.scriptpoin.guiagestacional.caderneta.uso_de_medicamento.UsoDeMedicamentoActivity;
 import com.scriptpoin.guiagestacional.dao.DaoCaderneta;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collections;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -61,7 +54,7 @@ public class CadernetaFragment extends Fragment {
 
     private DadosPessoais dadosPessoais;
     private DadosObstetricos dadosObstetricos;
-    private ExamesSolicitadosResultados examesSolicitadosResultados;
+    private ArrayList<ExamesSolicitadosResultados> examesSolicitadosResultados;
     private Ultrassonografia ultrassonografia;
     private ArrayList<String> medicamentos;
     private ConsultasMensais consultasMensais;
@@ -102,23 +95,21 @@ public class CadernetaFragment extends Fragment {
             }
         });
 
-        Button esBtAlterar = (Button) view.findViewById(R.id.esBtAlterar);
-        esBtAlterar.setOnClickListener(new View.OnClickListener() {
+        Button esBtAdicionar = (Button) view.findViewById(R.id.esBtAdicionar);
+        esBtAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ExamesSolicitadosResultadosActivity.class);
-                intent.putExtra("examesSolicitadosResultados", examesSolicitadosResultados);
-                startActivity(intent);
+                startActivityForResult(intent, 5);
             }
         });
 
-        Button uBtAlterar = (Button) view.findViewById(R.id.uBtAlterar);
-        uBtAlterar.setOnClickListener(new View.OnClickListener() {
+        Button uBtAdicionar = (Button) view.findViewById(R.id.uBtAdicionar);
+        uBtAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), UltrassonografiaActivity.class);
-                intent.putExtra("ultrassonografia", ultrassonografia);
-                startActivity(intent);
+                startActivityForResult(intent, 3);
             }
         });
 
@@ -141,6 +132,8 @@ public class CadernetaFragment extends Fragment {
             }
         });
 
+        carregaExamesSolicitadosResultados(view, -1);
+        carregaUltrassonografia(view, -1);
         carregaConsultasMensais(view, -1);
 
         return view;
@@ -154,8 +147,6 @@ public class CadernetaFragment extends Fragment {
 
         carregaDadosPessoais(view, dao);
         carregaDadosObstetricos(view, dao);
-        carregaExamesSolicitadosResultados(view, dao);
-        carregaUltrassonografia(view, dao);
         carregaUsoDeMedicamento(view, dao);
 
         dao.close();
@@ -179,23 +170,140 @@ public class CadernetaFragment extends Fragment {
         }
     }
 
-    public void carregaExamesSolicitadosResultados(View view, DaoCaderneta dao) {
-        examesSolicitadosResultados = dao.pegaExamesSolicitadosResultados();
+    public void carregaExamesSolicitadosResultados(View view, int numeroDaConsulta) {
 
-        ExamesSolicitadosResultadosHelper examesSolicitadosResultadosHelper =
-                new ExamesSolicitadosResultadosHelper(getActivity(), 2, view);
+        DaoCaderneta dao = new DaoCaderneta(getContext());
 
-        if (examesSolicitadosResultados != null) {
-            examesSolicitadosResultadosHelper.preencheExamesSolicitadosResultados(examesSolicitadosResultados);
+        examesSolicitadosResultados = dao.pegaExamesSolicitadosResultados(numeroDaConsulta, getContext());
+
+        Collections.sort(examesSolicitadosResultados);
+
+        ArrayList<Exame> exames = new ArrayList<>();
+        for (ExamesSolicitadosResultados es : examesSolicitadosResultados) {
+            exames.add(es.getExame());
+        }
+
+        dao.close();
+
+        LinearLayout esLlExamesSolicitadosResultados = (LinearLayout) view.findViewById(R.id.esLlExamesSolicitadosResultados);
+
+        esLlExamesSolicitadosResultados.removeAllViews();
+
+        if (examesSolicitadosResultados.size() != 0) {
+
+            registerForContextMenu(esLlExamesSolicitadosResultados);
+
+            if (examesSolicitadosResultados.get(0).getSolicitacao() == 1) {
+
+                View v = inflater.inflate(R.layout.layout_mostra_solicitacao_exames_solicitados_resultados, null);
+
+                esLlExamesSolicitadosResultados.addView(v);
+
+                TextView esTvConsultaSolicitacao = v.findViewById(R.id.esTvConsultaSolicitacao);
+                esTvConsultaSolicitacao.setText(examesSolicitadosResultados.get(0).getNumeroConsultaSolicitacao() + "ª");
+
+                LinearLayout esLlExamesSolicitadosResultadosSolicitacao = v.findViewById(R.id.esLlExamesSolicitadosResultadosSolicitacao);
+
+                for (Exame exame : exames) {
+                    View viewExame = inflater.inflate(R.layout.layout_mostra_solicitacao_exames_solicitados_resultados_exame, null);
+
+                    esLlExamesSolicitadosResultadosSolicitacao.addView(viewExame);
+
+                    TextView esTvExame = viewExame.findViewById(R.id.esTvExame);
+                    esTvExame.setText(exame.getNomeDoExame() + ":");
+
+                    CheckBox esCbExame = viewExame.findViewById(R.id.esCbExame);
+                    esCbExame.setEnabled(false);
+                    esCbExame.setChecked(true);
+                }
+
+            } else {
+
+                View v = inflater.inflate(R.layout.layout_mostra_resultado_exames_solicitados_resultados, null);
+
+                esLlExamesSolicitadosResultados.addView(v);
+
+                TextView esTvConsultaSolicitacao = v.findViewById(R.id.esTvConsultaSolicitacao);
+                esTvConsultaSolicitacao.setText(examesSolicitadosResultados.get(0).getNumeroConsultaSolicitacao() + "ª");
+
+                TextView esTvConsultaResultado = v.findViewById(R.id.esTvConsultaResultado);
+                esTvConsultaResultado.setText(examesSolicitadosResultados.get(0).getNumeroConsultaResultado() + "ª");
+
+                LinearLayout esLlExamesSolicitadosResultadosResultado = v.findViewById(R.id.esLlExamesSolicitadosResultadosResultado);
+
+                for (ExamesSolicitadosResultados es : examesSolicitadosResultados) {
+                    View viewExame = inflater.inflate(R.layout.layout_mostra_resultado_exames_solicitados_resultados_exame, null);
+
+                    esLlExamesSolicitadosResultadosResultado.addView(viewExame);
+
+                    TextView esTvNomeExame = viewExame.findViewById(R.id.esTvNomeExame);
+                    esTvNomeExame.setText(es.getExame().getNomeDoExame() + ":  ");
+
+                    TextView esTvResultadoCaderneta = viewExame.findViewById(R.id.esTvResultadoCaderneta);
+                    if (es.getExame().getId() == 2 || es.getExame().getId() == 4 || es.getExame().getId() == 7) {
+                        esTvResultadoCaderneta.setText(es.getResultado() + " mg/dl");
+
+                    } else if (es.getExame().getId() == 3) {
+                        esTvResultadoCaderneta.setText(es.getResultado() + "%");
+
+                    } else if (es.getExame().getId() == 10) {
+                        esTvResultadoCaderneta.setText(es.getResultado() + " mm³");
+
+                    } else {
+                        esTvResultadoCaderneta.setText(es.getResultado());
+                    }
+
+                }
+            }
+
+        } else {
+            TextView tv = new TextView(getContext());
+            tv.setText("Nenhum exame solicitado adicionado");
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+            esLlExamesSolicitadosResultados.addView(tv);
         }
     }
 
-    public void carregaUltrassonografia(View view, DaoCaderneta dao) {
-        ultrassonografia = dao.pegaUltrassonografia();
+    public void carregaUltrassonografia(View view, int numeroDaConsulta) {
+
+        DaoCaderneta dao = new DaoCaderneta(getContext());
+
+        ultrassonografia = dao.pegaUltrassonografia(numeroDaConsulta);
+
+        dao.close();
+
+        LinearLayout uLlUltrassonografia = (LinearLayout) view.findViewById(R.id.uLlUltrassonografia);
+
+        uLlUltrassonografia.removeAllViews();
 
         if (ultrassonografia != null) {
-            UltrassonografiaHelper ultrassonografiaHelper = new UltrassonografiaHelper(getActivity(), 2, view);
-            ultrassonografiaHelper.preencheUltrassonografia(ultrassonografia);
+
+            registerForContextMenu(uLlUltrassonografia);
+
+            if (ultrassonografia.getSolicitacao() == 1) {
+
+                View v = inflater.inflate(R.layout.layout_mostra_solicitacao_ultrassonografia, null);
+
+                uLlUltrassonografia.addView(v);
+
+                UltrassonografiaHelper helper = new UltrassonografiaHelper(getActivity(), 2, v);
+                helper.preencheUltrassonografiaSolicitacao(ultrassonografia);
+
+            } else {
+
+                View v = inflater.inflate(R.layout.layout_mostra_resultado_ultrassonografia, null);
+
+                uLlUltrassonografia.addView(v);
+
+                UltrassonografiaHelper helper = new UltrassonografiaHelper(getActivity(), 2, v);
+                helper.preencheUltrassonografiaResultado(ultrassonografia);
+            }
+
+        } else {
+            TextView tv = new TextView(getContext());
+            tv.setText("Nenhuma ultrassonografia adicionada");
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+            uLlUltrassonografia.addView(tv);
         }
     }
 
@@ -237,11 +345,11 @@ public class CadernetaFragment extends Fragment {
 
 
     // CONSULTAS MENSAIS
-    public void carregaConsultasMensais(View view, int filtro) {
+    public void carregaConsultasMensais(View view, int numeroDaConsulta) {
 
         DaoCaderneta dao = new DaoCaderneta(getContext());
 
-        consultasMensais = dao.pegaConsultasMensais(filtro);
+        consultasMensais = dao.pegaConsultasMensais(numeroDaConsulta);
 
         dao.close();
 
@@ -269,41 +377,114 @@ public class CadernetaFragment extends Fragment {
 
     }
 
+
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, final View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        // EDIÇÃO DE EXAMES SOLICITADOS, ULTRA, CONSULTA...
         MenuItem editar = menu.add("Editar");
         editar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Intent intent = new Intent(getActivity(), ConsultasMensaisActivity.class);
-                intent.putExtra("consultaMensal", consultasMensais);
-                startActivityForResult(intent, 2);
+
+                if (v.getId() == R.id.esLlExamesSolicitadosResultados) {
+                    Intent intent = new Intent(getActivity(), ExamesSolicitadosResultadosActivity.class);
+                    intent.putExtra("examesSolicitadosResultados", examesSolicitadosResultados);
+                    startActivityForResult(intent, 6);
+                }
+
+                if (v.getId() == R.id.uLlUltrassonografia) {
+                    Intent intent = new Intent(getActivity(), UltrassonografiaActivity.class);
+                    intent.putExtra("ultrassonografia", ultrassonografia);
+                    startActivityForResult(intent, 4);
+                }
+
+                if (v.getId() == R.id.cmLlConsultasMensais) {
+                    Intent intent = new Intent(getActivity(), ConsultasMensaisActivity.class);
+                    intent.putExtra("consultaMensal", consultasMensais);
+                    startActivityForResult(intent, 2);
+                }
+
                 return false;
             }
         });
 
+        // EXCLUSÃO DE EXAMES SOLICITADOS, ULTRA, CONSULTA...
         MenuItem deletar = menu.add("Deletar");
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                DaoCaderneta dao = new DaoCaderneta(getContext());
-                if (dao.deletaConsultasMensais(consultasMensais)) {
-                    carregaConsultasMensais(view, -1);
-                    Toast.makeText(getContext(), "A consulta foi deletada !", Toast.LENGTH_SHORT).show();
+
+                if (v.getId() == R.id.esLlExamesSolicitadosResultados) {
+                    DaoCaderneta dao = new DaoCaderneta(getContext());
+                    if (dao.deletaExamesSolicitados(examesSolicitadosResultados)) {
+                        carregaExamesSolicitadosResultados(view, -1);
+                        Toast.makeText(getContext(), "Os exames foram deletados !", Toast.LENGTH_SHORT).show();
+                    }
+                    dao.close();
                 }
+
+                if (v.getId() == R.id.uLlUltrassonografia) {
+                    DaoCaderneta dao = new DaoCaderneta(getContext());
+                    if (dao.deletaUltrassonografia(ultrassonografia)) {
+                        carregaUltrassonografia(view, -1);
+                        Toast.makeText(getContext(), "A ultra foi deletada !", Toast.LENGTH_SHORT).show();
+                    }
+                    dao.close();
+                }
+
+                if (v.getId() == R.id.cmLlConsultasMensais) {
+                    DaoCaderneta dao = new DaoCaderneta(getContext());
+                    if (dao.deletaConsultasMensais(consultasMensais)) {
+                        carregaConsultasMensais(view, -1);
+                        Toast.makeText(getContext(), "A consulta foi deletada !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Delete primeiro os outros dados com o número da consulta", Toast.LENGTH_SHORT).show();
+                    }
+                    dao.close();
+                }
+
                 return false;
             }
         });
 
-        MenuItem mudarConsulta = menu.add("Mudar de Consulta");
-        mudarConsulta.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Intent intent = new Intent(getContext(), ListaConsultasMensaisActivity.class);
-                startActivityForResult(intent, 2);
-                return false;
-            }
-        });
+        // MUDANÇA DE EXAMES SOLICITADOS, ULTRA, CONSULTA...
+        MenuItem mudar;
+        if (v.getId() == R.id.esLlExamesSolicitadosResultados) {
+            mudar = menu.add("Mudar de Exames Solicitados");
+            mudar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(getContext(), ListaExamesSolicitadosResultadosActivity.class);
+                    startActivityForResult(intent, 6);
+                    return false;
+                }
+            });
+        }
+
+        if (v.getId() == R.id.uLlUltrassonografia) {
+            mudar = menu.add("Mudar de Ultrassonografia");
+            mudar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(getContext(), ListaUltrassonografiasActivity.class);
+                    startActivityForResult(intent, 4);
+                    return false;
+                }
+            });
+        }
+
+        if (v.getId() == R.id.cmLlConsultasMensais) {
+            mudar = menu.add("Mudar de Consulta");
+            mudar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(getContext(), ListaConsultasMensaisActivity.class);
+                    startActivityForResult(intent, 2);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
@@ -318,6 +499,24 @@ public class CadernetaFragment extends Fragment {
 
             int numeroConsulta = data.getIntExtra("numeroConsulta", -1);
             carregaConsultasMensais(view, numeroConsulta);
+
+        } else if (requestCode == 3 && resultCode == RESULT_OK) {
+
+            carregaUltrassonografia(view, -1);
+
+        } else if (requestCode == 4 && resultCode == RESULT_OK) {
+
+            int consultaSolicitacao = data.getIntExtra("consultaSolicitacao", -1);
+            carregaUltrassonografia(view, consultaSolicitacao);
+
+        } else if (requestCode == 5 && resultCode == RESULT_OK) {
+
+            carregaExamesSolicitadosResultados(view, -1);
+
+        } else if (requestCode == 6 && resultCode == RESULT_OK) {
+
+            int consultaSolicitacao = data.getIntExtra("consultaSolicitacao", -1);
+            carregaExamesSolicitadosResultados(view, consultaSolicitacao);
         }
     }
 }

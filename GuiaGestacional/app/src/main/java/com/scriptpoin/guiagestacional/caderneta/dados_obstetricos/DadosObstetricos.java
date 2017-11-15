@@ -1,6 +1,7 @@
 package com.scriptpoin.guiagestacional.caderneta.dados_obstetricos;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by Willi on 27-Aug-17.
@@ -10,8 +11,8 @@ public class DadosObstetricos implements Serializable {
 
     private Long id;
 
-    private String dum;
-    private String dpp;
+    private Calendar dum;
+    private Calendar dpp;
 
 
     public Long getId() {
@@ -22,19 +23,19 @@ public class DadosObstetricos implements Serializable {
         this.id = id;
     }
 
-    public String getDum() {
+    public Calendar getDum() {
         return dum;
     }
 
-    public void setDum(String dum) {
+    public void setDum(Calendar dum) {
         this.dum = dum;
     }
 
-    public String getDpp() {
+    public Calendar getDpp() {
         return dpp;
     }
 
-    public void setDpp(String dpp) {
+    public void setDpp(Calendar dpp) {
         this.dpp = dpp;
     }
 }
