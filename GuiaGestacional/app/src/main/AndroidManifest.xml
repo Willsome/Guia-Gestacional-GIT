@@ -11,15 +11,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--BOAS VINDAS SPLASH SCREEN-->
         <activity
-            android:name=".MenuLateralPrincipalActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".BoasVindasSplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!--MENU LATERAL ACTIVITY (MAIN ACTIVITY)-->
+        <activity
+            android:name=".MenuLateralPrincipalActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <!-- ALEITAMENTO -->

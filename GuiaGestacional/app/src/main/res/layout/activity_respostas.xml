@@ -15,7 +15,7 @@
             android:id="@+id/layoutDecime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="#F4F4F4"
             android:minHeight="90dp"
             android:orientation="vertical"
             android:padding="5dp">

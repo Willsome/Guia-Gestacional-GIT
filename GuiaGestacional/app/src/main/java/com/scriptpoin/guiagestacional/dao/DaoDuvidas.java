@@ -167,7 +167,7 @@ public class DaoDuvidas extends SQLiteOpenHelper {
                 "'1. Presença de contrações ritmadas entre 5 e 15 minutos, porém curtas, passam rápidas (duram de 30 à 60 segundos), e o colo do útero começa a dilatar; \n\n" +
                 "2. Com o passar das horas, as contrações vão acontecendo a cada 3 minutos e dura 1 minuto cada contração (chama de fase ativa do parto); \n\n" +
                 "3. Em seguida as contrações vão ocorrendo a cada 2 minutos, duram 90 segundos, é quando o útero está dilatado entre 8 a 10 centímetros; \n\n" +
-                "Atenção: faça uso de um relógio para contar o tempo das contrações e coloque a mão em cima da barriga próximo ao estômago.'),";
+                "Atenção: faça uso de um relógio para contar o tempo das contrações e coloque a mão em cima da barriga próxima ao estômago.'),";
 
         String p5Trimestre3 = "(35, 3," +
                 "'Quais os sinais de alarme falso de trabalho de parto ?'," +

@@ -1,0 +1,11 @@
++ Dúvidas
+-- Inclusão de links;
+-- Inclusão de imagens;
+
+-- Informações do trimestre:
+>>> "MESES" no lugar de "MÊS";
+
+
+
+
++ Fale conosco mais robusto.
