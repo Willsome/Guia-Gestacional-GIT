@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:theme="@style/AppTheme"
+    tools:context="com.scriptpoin.gestacaosaudavel.ResguardoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="25dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="25dp">
+
+        <TextView
+            android:id="@+id/tvPuerperioTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/resguardo_topico"
+            android:textColor="#b7448b"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvPuerperioSubTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/resguardo_descricao"
+            android:textColor="#C586AE"
+            android:textSize="18sp" />
+
+        <ListView
+            android:id="@+id/lvResguardo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:headerDividersEnabled="true" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    tools:context="com.scriptpoin.gestacaosaudavel.caderneta.dados_pessoais.DadosPessoaisActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="25dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="@string/cvg_dp_titulo"
+            android:textColor="#b7448b"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cvg_dp_campo_nome"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/dpEtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/cvg_dp_campo_nome_hint"
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/cvg_dp_campo_nascimento"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/dpTvDpDataNascimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="@string/cvg_adicionar"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:paddingBottom="6dp"
+                android:text="@string/cvg_dp_campo_idade"
+                android:textColor="#4F4F4F"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/dpEtIdade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textSize="15sp"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/cvg_dp_campo_endereco"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/dpEtEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/cvg_dp_campo_endereco_hint"
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/cvg_dp_campo_companheiro"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/dpEtNomeCompanheiro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/cvg_dp_campo_companheiro_hint"
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/dpBtSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_bt_roxo"
+            android:text="@string/cvg_salvar"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</ScrollView>

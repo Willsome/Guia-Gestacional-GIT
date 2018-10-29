@@ -1,0 +1,435 @@
+<resources>
+
+    <string name="app_name"> Gestação Saudável </string>
+    <string name="app_version"> v. 1.1 </string>
+    <string name="app_company">© 2017 ScriptPoin</string>
+    <string name="app_rights">Todos os direitos reservados.</string>
+
+    <string name="logo_imagem_descricao">Logo Gestação Saudável</string>
+
+    <string name="action_settings"> Logout </string>
+
+    <string name="navigation_drawer_open"> Abrir menu </string>
+    <string name="navigation_drawer_close"> Fechar menu </string>
+
+    <string name="bg_listview_rosa">Background Rosa Gradiente</string>
+
+    <!-- LOGIN e CADASTRO -->
+    <string name="titulo_activity_login">Login</string>
+    <string name="titulo_activity_cadastro">Cadastro</string>
+
+    <string name="hint_campo_nome">Nome</string>
+    <string name="hint_campo_usuario">Usuário</string>
+    <string name="hint_campo_email">E-mail</string>
+    <string name="hint_campo_senha">Senha</string>
+    <string name="hint_campo_senha_confirmacao">Confirme sua senha</string>
+
+    <string name="botao_entrar">Entrar</string>
+    <string name="botao_registrar">Registrar</string>
+
+    <!-- ERROS -->
+    <string name="erro_nome_curto">Nome muito curto</string>
+    <string name="erro_senha_curta">Senha muito curta</string>
+
+    <string name="erro_nome_invalido">Nome inválido</string>
+    <string name="erro_usuario_invalido_login">Informe um usuário com mais de 3 caracteres</string>
+    <string name="erro_usuario_invalido_cadastro">Seu usuário deve conter mais de 3 caracteres</string>
+    <string name="erro_email_invalido">E-mail inválido</string>
+    <string name="erro_senha_incorreta">Senha incorreta</string>
+    <string name="erro_senha_invalida">A senha deve conter mais de 4 caracteres</string>
+    <string name="erro_confirmacao_senha">As senhas informadas não são iguais</string>
+    <string name="erro_campo_obrigatorio">Este campo é obrigatório</string>
+    <string name="erro_campo_obrigatorio_login_usuario">Informe seu usuário</string>
+    <string name="erro_campo_obrigatorio_login_senha">Informe sua senha</string>
+
+    <string name="permission_rationale">Permissões de contatos são necessárias para auto-completar e-mails.</string>
+
+    <!-- LOGIN e CADASTRO => TEXTOS -->
+    <string name="tv_login_cadastrar">Não possui conta ?\nRegistre-se aqui.</string>
+
+    <string name="tv_cadastro_texto_1">Criar conta</string>
+    <string name="tv_cadastro_texto_2">Informe seus dados abaixo</string>
+
+    <!-- FRAGMENTS -->
+
+    <!-- HOME -->
+    <string name="duvidas_prenatal">Dúvidas do Pré-natal</string>
+    <string name="orientacoes_sobre_parto">Orientações Sobre\no Parto</string>
+    <string name="aleitamento_materno">Aleitamento Materno</string>
+    <string name="resguardo">Período de Resguardo</string>
+    <string name="data_consultas">Data das Consultas</string>
+    <string name="caderneta_gestante">Caderneta Virtual\nda Gestante</string>
+
+    <!-- DÚVIDAS DO PRÉ-NATAL -->
+    <string-array name="duvidas_prenatal_menus">
+        <item> 1º Trimestre de Gravidez </item>
+        <item> 2º Trimestre de Gravidez </item>
+        <item> 3º Trimestre de Gravidez </item>
+        <item> Principais Queixas na Gestação </item>
+        <item> Uso de Suplementos </item>
+        <item> Vacinas </item>
+        <item> Atividade Física </item>
+        <item> Ganho de Peso </item>
+        <item> Direitos da Mulher </item>
+    </string-array>
+
+    <string name="tempo_proximado_gravidez">Tempo Aproximado da Gravidez</string>
+    <string name="tempo_proximado_gravidez_semanas">SEMANAS</string>
+    <string name="tempo_proximado_gravidez_mes">MÊS</string>
+    <string name="gravidez_duvidas_frequentes">Dúvidas Frequentes:</string>
+
+    <string name="trimestre_mes_1">1</string>
+    <string name="trimestre_mes_2">2</string>
+    <string name="trimestre_mes_3">3</string>
+    <string name="trimestre_mes_4">4</string>
+    <string name="trimestre_mes_5">5</string>
+    <string name="trimestre_mes_6">6</string>
+    <string name="trimestre_mes_7">7</string>
+    <string name="trimestre_mes_8">8</string>
+    <string name="trimestre_mes_9">9</string>
+
+    <!-- PRIMEIRO TRIMESTRE -->
+    <string name="trimestre_1_titulo">Primeiro Trimestre</string>
+    <string name="trimestre_1_imagem">Imagem do bebê no primeiro trimestre</string>
+    <string name="trimestre_1_tempo_proximado">(de 0 à 13 semanas)</string>
+    <string name="trimestre_1_mes_1">4 semanas e meia</string>
+    <string name="trimestre_1_mes_2">9 semanas</string>
+    <string name="trimestre_1_mes_3">13 semanas e meia</string>
+
+    <!-- SEGUNDO TRIMESTRE -->
+    <string name="trimestre_2_titulo">Segundo Trimestre</string>
+    <string name="trimestre_2_imagem">Imagem do bebê no segundo trimestre</string>
+    <string name="trimestre_2_tempo_proximado">(de 14 à 27 semanas)</string>
+    <string name="trimestre_2_mes_4">18 semanas</string>
+    <string name="trimestre_2_mes_5">22 semanas e meia</string>
+    <string name="trimestre_2_mes_6">27 semanas</string>
+
+    <!-- TERCEIRO TRIMESTRE -->
+    <string name="trimestre_3_titulo">Terceiro Trimestre</string>
+    <string name="trimestre_3_imagem">Imagem do bebê no terceiro trimestre</string>
+    <string name="trimestre_3_tempo_proximado">(de 28 à 42 semanas)</string>
+    <string name="trimestre_3_mes_7">31 semanas e meia</string>
+    <string name="trimestre_3_mes_8">36 semanas</string>
+    <string name="trimestre_3_mes_9">40 semanas e meia</string>
+
+    <!-- QUEIXAS MAIS FREQUÊNTES NA GESTAÇÃO -->
+    <string name="queixas_gestacao_titulo">Principais Queixas na Gestação</string>
+    <string name="queixas_gestacao_topico">Queixas mais frequentes durante a gestação</string>
+    <string name="queixas_gestacao_topico_obs">A maioria das queixas são comuns no período da gestação, devido às alterações hormonais.</string>
+
+    <!-- USO DE SUPLEMENTOS -->
+    <string name="suplementos_titulo">Uso de Suplementos</string>
+    <string name="suplementos_topico">Uso do Ácido Fólico e Sulfato Ferroso</string>
+    <string name="suplementos">
+
+                    <![CDATA[
+
+                        <h4><font color="#8e376d"><strong> O uso do ácido fólico e sulfato ferroso são importantes ? </strong></font></h4>
+                        <p> O ácido fólico é importante principalmente antes da gravidez e até o 3º mês de gravidez, pois irá ajudar na formação do tubo neural (estrutura que dá origem ao cérebro e a medula espinhal) da criança. </p>
+                        <p> O Sulfato ferroso deve ser tomado durante toda a gestação e até 3 meses depois do parto, pois ajuda a prevenir anemias. </p>
+
+                    ]]>
+
+            </string>
+
+    <!-- VACINAS -->
+    <string name="vacinas_titulo">Vacinas</string>
+    <string name="vacinas_topico">Vacinas na Gestação</string>
+    <string name="vacinas_topico_obs">A equipe de Saúde deverá orientar e aplicar as vacinas que cada gestante deve tomar. É importante levar o cartão das gestantes anteriores ou cartão de vacina para que seja avaliado o número de doses de cada vacina na gestação atual.</string>
+    <string name="vacinas">
+
+                    <![CDATA[
+
+                        <h4><font color="#8e376d"><strong> Quais são as vacinas indicadas durante a gestação ? </strong></font></h4>
+                        <p> <strong> • </strong> Hepatite B; </p>
+                        <p> <strong> • </strong> Tétano: dT; </p>
+                        <p> <strong> • </strong> dTpa; </p>
+                        <p> <strong> • </strong> Influenza. </p>
+
+                    ]]>
+
+            </string>
+
+    <!-- ATIVIDADE FÍSICA -->
+    <string name="atividade_fisica_titulo">Atividade Física</string>
+    <string name="atividade_fisica_topico">Exercício Físico</string>
+    <string name="atividade_fisica">
+
+                    <![CDATA[
+
+                        <h4><font color="#8e376d"><strong> Qual o tipo de atividade física posso fazer ? </strong></font></h4>
+                        <p> Durante as consultas, o enfermeiro e médico irão orientar qual a melhor atividade para o período gestacional, mas geralmente a caminhada é livre para todas as gestantes que não apresente problemas de saúde. </p>
+                        <p> Os exercícios físicos são benéficos à saúde porque melhoram a circulação e a digestão, o apetite, a função intestinal, além de proporcionar relaxamento e um sono repousante. </p>
+
+                    ]]>
+
+            </string>
+
+    <!-- GANHO DE PESO -->
+    <string name="ganho_de_peso_titulo">Ganho de Peso</string>
+    <string name="ganho_de_peso_topico">Engordamento</string>
+    <string name="ganho_de_peso">
+
+                    <![CDATA[
+
+                        <h4><font color="#8e376d"><strong> Quantos quilos posso aumentar durante a gestação ? </strong></font></h4>
+                        <p> O enfermeiro fará um cálculo durante a consulta de pré-natal. Mas a regra é: </p>
+                        <p> <strong> • </strong> Gestantes que têm o peso adequado podem aumentar entre 11 quilos e meio à 16 quilos; </p>
+                        <p> <strong> • </strong> Gestante que são obesas deverão ganhar em torno de 5 à 9 quilos; </p>
+                        <p> <strong> • </strong> As gestantes de baixo peso devem ganhar 12,5 à 18 quilos. </p>
+
+                    ]]>
+
+            </string>
+
+    <!-- DIREITOS DA MULHER -->
+    <string name="direitos_mulher_titulo">Direitos da Mulher</string>
+    <string name="direitos_mulher_topico">Direitos</string>
+
+    <!-- ORIENTAÇÕES SOBRE O PARTO -->
+    <string name="topico_parto">Parto…</string>
+    <string name="descricao_parto">
+
+            <![CDATA[
+
+                <h4><font color="#8e376d"><strong> Quais os benefícios do parto normal humanizado para a mulher e o bebê ? </strong></font></h4>
+                <p> <strong> 1. </strong> Rápida recuperação da mulher facilitando o cuidado com o bebê após o parto; </p>
+                <p> <strong> 2. </strong> Menor risco de complicações, o que favorece o contato pele a pele imediato com o bebê e o aleitamento materno imediato; </p>
+                <p> <strong> 3. </strong> Menor risco de complicações na próxima gravidez. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Qual a melhor posição para parir ? </strong></font></h4>
+                <p> A melhor posição para parir é a vertical. Assim a mulher pode ficar em pé, de cócoras, de quatro. A mulher é a protagonista do parto, logo escolhe a posição que mais lhe traga conforto. </p>
+
+            ]]>
+
+        </string>
+
+    <string name="topico_boas_praticas_parto">Boas Práticas do Parto e Nascimento&#8230;</string>
+    <string name="descricao_boas_praticas_parto">
+
+            <![CDATA[
+
+                <h4><font color="#8e376d"><strong> O que são as boas práticas do parto e nascimento ? </strong></font></h4>
+                <p> <strong> 1. </strong> Elaboração do plano de parto pelo enfermeiro no pré-natal (como deseja que aconteça no pré-parto, parto e pós-parto); </p>
+                <p> <strong> 2. </strong> Respeito à escolha da mulher sobre seu acompanhante durante o trabalho de parto e parto; </p>
+                <p> <strong> 3. </strong> Retirar todas as dúvidas da mulher; </p>
+                <p> <strong> 4. </strong> Oferta de líquidos por via oral durante o trabalho de parto e parto; </p>
+                <p> <strong> 5. </strong> Monitoramento fetal por meio de ausculta intermitente; </p>
+                <p> <strong> 6. </strong> Métodos não invasivos e não farmacológicos de alívio da dor, como massagem e técnicas de relaxamento durante o trabalho de parto; </p>
+                <p> <strong> 7. </strong> Liberdade de posição e movimento durante o trabalho de parto; </p>
+                <p> <strong> 8. </strong> Estímulo a posições verticalizadas durante o trabalho de parto; </p>
+                <p> <strong> 9. </strong> Caminhadas, uso de balanço pélvico e da bola suíça; </p>
+                <p> <strong> 10. </strong> Clampeamento tardio do cordão umbilical; </p>
+                <p> <strong> 11. </strong> Contato pele a pele do bebê e mãe logo após o nascimento; </p>
+                <p> <strong> 12. </strong> Aleitamento materno precoce. </p>
+
+            ]]>
+
+        </string>
+
+    <!-- ALEITAMENTO MATERNO -->
+    <string-array name="aleitamento_materno_menus">
+        <item> Benefícios do Aleitamento Materno para a Mãe </item>
+        <item> Benefícios do Aleitamento Materno para o Bebê </item>
+        <item> Dúvidas Sobre o Aleitamento Materno </item>
+    </string-array>
+
+    <string name="beneficio_aleitamento_mae_topico">Benefícios Para a Mãe…</string>
+    <string name="beneficio_aleitamento_mae">
+
+            <![CDATA[
+
+                <h4><font color="#8e376d"><strong> Benéficio fisiológico: </strong></font></h4>
+                <p> A liberação hormonal de ocitocina no momento da amamentação  favorece a contração do útero e previne hemorragias. O útero volta ao seu tamanho normal mais rápido. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Benefício psicológico e emocional: </strong></font></h4>
+                <p> A relação mãe e filho é uma vivência própria, única, do ser humano, originária da relação que o aleitamento proporciona. Os dois terão fator emocional mais equilibrado. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Benefício financeiro: </strong><font color="#8e376d"></h4>
+                <p> Por se tratar de um leite que traz consigo um valor próprio capaz de suprir todas as necessidades do bebê, torna desnecessária a compra de alimentos para ele, o que gera economia para a mãe, acrescida do fato de que o leite materno  preserva a saúde da criança. </p>
+
+            ]]>
+
+        </string>
+
+    <string name="beneficio_aleitamento_bebe_topico">Benefícios Para o Bebê…</string>
+    <string name="beneficio_aleitamento_bebe">
+
+            <![CDATA[
+
+                <h4><font color="#8e376d"><strong> Benefícios biológicos: </strong></font></h4>
+                <p> <strong> 1. </strong> O leite humano contém água em quantidade suficiente; proteína e gordura mais adequadas para a criança; </p>
+                <p> <strong> 2. </strong> O leite materno contém as vitaminas em quantidades suficientes, dispensando o uso de suplementos vitamínicos; </p>
+                <p> <strong> 3. </strong> O leite materno  protege a criança contra alergias e infecções, especialmente as diarréias; </p>
+                <p> <strong> 4. </strong> O leite materno favorece o crescimento e desenvolvimento da criança. </p>
+
+            ]]>
+
+        </string>
+    <string name="duvidasAleitamento_topico">Dúvidas Sobre Aleitamento…</string>
+    <string name="duvidasAleitamento">
+
+            <![CDATA[
+
+                <h4><font color="#8e376d"><strong> Existe Leite fraco ? </strong></font></h4>
+                <p> Não existe leite fraco, nos primeiros dias pós-parto o leite é pouco, mas irá aumentando com o passar dos dias. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> O leite do peite sustenta a criança ? </strong></font></h4>
+                <p> O leite humano contém todos os nutrientes de que a criança necessita até os seus seis meses de vida. É de fácil digestão, e seu aspecto aguado é uma característica normal, portanto o leite materno está sempre em boas condições para o consumo da criança. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Dizer que o leite do peito é pouco é verdade ? </strong><font color="#8e376d"></h4>
+                <p> Não existe pouco leite, todas as mães podem produzir leite em quantidade e de qualidade suficiente para o seu bebê, desde que elas queiram – sejam autoconfiantes em relação à sua capacidade de amamentar – e que posicionem a criança corretamente durante a amamentação. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> O que acontece quando o bebê não quer pegar o peito ? </strong><font color="#8e376d"></h4>
+                <p> Na maioria das vezes é a posição da mãe e do bebê que não está confortável, ou a criança está com a fralda molhada, a pega do mamilo não está correta. Logo, o posicionamento da mãe e da criança no ato da amamentação, os cuidados com os mamilos são importantes, caso não esteja conseguindo amamentar peça ajuda a um profissional de saúde. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> O leite materno  mata a sede do bebê ? </strong><font color="#8e376d"></h4>
+                <p> Sim, o leite materno contém  toda a água de que uma criança necessita, mesmo se ela morar em locais de clima quente. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Meus seios vão cair com a amamentação ? </strong><font color="#8e376d"></h4>
+                <p> Não. Orienta-se usar sutiãs adequados no período da amamentação e cuidado no momento da amamentação contribuem para não existir mudanças na anatomia da mama. </p>
+
+                <br/>
+
+                <h4><font color="#8e376d"><strong> Aleitamento materno: expressão do amor da mãe para com seu filho ? </strong><font color="#8e376d"></h4>
+                <p> Verdade ! </p>
+
+            ]]>
+
+        </string>
+
+    <!-- PERÍODO DE RESGUARDO -->
+    <string-array name="resguardo_menus">
+        <item> Cuidados com a Mãe </item>
+        <item> Cuidados com o Recém-nascido </item>
+    </string-array>
+
+    <string name="resguardo_topico">Orientações Sobre o\nPuerpério Imediato</string>
+    <string name="resguardo_descricao">(resguardo)</string>
+
+    <string name="cuidados_mae_topico">Cuidados Com a Mãe</string>
+    <string name="cuidados_recem_nascido_topico">Cuidados Com o\nRecém-nascido</string>
+
+    <!-- DATA DAS CONSULTAS -->
+    <string name="dc_titulo">Data da Próxima Consulta…</string>
+    <string name="dc_descricao">Adicione uma consulta abaixo para ser lembrada 1 dia antes. Para EXCLUIR, basta pressionar sobre a consulta.</string>
+    <string name="dc_sem_consulta">Nenhuma consulta adicionada</string>
+    <string name="dc_bt">adicionar</string>
+
+    <string name="dc_logo_calendario">Logo calendário - Data da Consulta</string>
+
+    <!-- CADERNETA VIRTUAL DA GESTANTE -->
+    <string name="cvg_adicionar">[ADICIONAR]</string>
+    <string name="cvg_salvar">salvar</string>
+    <string name="cvg_solicitacao">Solicitação</string>
+    <string name="cvg_consulta_solicitacao">Consulta da solicitação:</string>
+    <string name="cvg_resultado">Resultado</string>
+    <string name="cvg_consulta_resultado">Consulta dos resultados:</string>
+    <string name="cvg_bt_default">adicionar / alterar</string>
+
+
+    <!-- Dados Pessoais -->
+    <string name="cvg_dp_titulo">Dados Pessoais</string>
+    <string name="cvg_dp_campo_nome">Nome:\u0020</string>
+    <string name="cvg_dp_campo_nome_hint">informe aqui o nome…</string>
+    <string name="cvg_dp_campo_nascimento">Data de nascimento:\u0020</string>
+    <string name="cvg_dp_campo_idade">Idade:\u0020</string>
+    <string name="cvg_dp_campo_endereco">Endereço:\u0020</string>
+    <string name="cvg_dp_campo_endereco_hint">informe aqui o endereço…</string>
+    <string name="cvg_dp_campo_companheiro">Companheiro:\u0020</string>
+    <string name="cvg_dp_campo_companheiro_hint">informe aqui o nome…</string>
+
+    <!-- Dados Obstétricos -->
+    <string name="cvg_do_titulo">Dados Obstétricos</string>
+    <string name="cvg_do_campo_dum">DUM:\u0020</string>
+    <string name="cvg_do_campo_dum_cadastro">DUM (Data da Última Menstruação):</string>
+    <string name="cvg_do_campo_dpp">DPP:\u0020</string>
+    <string name="cvg_do_campo_dpp_cadastro">DPP (Data Provável do Parto):</string>
+
+    <!-- Exames Solicitados / Resutados -->
+    <string name="cvg_esr_titulo">Exames Solicitados/Resultados</string>
+    <string name="cvg_esr_bt">adicionar exames solicitados</string>
+
+    <!-- Ultrassonografia -->
+    <string name="cvg_ultra_titulo">Ultrassonografia</string>
+    <string name="cvg_ultra_bt">adicionar ultra</string>
+    <string name="cvg_ultra_data">Data:</string>
+    <string name="cvg_ultra_igdum">IG DUM:</string>
+    <string name="cvg_ultra_igusg">IG USG:</string>
+    <string name="cvg_ultra_semanas">semanas</string>
+    <string name="cvg_ultra_dias">dias</string>
+    <string name="cvg_ultra_x">x</string>
+    <string name="cvg_ultra_peso_fetal">Peso fetal:</string>
+    <string name="cvg_ultra_grama">(g)</string>
+    <string name="cvg_ultra_placenta">Placenta:</string>
+    <string name="cvg_ultra_liquido_amniotico">Líquido amniótico:</string>
+    <string name="cvg_ultra_mililitro">(ml)</string>
+
+    <!-- Uso de Medicamento -->
+    <string name="cvg_um_titulo">Uso de Medicamento</string>
+    <string name="cvg_um_sim">Sim</string>
+    <string name="cvg_um_nao">Não</string>
+    <string name="cvg_um_cruz">+</string>
+    <string name="cvg_um_hint">Medicamento…</string>
+
+    <!-- Consultas Mensais -->
+    <string name="cvg_cm_titulo">Consultas Mensais</string>
+    <string name="cvg_cm_bt">adicionar consulta</string>
+
+    <string-array name="spinner_tipo_profissional">
+        <item> Dr. </item>
+        <item> Dra. </item>
+        <item> Enf. </item>
+        <item> Enfa. </item>
+    </string-array>
+
+    <string-array name="spinner_placenta">
+        <item> Grau I </item>
+        <item> Grau II </item>
+        <item> Grau III </item>
+    </string-array>
+
+    <string-array name="spinner_posicao_fetal">
+        <item> Desconhecida </item>
+        <item> Cefálica </item>
+        <item> Pélvica </item>
+    </string-array>
+
+    <string-array name="spinner_resultado_ABORH">
+        <item> A+ </item>
+        <item> A- </item>
+        <item> B+ </item>
+        <item> B- </item>
+        <item> AB+ </item>
+        <item> AB- </item>
+        <item> O+ </item>
+        <item> O- </item>
+    </string-array>
+
+    <string-array name="spinner_resultado_reagente">
+        <item> Reagente </item>
+        <item> Não reagente </item>
+    </string-array>
+
+    <string-array name="spinner_resultado_positivo_negativo">
+        <item> Positivo </item>
+        <item> Negativo </item>
+    </string-array>
+
+</resources>

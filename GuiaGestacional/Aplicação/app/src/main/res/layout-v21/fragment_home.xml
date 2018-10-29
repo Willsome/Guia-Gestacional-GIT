@@ -1,0 +1,261 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F4F4F4"
+    tools:context="com.scriptpoin.gestacaosaudavel.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="25dp"
+        android:paddingTop="25dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+
+            <ImageView
+                android:id="@+id/ivIconeHome"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:background="@drawable/home_icon_gestacao_saudavel"
+                android:contentDescription="@string/logo_imagem_descricao"
+                android:elevation="6dp"
+                android:scaleType="fitXY"
+                android:stateListAnimator="@null"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tvIconeHomeI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivIconeHome"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tvIconeHomeII"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvIconeHomeI"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/app_company"
+                android:textSize="8sp"
+                tools:ignore="SmallSp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuDuvidasDoPreNatal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_duvidas_prenatal"
+                    android:contentDescription="@string/duvidas_prenatal"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuDuvidasDoPreNatal"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/duvidas_prenatal"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuOrientacoesSobreOParto"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_orientacoes_parto"
+                    android:contentDescription="@string/orientacoes_sobre_parto"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuOrientacoesSobreOParto"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/orientacoes_sobre_parto"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuAleitamento"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_aleitamento_materno"
+                    android:contentDescription="@string/aleitamento_materno"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuAleitamento"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/aleitamento_materno"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuPuerperio"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_periodo_resguardo"
+                    android:contentDescription="@string/resguardo"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuPuerperio"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/resguardo"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuDataConsultas"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_data_consultas"
+                    android:contentDescription="@string/data_consultas"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuDataConsultas"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/data_consultas"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:id="@+id/ibMenuCaderneta"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/home_icon_caderneta_gestante"
+                    android:contentDescription="@string/caderneta_gestante"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:stateListAnimator="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ibMenuCaderneta"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/caderneta_gestante"
+                    android:textColor="#C595CE"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

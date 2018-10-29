@@ -1,0 +1,11 @@
+com\scriptpoin\controllers\DadosGestanteController.class
+com\scriptpoin\models\ConsultasMensais.class
+com\scriptpoin\repository\DadosPessoaisRepository.class
+com\scriptpoin\models\Ultrassonografia.class
+com\scriptpoin\models\Usuario.class
+com\scriptpoin\models\DadosObstetricos.class
+com\scriptpoin\repository\ConsultasMensaisRepository.class
+com\scriptpoin\models\DadosPessoais.class
+com\scriptpoin\repository\UsuarioRepository.class
+com\scriptpoin\repository\DadosObstetricosRepository.class
+com\scriptpoin\Configuration.class

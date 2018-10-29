@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title> Lista de Convidados VIP </title>
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css"/>
+</head>
+<body>
+
+<div class="jumbotron">
+
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <td> Nome</td>
+                <td> E-mail</td>
+                <td> Telefone</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="convidado : ${convidados}">
+                <td><span th:text="${convidado.nome}"></span></td>
+                <td><span th:text="${convidado.email}"></span></td>
+                <td><span th:text="${convidado.telefone}"></span></td>
+                <td align="right">
+                    <form method="POST" action="/deletaconvidado">
+                        <input type="hidden" name="id" th:value="${convidado.id}"/>
+                        <button type="submit" class="btn btn-danger"> Excluir </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+
+    <div class="container">
+        <form action="salvaconvidado" method="post">
+
+            <div class="form-group">
+                <label for="nome"> Nome: </label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite aqui o seu nome..."/>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone"> Telefone: </label>
+                <input type="text" class="form-control" id="telefone" name="telefone"
+                       placeholder="Digite aqui o seu telefone..."/>
+            </div>
+
+            <div class="form-group">
+                <label for="email"> E-mail: </label>
+                <input type="text" class="form-control" id="email" name="email"
+                       placeholder="Digite aqui o seu e-mail..."/>
+            </div>
+
+            <button type="submit" class="btn btn-success"> Adicionar convidado à lista VIP</button>
+
+        </form>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="bootstrap-3.3.7/js/bootstrap.js"></script>
+
+</body>
+</html>
